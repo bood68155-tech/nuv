@@ -30,11 +30,16 @@
         <nav class="nav-links" aria-label="Primary">
           <a href="#work">Work</a>
           <a href="#services">Services</a>
+          <a href="#book">Book a call</a>
+          <button type="button" data-open-about>Founder</button>
           <a href="#contact">Contact</a>
         </nav>
 
         <div class="nav-actions">
-          <a class="btn btn-solid btn-sm nav-cta" href="#contact">
+          <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false" aria-label="Play ambient sound" title="Ambient sound — play">
+            <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          </button>
+          <a class="btn btn-solid nav-cta" href="#contact">
             <span data-text="heroPrimaryLabel">Start a project</span>
             <span class="btn-icon" aria-hidden="true">↗</span>
           </a>
@@ -48,8 +53,10 @@
         <nav aria-label="Mobile">
           <a href="#work"><span>01</span>Work</a>
           <a href="#services"><span>02</span>Services</a>
-          <a href="#contact"><span>03</span>Contact</a>
+          <a href="#book"><span>03</span>Book a call</a>
+          <a href="#contact"><span>04</span>Contact</a>
         </nav>
+        <button class="mobile-about" type="button" data-open-about>About the founder <span aria-hidden="true">↗</span></button>
         <a class="btn btn-solid" href="#contact"><span data-text="heroPrimaryLabel">Start a project</span> <span aria-hidden="true">↗</span></a>
         <div class="mobile-menu-foot">
           <a id="mobileInstagram" href="https://www.instagram.com/nuv.562/" target="_blank" rel="noopener">Instagram ↗</a>
@@ -129,7 +136,7 @@
               <div class="work-side-inner">
                 <p class="eyebrow">Filter by service</p>
                 <div class="filters" role="group" aria-label="Filter projects by category">
-                  <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">All <span class="filter-count" data-filter-count="all">09</span></button>
+                  <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">All Projects <span class="filter-count" data-filter-count="all">09</span></button>
                   <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Web <span class="filter-count" data-filter-count="web">03</span></button>
                   <button class="filter-btn" type="button" data-filter="stores" aria-pressed="false">Stores <span class="filter-count" data-filter-count="stores">03</span></button>
                   <button class="filter-btn" type="button" data-filter="designs" aria-pressed="false">Designs <span class="filter-count" data-filter-count="designs">03</span></button>
@@ -222,6 +229,117 @@
         </div>
       </section>
 
+      <section class="book section" id="book" aria-labelledby="bookTitle">
+        <div class="container">
+          <div class="book-head" data-reveal>
+            <div>
+              <p class="eyebrow">Booking</p>
+              <h2 class="display book-title" id="bookTitle">Book an intro call</h2>
+            </div>
+            <p class="book-lede">Thirty minutes on Google Meet, no deck required. Pick a time that suits you — we reply to everything else within two working days.</p>
+          </div>
+
+          <div class="book-card" data-reveal>
+            <div class="book-view book-picker" id="bookPicker">
+              <aside class="book-intro">
+                <div class="book-host">
+                  <span class="book-avatar" aria-hidden="true"><span data-text="brandName">NUV</span></span>
+                  <div class="book-host-text">
+                    <p class="book-host-name" data-text="bookingTitle">Intro call w/ Abood @ NUV</p>
+                    <p class="book-host-role">Founder · NUV Studio</p>
+                  </div>
+                </div>
+
+                <ul class="book-meta">
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+                    <span data-text="bookingDuration">30m</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="m15.5 11 6-3.5v9l-6-3.5Z"/></svg>
+                    <span data-text="bookingLocation">Google Meet</span>
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.6 5.4 3.6 8.5S14.4 18.1 12 20.5c-2.4-2.4-3.6-5.4-3.6-8.5S9.6 5.9 12 3.5Z"/></svg>
+                    <span>Asia/Gaza</span>
+                  </li>
+                </ul>
+
+                <p class="book-copy" data-text="bookingText">A relaxed, honest half hour: what you are building, where it is stuck, and whether NUV is the right studio for it. No sales script — you will leave with a clear next step either way.</p>
+
+                <p class="book-clock">Studio time now <strong id="bookNowClock">--:--</strong></p>
+              </aside>
+
+              <div class="book-calendar">
+                <div class="book-cal-head">
+                  <button class="book-nav-btn" id="bookPrev" type="button" aria-label="Previous month">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m14.5 6-6 6 6 6"/></svg>
+                  </button>
+                  <p class="book-month" id="bookMonth" aria-live="polite">—</p>
+                  <button class="book-nav-btn" id="bookNext" type="button" aria-label="Next month">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg>
+                  </button>
+                </div>
+                <div class="book-weekdays" aria-hidden="true">
+                  <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                </div>
+                <div class="book-days" id="bookDays" role="group" aria-label="Choose a date"></div>
+                <p class="book-hint">Fridays and Saturdays are days off in Gaza.</p>
+              </div>
+
+              <div class="book-slots">
+                <p class="book-slots-title"><span class="eyebrow" id="bookSlotsTitle">Available times</span></p>
+                <div class="book-slot-list" id="bookSlots" aria-live="polite"></div>
+                <p class="book-tz-note">All times in <strong>Asia/Gaza</strong> · <span id="bookTzOffset">GMT+2</span></p>
+              </div>
+            </div>
+
+            <form class="book-view book-form" id="bookForm" hidden novalidate>
+              <div class="book-summary">
+                <p class="eyebrow">Your slot</p>
+                <p class="book-summary-time" id="bookSummaryTime">—</p>
+                <p class="book-summary-meta" id="bookSummaryMeta"></p>
+                <p class="book-summary-local" id="bookSummaryLocal"></p>
+                <button class="link-arrow" id="bookBack" type="button"><span aria-hidden="true">←</span> Choose another time</button>
+              </div>
+              <div class="book-fields">
+                <div class="form-grid">
+                  <label class="field">
+                    <span>Name <em>*</em></span>
+                    <input name="name" type="text" maxlength="80" required autocomplete="name" placeholder="Your name">
+                  </label>
+                  <label class="field">
+                    <span>Email <em>*</em></span>
+                    <input name="email" type="email" maxlength="120" required autocomplete="email" placeholder="you@company.com">
+                  </label>
+                  <label class="field form-span-2">
+                    <span>What are you building? <em>(optional)</em></span>
+                    <textarea name="notes" rows="3" maxlength="400" placeholder="A sentence or two about the project, and anything we should read first."></textarea>
+                  </label>
+                </div>
+                <p class="form-error" id="bookError" role="alert" hidden></p>
+                <div class="book-form-actions">
+                  <p class="book-fine">Add a few details so the call starts from somewhere useful.</p>
+                  <button class="btn btn-solid" type="submit">Confirm booking <span aria-hidden="true">↗</span></button>
+                </div>
+              </div>
+            </form>
+
+            <div class="book-view book-done" id="bookDone" hidden>
+              <p class="book-done-badge"><span aria-hidden="true">✓</span> Slot held</p>
+              <h3 class="book-done-title" id="bookDoneTitle">—</h3>
+              <p class="book-done-meta" id="bookDoneMeta"></p>
+              <p class="book-done-copy">Saved on this device. Add it to your calendar below — email <a href="mailto:hello@nuv.agency">hello@nuv.agency</a> if you need to move it.</p>
+              <div class="book-done-actions">
+                <a class="btn btn-solid" id="bookCalendarLink" href="#" target="_blank" rel="noopener">Add to Google Calendar <span aria-hidden="true">↗</span></a>
+                <a class="btn btn-ghost" id="bookMeetLink" href="https://meet.google.com/" target="_blank" rel="noopener">Google Meet</a>
+                <button class="btn btn-ghost" id="bookRestart" type="button">Book another time</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="contact section" id="contact" aria-labelledby="contactTitle">
         <div class="container">
           <div class="contact-head" data-reveal>
@@ -244,6 +362,7 @@
               <div class="contact-actions">
                 <a class="btn btn-solid" id="contactMailBtn" href="mailto:hello@nuv.agency">Email the studio <span aria-hidden="true">↗</span></a>
                 <a class="btn btn-ghost" id="contactInstagram" href="https://www.instagram.com/nuv.562/" target="_blank" rel="noopener">Instagram</a>
+                <button class="btn btn-ghost" type="button" data-open-about>About the founder</button>
               </div>
             </div>
 
@@ -281,17 +400,93 @@
           <nav class="footer-nav" aria-label="Footer">
             <a href="#work">Work</a>
             <a href="#services">Services</a>
+            <a href="#book">Book a call</a>
+            <button type="button" data-open-about>Founder</button>
             <a href="#contact">Contact</a>
             <a href="#/admin" data-admin-link>Admin</a>
           </nav>
         </div>
+
+        <div class="footer-mid">
+          <div class="footer-col">
+            <p class="eyebrow">Elsewhere</p>
+            <div class="footer-socials" id="footerSocials"></div>
+          </div>
+
+          <div class="footer-col">
+            <p class="eyebrow">Local time · Gaza</p>
+            <p class="footer-clock" id="footerClock">--:--:--</p>
+            <p class="footer-clock-meta"><span id="footerClockDate">Loading studio time…</span> · <span id="footerClockZone">GMT+2</span></p>
+          </div>
+
+          <div class="footer-col footer-col-cta">
+            <p class="eyebrow">Next step</p>
+            <a class="btn btn-solid" href="#book">Book an intro call <span aria-hidden="true">↗</span></a>
+            <p class="footer-availability"><span class="dot dot-live" aria-hidden="true"></span><span data-text="availability">Available for new projects</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 200" preserveAspectRatio="none" focusable="false">
+          <defs>
+            <pattern id="nuvHalftone" width="7" height="7" patternUnits="userSpaceOnUse">
+              <circle cx="3.5" cy="3.5" r="2.35" fill="currentColor"></circle>
+            </pattern>
+            <linearGradient id="nuvWaveFade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffffff" stop-opacity="1"></stop>
+              <stop offset="0.45" stop-color="#ffffff" stop-opacity="0.72"></stop>
+              <stop offset="1" stop-color="#ffffff" stop-opacity="0.08"></stop>
+            </linearGradient>
+            <mask id="nuvWaveMask">
+              <rect width="1440" height="200" fill="url(#nuvWaveFade)"></rect>
+            </mask>
+            <filter id="nuvWaveNoise" x="-12%" y="-40%" width="124%" height="200%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.007 0.055" numOctaves="3" seed="12" result="nuvNoise"></feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="nuvNoise" scale="52" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+            </filter>
+          </defs>
+          <g mask="url(#nuvWaveMask)">
+            <path d="M0 104 C 170 52 318 138 512 108 C 700 78 812 22 1002 48 C 1186 74 1300 132 1440 94 L1440 200 L0 200 Z" fill="url(#nuvHalftone)" filter="url(#nuvWaveNoise)"></path>
+            <path d="M0 176 C 236 146 424 192 648 174 C 886 152 1046 192 1244 174 C 1336 166 1394 176 1440 166 L1440 200 L0 200 Z" fill="currentColor"></path>
+          </g>
+        </svg>
+      </div>
+
+      <div class="container">
         <div class="footer-bottom">
-          <span>© <span id="footerYear">2026</span> <span data-text="brandName">NUV</span>. All rights reserved.</span>
-          <span>Designed &amp; built in-house.</span>
+          <span>© <span id="footerYear">2026</span> <span data-text="brandName">NUV</span>® — All rights reserved.</span>
+          <div class="footer-icons" id="footerIcons" aria-label="NUV elsewhere"></div>
           <button class="back-top" id="backTop" type="button">Back to top <span aria-hidden="true">↑</span></button>
         </div>
       </div>
     </footer>
+
+    <dialog class="modal modal-about" id="aboutDialog" aria-labelledby="aboutTitle">
+      <div class="modal-body about-body">
+        <header class="modal-head">
+          <div>
+            <p class="eyebrow">About the Studio</p>
+            <h2 class="modal-title" id="aboutTitle">About the Founder</h2>
+          </div>
+          <button class="icon-btn" type="button" data-close-about aria-label="Close about the founder">✕</button>
+        </header>
+
+        <p class="about-copy" data-text="aboutText">Hey, I'm Abood. I'm a 20-year-old founder based in Gaza, studying Accounting at Al-Azhar University. I founded NUV to bridge the gap between ambitious ideas and world-class digital experiences. At NUV, we build sharp websites, high-converting e-commerce stores, custom software, and memorable brand identities.</p>
+
+        <dl class="about-facts">
+          <div><dt>Founder</dt><dd>Abood</dd></div>
+          <div><dt>Based in</dt><dd>Gaza</dd></div>
+          <div><dt>Studying</dt><dd>Accounting, Al-Azhar University</dd></div>
+          <div><dt>Studio</dt><dd><span data-text="brandName">NUV</span> — founded 2026</dd></div>
+        </dl>
+
+        <div class="about-actions">
+          <a class="btn btn-solid" href="#book" data-close-about>Book an intro call <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-ghost" href="#work" data-close-about>See the work</a>
+        </div>
+      </div>
+    </dialog>
 
     <dialog class="lightbox" id="projectDialog" aria-labelledby="projectDialogTitle">
       <div class="lightbox-shell">
@@ -461,6 +656,35 @@
 
             <section class="admin-card">
               <div class="admin-card-head">
+                <h3>Founder &amp; booking</h3>
+                <p>The “About the founder” panel and the intro-call widget.</p>
+              </div>
+              <div class="form-grid">
+                <label class="field form-span-2">
+                  <span>Founder story</span>
+                  <textarea name="aboutText" rows="4" maxlength="600"></textarea>
+                </label>
+                <label class="field form-span-2">
+                  <span>Intro call description</span>
+                  <textarea name="bookingText" rows="3" maxlength="400"></textarea>
+                </label>
+                <label class="field">
+                  <span>Meeting name</span>
+                  <input name="bookingTitle" type="text" maxlength="60">
+                </label>
+                <label class="field">
+                  <span>Duration</span>
+                  <input name="bookingDuration" type="text" maxlength="12" placeholder="30m">
+                </label>
+                <label class="field">
+                  <span>Location</span>
+                  <input name="bookingLocation" type="text" maxlength="40" placeholder="Google Meet">
+                </label>
+              </div>
+            </section>
+
+            <section class="admin-card">
+              <div class="admin-card-head">
                 <h3>Social links</h3>
                 <p>Only the links you fill in will appear on the site.</p>
               </div>
@@ -569,6 +793,8 @@
 
   <script src="js/data.js"></script>
   <script src="js/store.js"></script>
+  <script src="js/ambient.js"></script>
+  <script src="js/booking.js"></script>
   <script src="js/app.js"></script>
   <script src="js/admin.js"></script>
 </body>

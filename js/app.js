@@ -57,8 +57,53 @@
     }
   }
 
+  var SOCIAL_ICONS = {
+    Instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.9" r="1" fill="currentColor" stroke="none"/></svg>',
+    LinkedIn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="4"/><path d="M7.6 10.4v6.2M7.6 7.6v.1M11.4 16.6v-6.2M11.4 12.9c0-1.5.9-2.3 2.1-2.3s2 .8 2 2.3v3.7"/></svg>',
+    "X / Twitter": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4.5 4.5h3.4l4.2 5.6 4.6-5.6h2.8l-6 7.3 6.5 7.7h-3.4l-4.5-5.9-4.9 5.9H4.4l6.4-7.7z"/></svg>',
+    Email: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.2" y="5" width="17.6" height="14" rx="2.6"/><path d="m4.4 7.2 7.6 5.6 7.6-5.6"/></svg>'
+  };
+
   function setText(el, value) {
     if (el) el.textContent = value == null ? "" : String(value);
+  }
+
+  function socialRow(item) {
+    var handle = handleFromUrl(item.url);
+    return '<a href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener">' +
+      "<span>" + escapeHtml(item.label) + "</span>" +
+      '<span aria-hidden="true">' + (handle ? escapeHtml(handle) + " " : "") + "↗</span></a>";
+  }
+
+  function renderSocials(socials, email) {
+    var markup = socials.map(socialRow).join("");
+
+    var contactList = document.getElementById("socialLinks");
+    if (contactList) {
+      contactList.innerHTML = markup;
+      var block = contactList.closest(".contact-block");
+      if (block) block.hidden = socials.length === 0;
+    }
+
+    var footerList = document.getElementById("footerSocials");
+    if (footerList) {
+      footerList.innerHTML = markup || (email
+        ? '<a href="mailto:' + escapeHtml(email) + '"><span>Email the studio</span><span aria-hidden="true">' + escapeHtml(email) + " ↗</span></a>"
+        : '<p>Add Instagram, LinkedIn or X in the control panel and they appear here.</p>');
+    }
+
+    var icons = document.getElementById("footerIcons");
+    if (!icons) return;
+
+    var entries = socials.slice();
+    if (email) entries.push({ label: "Email", url: "mailto:" + email });
+
+    icons.innerHTML = entries.map(function (item) {
+      var external = item.url.indexOf("mailto:") === 0 ? "" : ' target="_blank" rel="noopener"';
+      return '<a class="footer-icon" href="' + escapeHtml(item.url) + '"' + external +
+        ' aria-label="' + escapeHtml(item.label) + '" title="' + escapeHtml(item.label) + '">' +
+        (SOCIAL_ICONS[item.label] || SOCIAL_ICONS.Email) + "</a>";
+    }).join("");
   }
 
   function setMeta(selector, value) {
@@ -116,17 +161,7 @@
       { label: "X / Twitter", url: safeUrl(settings.x) }
     ].filter(function (item) { return Boolean(item.url); });
 
-    var socialList = document.getElementById("socialLinks");
-    if (socialList) {
-      socialList.innerHTML = socials.map(function (item) {
-        var handle = handleFromUrl(item.url);
-        return '<a href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener">' +
-          "<span>" + escapeHtml(item.label) + "</span>" +
-          '<span aria-hidden="true">' + (handle ? escapeHtml(handle) + " " : "") + "↗</span></a>";
-      }).join("");
-      var socialBlock = socialList.closest(".contact-block");
-      if (socialBlock) socialBlock.hidden = socials.length === 0;
-    }
+    renderSocials(socials, emailIsValid ? email : "");
 
     var phoneBlock = document.getElementById("phoneBlock");
     var phoneLink = document.getElementById("contactPhone");
@@ -284,6 +319,126 @@
     renderWork();
   }
 
+  /* ---------- Gaza studio clock ---------- */
+
+  function startClock() {
+    var clock = document.getElementById("footerClock");
+    if (!clock) return;
+
+    var dateEl = document.getElementById("footerClockDate");
+    var zoneEl = document.getElementById("footerClockZone");
+    var timeFormat = null;
+    var dateFormat = null;
+    var zoneFormat = null;
+
+    try {
+      timeFormat = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Gaza", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false
+      });
+      dateFormat = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Gaza", weekday: "long", day: "numeric", month: "long"
+      });
+      zoneFormat = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Gaza", timeZoneName: "shortOffset" });
+    } catch (error) {
+      timeFormat = null;
+    }
+
+    function zoneLabel(now) {
+      if (!zoneFormat) return "Gaza";
+      var parts = zoneFormat.formatToParts(now);
+      for (var i = 0; i < parts.length; i += 1) {
+        if (parts[i].type === "timeZoneName") return parts[i].value;
+      }
+      return "Gaza";
+    }
+
+    function tick() {
+      var now = new Date();
+      if (!timeFormat) {
+        var pad = function (value) { return value < 10 ? "0" + value : String(value); };
+        clock.textContent = pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
+        if (dateEl) dateEl.textContent = "Local time";
+        if (zoneEl) zoneEl.textContent = "no time-zone data";
+        return;
+      }
+      clock.textContent = timeFormat.format(now);
+      if (dateEl) dateEl.textContent = dateFormat.format(now);
+      if (zoneEl) zoneEl.textContent = zoneLabel(now);
+    }
+
+    tick();
+    window.setInterval(tick, 1000);
+  }
+
+  /* ---------- About the founder ---------- */
+
+  function initAbout() {
+    var dialog = document.getElementById("aboutDialog");
+    if (!dialog || typeof dialog.showModal !== "function") return;
+
+    document.querySelectorAll("[data-open-about]").forEach(function (trigger) {
+      trigger.addEventListener("click", function () {
+        closeMobileMenu();
+        dialog.showModal();
+        document.body.classList.add("dialog-open");
+      });
+    });
+
+    document.querySelectorAll("[data-close-about]").forEach(function (closer) {
+      closer.addEventListener("click", function () {
+        dialog.close();
+      });
+    });
+
+    dialog.addEventListener("click", function (event) {
+      if (event.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener("close", function () {
+      document.body.classList.remove("dialog-open");
+    });
+  }
+
+  /* ---------- Ambient sound toggle ---------- */
+
+  function initSound() {
+    var button = document.getElementById("soundToggle");
+    if (!button) return;
+
+    var ambient = window.NUVAmbient;
+    if (!ambient || !ambient.supported()) {
+      button.hidden = true;
+      return;
+    }
+
+    button.addEventListener("click", function () {
+      var wasPlaying = ambient.isPlaying();
+      var on = ambient.toggle();
+
+      button.setAttribute("aria-pressed", String(on));
+      button.setAttribute("aria-label", on ? "Pause ambient sound" : "Play ambient sound");
+      button.title = on ? "Ambient sound — pause" : "Ambient sound — play";
+
+      if (!on && !wasPlaying) {
+        toast("This browser would not start the ambient audio.", true);
+      }
+    });
+  }
+
+  function toast(message, isError) {
+    if (!els.toasts) return;
+    var node = document.createElement("div");
+    node.className = "toast" + (isError ? " is-error" : "");
+    node.textContent = message;
+    els.toasts.appendChild(node);
+    window.setTimeout(function () {
+      node.style.opacity = "0";
+      node.style.transform = "translateY(6px)";
+      node.style.transition = "opacity .3s ease, transform .3s ease";
+      window.setTimeout(function () { node.remove(); }, 320);
+    }, 3200);
+  }
+
   function cacheElements() {
     els.header = document.getElementById("siteHeader");
     els.grid = document.getElementById("workGrid");
@@ -399,24 +554,15 @@
     renderWork();
     bindEvents();
     setupReveal();
+    startClock();
+    initAbout();
+    initSound();
 
     window.NUVApp = {
       refresh: refresh,
       openProject: openProject,
       setFilter: setFilter,
-      toast: function (message, isError) {
-        if (!els.toasts) return;
-        var toast = document.createElement("div");
-        toast.className = "toast" + (isError ? " is-error" : "");
-        toast.textContent = message;
-        els.toasts.appendChild(toast);
-        window.setTimeout(function () {
-          toast.style.opacity = "0";
-          toast.style.transform = "translateY(6px)";
-          toast.style.transition = "opacity .3s ease, transform .3s ease";
-          window.setTimeout(function () { toast.remove(); }, 320);
-        }, 3200);
-      }
+      toast: toast
     };
   }
 

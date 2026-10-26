@@ -2,17 +2,22 @@
 
 A single-page site for **NUV**, a digital studio offering web development, e-commerce stores, software solutions and graphic design.
 
-The layout follows an editorial studio structure: oversized typography, a sticky filter rail and a tall portfolio grid — set in NUV's deep-navy identity with custom vector cover art.
+The layout follows an editorial studio structure: oversized typography, a sticky filter rail and a tall portfolio grid — set on NUV's light off-white, grain-textured canvas with bold near-black type and custom vector cover art. The footer closes with a black halftone wave.
 
 ## Pages
 
 | Route | What it is |
 | --- | --- |
-| `/` | Public site — hero, selected work, services, contact |
+| `/` | Public site — hero, selected work, services, booking, contact, founder panel |
 | `/#/admin` | Admin control panel (full-screen overlay) |
 | `/admin/` | Small redirect page that opens the control panel |
 
 Everything is a single static page with hash routing, so it works on GitHub Pages, Netlify, Vercel or any static host.
+
+## Interaction notes
+
+- **Ambient sound** — the header speaker button starts a generative Web Audio pad (no audio files). The browser only allows it after a click, and the button state reflects play/pause.
+- **Booking** — the Cal.com-style widget builds a Gaza-local (Asia/Gaza) calendar, 30-minute slots inside working hours, hides Fridays and Saturdays, and hands the chosen slot to Google Calendar. There is no backend: the held slot is confirmed in the page and saved on the device, so no email is sent — connect a real scheduling service when you want automatic confirmations.
 
 ## The admin panel
 
@@ -28,6 +33,7 @@ Open it from the **Admin** link in the footer, or go directly to `/#/admin`.
 - Brand name and browser/meta copy.
 - Homepage hero: eyebrow, two headline lines, introduction, button labels, availability and location.
 - Contact: headline, introduction, email, phone, location and footer note.
+- Founder & booking: the "About the founder" story and the intro-call widget copy.
 - Social links: Instagram, LinkedIn, X/Twitter (empty fields are hidden on the site).
 - Reset demo content restores the original project list and default copy.
 
@@ -64,7 +70,9 @@ nuv/
 ├── js/
 │   ├── data.js           Default settings and seed projects
 │   ├── store.js          localStorage persistence + CRUD
-│   ├── app.js            Public rendering, filters, lightbox
+│   ├── ambient.js        Generative ambient pad (Web Audio) for the header toggle
+│   ├── booking.js        Gaza-local intro-call scheduler and confirmation
+│   ├── app.js            Public rendering, filters, lightbox, footer clock, founder panel
 │   └── admin.js          Admin routing, CRUD forms, settings
 ├── assets/
 │   ├── logo.jpg          Original brand artwork

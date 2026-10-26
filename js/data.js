@@ -31,7 +31,16 @@ window.NUV_DEFAULTS = {
     linkedin: "",
     x: "",
 
-    footerNote: "NUV is an independent digital studio building digital things that matter."
+    footerNote: "NUV is an independent digital studio building digital things that matter.",
+
+    aboutText:
+      "Hey, I'm Abood. I'm a 20-year-old founder based in Gaza, studying Accounting at Al-Azhar University. I founded NUV to bridge the gap between ambitious ideas and world-class digital experiences. At NUV, we build sharp websites, high-converting e-commerce stores, custom software, and memorable brand identities.",
+
+    bookingTitle: "Intro call w/ Abood @ NUV",
+    bookingDuration: "30m",
+    bookingLocation: "Google Meet",
+    bookingText:
+      "A relaxed, honest half hour: what you are building, where it is stuck, and whether NUV is the right studio for it. No sales script — you will leave with a clear next step either way."
   },
 
   projects: [
