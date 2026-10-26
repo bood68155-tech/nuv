@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NUV® — Digital Design &amp; Development Studio</title>
+  <meta name="description" content="NUV is an independent digital studio building websites, e-commerce stores, custom software and brand identities for ambitious teams.">
+  <meta name="theme-color" content="#06182e">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="NUV® — Digital Design &amp; Development Studio">
+  <meta property="og:description" content="Websites, e-commerce stores, software and identities — designed and built in-house.">
+  <meta property="og:image" content="assets/logo.jpg">
+  <link rel="icon" type="image/png" href="assets/logo-mark.png">
+  <link rel="apple-touch-icon" href="assets/logo-mark.png">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div id="site">
+    <header class="site-header" id="siteHeader">
+      <div class="container nav-inner">
+        <a class="brand" href="#top" aria-label="NUV — back to top">
+          <img class="brand-mark" src="assets/logo-mark.png" alt="" width="44" height="44">
+          <span class="brand-word"><span data-text="brandName">NUV</span><sup>®</sup></span>
+          <span class="brand-tag">Digital studio</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#work">Work</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a class="btn btn-solid btn-sm nav-cta" href="#contact">
+            <span data-text="heroPrimaryLabel">Start a project</span>
+            <span class="btn-icon" aria-hidden="true">↗</span>
+          </a>
+          <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+            <span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <nav aria-label="Mobile">
+          <a href="#work"><span>01</span>Work</a>
+          <a href="#services"><span>02</span>Services</a>
+          <a href="#contact"><span>03</span>Contact</a>
+        </nav>
+        <a class="btn btn-solid" href="#contact"><span data-text="heroPrimaryLabel">Start a project</span> <span aria-hidden="true">↗</span></a>
+        <div class="mobile-menu-foot">
+          <a id="mobileInstagram" href="https://www.instagram.com/nuv.562/" target="_blank" rel="noopener">Instagram ↗</a>
+          <span data-text="location">Working worldwide</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="heroTitle">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="container hero-inner">
+          <div class="hero-meta" data-reveal>
+            <p class="eyebrow"><span class="dot dot-live" aria-hidden="true"></span><span data-text="availability">Available for new projects</span></p>
+            <p class="eyebrow hero-meta-mid" data-text="heroKicker">Independent digital studio</p>
+            <p class="eyebrow" data-text="location">Working worldwide</p>
+          </div>
+
+          <h1 class="hero-title" id="heroTitle">
+            <span class="hero-line hero-line-outline" data-text="heroLine1">DIGITAL THINGS</span>
+            <span class="hero-line" data-text="heroLine2">THAT MATTER.</span>
+          </h1>
+
+          <div class="hero-foot" data-reveal>
+            <p class="hero-intro" data-text="heroIntro">NUV is a design and development studio building sharp websites, high-converting stores, custom software and identities for brands that want to be remembered.</p>
+
+            <div class="hero-actions">
+              <a class="btn btn-solid" href="#contact">
+                <span data-text="heroPrimaryLabel">Start a project</span>
+                <span class="btn-icon" aria-hidden="true">↗</span>
+              </a>
+              <a class="btn btn-ghost" href="#work">
+                <span data-text="heroSecondaryLabel">View selected work</span>
+              </a>
+            </div>
+
+            <div class="hero-stamp">
+              <img src="assets/logo-mark.png" alt="" width="88" height="88">
+              <div class="hero-stamp-copy">
+                <span class="hero-stamp-name"><span data-text="brandName">NUV</span><sup>®</sup></span>
+                <span class="hero-stamp-sub">Design · Development<br>Identity</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ticker" aria-label="NUV services">
+          <div class="ticker-track">
+            <div class="ticker-group">
+              <span>Web development</span><span class="ticker-star" aria-hidden="true">✳</span>
+              <span class="ticker-ghost">E-commerce stores</span><span class="ticker-star" aria-hidden="true">✳</span>
+              <span>Software solutions</span><span class="ticker-star" aria-hidden="true">✳</span>
+              <span class="ticker-ghost">Graphic design</span><span class="ticker-star" aria-hidden="true">✳</span>
+            </div>
+            <div class="ticker-group" aria-hidden="true">
+              <span>Web development</span><span class="ticker-star">✳</span>
+              <span class="ticker-ghost">E-commerce stores</span><span class="ticker-star">✳</span>
+              <span>Software solutions</span><span class="ticker-star">✳</span>
+              <span class="ticker-ghost">Graphic design</span><span class="ticker-star">✳</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="work section" id="work" aria-labelledby="workTitle">
+        <div class="container">
+          <div class="work-head" data-reveal>
+            <div>
+              <p class="eyebrow">Portfolio</p>
+              <h2 class="display work-title" id="workTitle">Selected work</h2>
+            </div>
+            <p class="work-index display" aria-label="Total projects">(<span id="workCount">09</span>)</p>
+          </div>
+
+          <div class="work-layout">
+            <aside class="work-side" aria-label="Filter projects">
+              <div class="work-side-inner">
+                <p class="eyebrow">Filter by service</p>
+                <div class="filters" role="group" aria-label="Filter projects by category">
+                  <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">All <span class="filter-count" data-filter-count="all">09</span></button>
+                  <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Web <span class="filter-count" data-filter-count="web">03</span></button>
+                  <button class="filter-btn" type="button" data-filter="stores" aria-pressed="false">Stores <span class="filter-count" data-filter-count="stores">03</span></button>
+                  <button class="filter-btn" type="button" data-filter="designs" aria-pressed="false">Designs <span class="filter-count" data-filter-count="designs">03</span></button>
+                </div>
+                <p class="work-note">A selection of recent collaborations across web, commerce and identity — designed and built end to end.</p>
+                <a class="link-arrow" href="#contact">Start a project <span aria-hidden="true">→</span></a>
+              </div>
+            </aside>
+
+            <div class="work-grid" id="workGrid" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="services section" id="services" aria-labelledby="servicesTitle">
+        <div class="container">
+          <div class="services-head" data-reveal>
+            <div>
+              <p class="eyebrow">What we do</p>
+              <h2 class="display" id="servicesTitle">Four disciplines.<br><span class="text-outline">One studio.</span></h2>
+            </div>
+            <p class="services-intro">Strategy, design and engineering live under one roof — so nothing gets lost between the idea and the thing people actually use.</p>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card" data-reveal>
+              <div class="service-top">
+                <span class="service-index">01</span>
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                  <rect x="2.5" y="4" width="19" height="15" rx="2"/>
+                  <path d="M2.5 8.5h19M6 12h5"/>
+                </svg>
+              </div>
+              <h3>Web Development</h3>
+              <p>Fast, accessible websites with a point of view — designed and built in-house, from first wireframe to launch day.</p>
+              <ul class="service-tags">
+                <li>Design systems</li><li>Front-end</li><li>CMS builds</li><li>Performance</li>
+              </ul>
+              <a class="service-link" href="#contact">Discuss a website <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="service-card" data-reveal>
+              <div class="service-top">
+                <span class="service-index">02</span>
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                  <path d="M5 7.5h14l1 13H4l1-13Z"/>
+                  <path d="M8.5 7.5V6a3.5 3.5 0 0 1 7 0v1.5"/>
+                </svg>
+              </div>
+              <h3>E-Commerce Stores</h3>
+              <p>Storefronts that look as good as they sell — conversion-minded builds with checkout flows people actually finish.</p>
+              <ul class="service-tags">
+                <li>Shopify</li><li>Headless commerce</li><li>CRO</li><li>Subscriptions</li>
+              </ul>
+              <a class="service-link" href="#contact">Discuss a store <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="service-card" data-reveal>
+              <div class="service-top">
+                <span class="service-index">03</span>
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                  <rect x="2.5" y="3.5" width="19" height="17" rx="2"/>
+                  <path d="m6.5 9 2.5 2.5-2.5 2.5M12 14h4"/>
+                </svg>
+              </div>
+              <h3>Software Solutions</h3>
+              <p>Custom tools and products that remove friction from your business — dashboards, portals and internal platforms.</p>
+              <ul class="service-tags">
+                <li>Product design</li><li>Web apps</li><li>APIs</li><li>Automation</li>
+              </ul>
+              <a class="service-link" href="#contact">Discuss a product <span aria-hidden="true">↗</span></a>
+            </article>
+
+            <article class="service-card" data-reveal>
+              <div class="service-top">
+                <span class="service-index">04</span>
+                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                  <path d="m12 3 5.5 5.5L8 18l-5 1 1-5 8-11Z"/>
+                  <path d="m10 6 5.5 5.5M14.5 20.5h6"/>
+                </svg>
+              </div>
+              <h3>Graphic Design</h3>
+              <p>Identities, art direction and print systems that make a brand unmistakable at every touchpoint — on screen and off.</p>
+              <ul class="service-tags">
+                <li>Brand identity</li><li>Art direction</li><li>Packaging</li><li>Motion</li>
+              </ul>
+              <a class="service-link" href="#contact">Discuss a brand <span aria-hidden="true">↗</span></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact section" id="contact" aria-labelledby="contactTitle">
+        <div class="container">
+          <div class="contact-head" data-reveal>
+            <p class="eyebrow">Contact</p>
+            <h2 class="contact-title display" id="contactTitle">
+              <span class="contact-line" data-text="contactHeading">HAVE A PROJECT?</span>
+              <span class="contact-line contact-line-outline" data-text="contactHeadingAccent">LET'S MAKE IT REAL.</span>
+            </h2>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-main" data-reveal>
+              <p class="contact-copy" data-text="contactText">Tell us what you are building. We reply within two working days with next steps, a rough timeline and an honest take on how we can help.</p>
+
+              <a class="contact-email" id="contactEmail" href="mailto:hello@nuv.agency">
+                <span id="contactEmailLabel">hello@nuv.agency</span>
+                <span class="contact-email-icon" aria-hidden="true">↗</span>
+              </a>
+
+              <div class="contact-actions">
+                <a class="btn btn-solid" id="contactMailBtn" href="mailto:hello@nuv.agency">Email the studio <span aria-hidden="true">↗</span></a>
+                <a class="btn btn-ghost" id="contactInstagram" href="https://www.instagram.com/nuv.562/" target="_blank" rel="noopener">Instagram</a>
+              </div>
+            </div>
+
+            <div class="contact-aside" data-reveal>
+              <div class="contact-block">
+                <p class="eyebrow">Studio</p>
+                <p class="contact-value"><span data-text="location">Working worldwide</span></p>
+              </div>
+              <div class="contact-block">
+                <p class="eyebrow">Availability</p>
+                <p class="contact-value"><span class="dot dot-live" aria-hidden="true"></span><span data-text="availability">Available for new projects</span></p>
+              </div>
+              <div class="contact-block">
+                <p class="eyebrow">Elsewhere</p>
+                <div class="social-list" id="socialLinks"></div>
+              </div>
+              <div class="contact-block" id="phoneBlock" hidden>
+                <p class="eyebrow">Phone</p>
+                <p class="contact-value"><a id="contactPhone" href="#"></a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-top">
+          <a class="brand" href="#top" aria-label="NUV — back to top">
+            <img class="brand-mark" src="assets/logo-mark.png" alt="" width="40" height="40">
+            <span class="brand-word"><span data-text="brandName">NUV</span><sup>®</sup></span>
+          </a>
+          <p class="footer-note" data-text="footerNote">NUV is an independent digital studio building digital things that matter.</p>
+          <nav class="footer-nav" aria-label="Footer">
+            <a href="#work">Work</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+            <a href="#/admin" data-admin-link>Admin</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span id="footerYear">2026</span> <span data-text="brandName">NUV</span>. All rights reserved.</span>
+          <span>Designed &amp; built in-house.</span>
+          <button class="back-top" id="backTop" type="button">Back to top <span aria-hidden="true">↑</span></button>
+        </div>
+      </div>
+    </footer>
+
+    <dialog class="lightbox" id="projectDialog" aria-labelledby="projectDialogTitle">
+      <div class="lightbox-shell">
+        <button class="dialog-close" id="projectDialogClose" type="button" aria-label="Close project">
+          <span aria-hidden="true">✕</span>
+        </button>
+        <div class="lightbox-media">
+          <img id="projectDialogImage" alt="">
+          <div class="lightbox-fallback" id="projectDialogFallback" aria-hidden="true"></div>
+        </div>
+        <div class="lightbox-body">
+          <p class="eyebrow" id="projectDialogMeta">Web — 2026</p>
+          <h2 id="projectDialogTitle">Project</h2>
+          <p class="lightbox-desc" id="projectDialogDesc"></p>
+          <div class="tag-row" id="projectDialogTags"></div>
+          <a class="btn btn-solid lightbox-link" id="projectDialogLink" href="#" target="_blank" rel="noopener" hidden>Visit live project <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </dialog>
+  </div>
+
+  <div class="admin" id="admin" role="dialog" aria-modal="true" aria-labelledby="adminTitle" hidden>
+    <div class="admin-topbar">
+      <div class="container admin-topbar-inner">
+        <div class="admin-brand">
+          <img src="assets/logo-mark.png" alt="" width="34" height="34">
+          <span><strong><span data-text="brandName">NUV</span>®</strong><em>Control panel</em></span>
+          <h1 class="visually-hidden" id="adminTitle">NUV control panel</h1>
+        </div>
+        <div class="admin-topbar-actions">
+          <span class="admin-status"><span class="dot" aria-hidden="true"></span>Saved in this browser</span>
+          <button class="btn btn-ghost btn-sm" id="adminExit" type="button">← Back to site</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container admin-layout">
+      <aside class="admin-side">
+        <nav class="admin-tabs" aria-label="Control panel sections">
+          <button class="admin-tab is-active" type="button" data-admin-tab="projects" aria-selected="true">
+            Projects <span class="admin-tab-count" id="projectTabCount">09</span>
+          </button>
+          <button class="admin-tab" type="button" data-admin-tab="settings" aria-selected="false">
+            Site settings
+          </button>
+        </nav>
+        <p class="admin-side-note">Changes save to this browser instantly and appear on the live site straight away.</p>
+        <button class="admin-side-link" id="adminViewSite" type="button">View live site <span aria-hidden="true">↗</span></button>
+      </aside>
+
+      <main class="admin-main">
+        <section class="admin-panel" id="panel-projects" aria-labelledby="projectsHeading">
+          <header class="admin-panel-head">
+            <div>
+              <p class="eyebrow">Portfolio</p>
+              <h2 class="admin-title" id="projectsHeading">Projects</h2>
+            </div>
+            <button class="btn btn-solid" id="addProjectBtn" type="button"><span aria-hidden="true">+</span> Add project</button>
+          </header>
+          <p class="admin-panel-intro">Add work to the public grid, reorder nothing, and edit anything — title, category, image, description and link.</p>
+          <div class="admin-list" id="adminProjectList"></div>
+        </section>
+
+        <section class="admin-panel" id="panel-settings" aria-labelledby="settingsHeading" hidden>
+          <header class="admin-panel-head">
+            <div>
+              <p class="eyebrow">Content</p>
+              <h2 class="admin-title" id="settingsHeading">Site settings</h2>
+            </div>
+          </header>
+
+          <form id="settingsForm" class="settings-form" novalidate>
+            <section class="admin-card">
+              <div class="admin-card-head">
+                <h3>Brand &amp; metadata</h3>
+                <p>The name in the header and what search engines see.</p>
+              </div>
+              <div class="form-grid">
+                <label class="field">
+                  <span>Brand name</span>
+                  <input name="brandName" type="text" maxlength="40" required autocomplete="off">
+                </label>
+                <label class="field">
+                  <span>Browser title</span>
+                  <input name="siteTitle" type="text" maxlength="90" required autocomplete="off">
+                </label>
+                <label class="field form-span-2">
+                  <span>Meta description</span>
+                  <textarea name="metaDescription" rows="2" maxlength="200"></textarea>
+                </label>
+              </div>
+            </section>
+
+            <section class="admin-card">
+              <div class="admin-card-head">
+                <h3>Homepage hero</h3>
+                <p>The opening statement, the introduction and the two calls to action.</p>
+              </div>
+              <div class="form-grid">
+                <label class="field">
+                  <span>Eyebrow</span>
+                  <input name="heroKicker" type="text" maxlength="48">
+                </label>
+                <label class="field">
+                  <span>Availability</span>
+                  <input name="availability" type="text" maxlength="48">
+                </label>
+                <label class="field">
+                  <span>Headline — line 1</span>
+                  <input name="heroLine1" type="text" maxlength="24">
+                </label>
+                <label class="field">
+                  <span>Headline — line 2</span>
+                  <input name="heroLine2" type="text" maxlength="24">
+                </label>
+                <label class="field form-span-2">
+                  <span>Introduction</span>
+                  <textarea name="heroIntro" rows="3" maxlength="260"></textarea>
+                </label>
+                <label class="field">
+                  <span>Primary button label</span>
+                  <input name="heroPrimaryLabel" type="text" maxlength="32">
+                </label>
+                <label class="field">
+                  <span>Secondary button label</span>
+                  <input name="heroSecondaryLabel" type="text" maxlength="32">
+                </label>
+              </div>
+            </section>
+
+            <section class="admin-card">
+              <div class="admin-card-head">
+                <h3>Contact</h3>
+                <p>Where people reach you, and the headline above it.</p>
+              </div>
+              <div class="form-grid">
+                <label class="field">
+                  <span>Contact headline — line 1</span>
+                  <input name="contactHeading" type="text" maxlength="30">
+                </label>
+                <label class="field">
+                  <span>Contact headline — line 2</span>
+                  <input name="contactHeadingAccent" type="text" maxlength="30">
+                </label>
+                <label class="field form-span-2">
+                  <span>Contact introduction</span>
+                  <textarea name="contactText" rows="3" maxlength="300"></textarea>
+                </label>
+                <label class="field">
+                  <span>Email</span>
+                  <input name="email" type="email" maxlength="120" autocomplete="off">
+                </label>
+                <label class="field">
+                  <span>Phone <em>(optional)</em></span>
+                  <input name="phone" type="tel" maxlength="40" autocomplete="off" placeholder="Leave empty to hide">
+                </label>
+                <label class="field">
+                  <span>Location</span>
+                  <input name="location" type="text" maxlength="80">
+                </label>
+                <label class="field">
+                  <span>Footer note</span>
+                  <input name="footerNote" type="text" maxlength="140">
+                </label>
+              </div>
+            </section>
+
+            <section class="admin-card">
+              <div class="admin-card-head">
+                <h3>Social links</h3>
+                <p>Only the links you fill in will appear on the site.</p>
+              </div>
+              <div class="form-grid">
+                <label class="field">
+                  <span>Instagram URL</span>
+                  <input name="instagram" type="url" maxlength="200" placeholder="https://instagram.com/nuv.562">
+                </label>
+                <label class="field">
+                  <span>LinkedIn URL</span>
+                  <input name="linkedin" type="url" maxlength="200" placeholder="https://linkedin.com/company/…">
+                </label>
+                <label class="field">
+                  <span>X / Twitter URL</span>
+                  <input name="x" type="url" maxlength="200" placeholder="https://x.com/…">
+                </label>
+              </div>
+            </section>
+
+            <div class="admin-savebar">
+              <p id="settingsStatus" role="status">Editing content for this browser.</p>
+              <div class="admin-savebar-actions">
+                <button class="btn btn-danger-ghost" id="resetBtn" type="button">Reset demo content</button>
+                <button class="btn btn-solid" type="submit">Save changes</button>
+              </div>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="modal" id="editorDialog" aria-labelledby="editorTitle">
+      <form id="projectForm" class="modal-body" novalidate>
+        <header class="modal-head">
+          <div>
+            <p class="eyebrow">Portfolio</p>
+            <h2 class="modal-title" id="editorTitle">Add project</h2>
+          </div>
+          <button class="icon-btn" type="button" data-close-editor aria-label="Close project editor">✕</button>
+        </header>
+
+        <input type="hidden" name="id">
+
+        <div class="form-grid">
+          <label class="field form-span-2">
+            <span>Title <em>*</em></span>
+            <input name="title" type="text" maxlength="90" required autocomplete="off" placeholder="e.g. Northwind Supply">
+          </label>
+          <label class="field">
+            <span>Category <em>*</em></span>
+            <select name="category" required>
+              <option value="web">Web</option>
+              <option value="stores">Stores</option>
+              <option value="designs">Designs</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Project link <em>(optional)</em></span>
+            <input name="link" type="text" inputmode="url" maxlength="300" placeholder="https://…">
+          </label>
+          <div class="field form-span-2">
+            <span>Image URL</span>
+            <div class="image-url-row">
+              <input name="image" id="imageUrlInput" type="text" maxlength="2000000" placeholder="https://… or assets/works/…">
+              <button class="btn btn-ghost btn-sm" id="uploadImageBtn" type="button">Upload</button>
+              <input id="imageFileInput" type="file" accept="image/*" hidden>
+            </div>
+            <div class="image-preview" id="imagePreview">
+              <img id="imagePreviewImg" alt="">
+              <span id="imagePreviewEmpty">No image yet — paste a URL or upload a file.</span>
+            </div>
+            <p class="field-hint">Portrait (4:5) images look best. Uploads are resized and stored in this browser.</p>
+          </div>
+          <label class="field form-span-2">
+            <span>Description</span>
+            <textarea name="description" rows="4" maxlength="600" placeholder="What did we make, and why does it matter?"></textarea>
+          </label>
+        </div>
+
+        <p class="form-error" id="projectFormError" role="alert" hidden></p>
+
+        <footer class="modal-actions">
+          <button class="btn btn-ghost" type="button" data-close-editor>Cancel</button>
+          <button class="btn btn-solid" type="submit">Save project</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal modal-sm" id="confirmDialog" aria-labelledby="confirmTitle">
+      <div class="modal-body">
+        <h2 class="modal-title" id="confirmTitle">Delete project?</h2>
+        <p class="confirm-copy" id="confirmText">This removes the project from the public grid. It can’t be undone.</p>
+        <div class="modal-actions">
+          <button class="btn btn-ghost" id="confirmCancel" type="button">Cancel</button>
+          <button class="btn btn-danger" id="confirmOk" type="button">Delete</button>
+        </div>
+      </div>
+    </dialog>
+  </div>
+
+  <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript">NUV needs JavaScript for the portfolio, filters and admin panel. Please enable it and reload.</div>
+  </noscript>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

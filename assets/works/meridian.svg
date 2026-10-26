@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="Meridian Arquitectos website cover">
+  <defs>
+    <linearGradient id="m-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EFEBE3"/>
+      <stop offset="1" stop-color="#DDD6C9"/>
+    </linearGradient>
+    <linearGradient id="m-arch" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#D9C7AC"/>
+      <stop offset="0.55" stop-color="#B49C7B"/>
+      <stop offset="1" stop-color="#7C674C"/>
+    </linearGradient>
+    <linearGradient id="m-thumb" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#CFC3B1"/>
+      <stop offset="1" stop-color="#9C8A70"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#m-bg)"/>
+  <g stroke="#CFC8BA" stroke-width="1">
+    <path d="M40 0v1250M960 0v1250M0 60h1000M0 1190h1000"/>
+  </g>
+  <rect x="66" y="96" width="868" height="1064" rx="16" fill="#F8F6F1"/>
+  <rect x="66" y="96" width="868" height="48" rx="16" fill="#E9E4D9"/>
+  <rect x="66" y="128" width="868" height="16" fill="#E9E4D9"/>
+  <g fill="#B9B2A4">
+    <circle cx="94" cy="120" r="5"/>
+    <circle cx="112" cy="120" r="5"/>
+    <circle cx="130" cy="120" r="5"/>
+  </g>
+  <text x="500" y="125" font-family="Arial, Helvetica, sans-serif" font-size="12" letter-spacing="2" fill="#8A8274" text-anchor="middle">meridian.studio</text>
+  <text x="110" y="205" font-family="Arial, Helvetica, sans-serif" font-size="18" letter-spacing="5" fill="#1E1C18">MERIDIAN</text>
+  <text x="890" y="205" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="2.5" fill="#6F685C" text-anchor="end">WORK   STUDIO   CONTACT</text>
+  <text x="110" y="330" font-family="Georgia, 'Times New Roman', serif" font-size="76" fill="#1E1C18">Spaces</text>
+  <text x="110" y="404" font-family="Georgia, 'Times New Roman', serif" font-size="76" font-style="italic" fill="#1E1C18">that</text>
+  <text x="110" y="478" font-family="Georgia, 'Times New Roman', serif" font-size="76" fill="#1E1C18">breathe.</text>
+  <text x="110" y="540" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#6F685C">Architecture and interiors,</text>
+  <text x="110" y="562" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#6F685C">Lisbon and beyond.</text>
+  <path d="M556 962V520a164 164 0 0 1 328 0v442z" fill="#EFEAE0"/>
+  <path d="M578 962V524a142 142 0 0 1 284 0v438z" fill="url(#m-arch)"/>
+  <path d="M614 962V540a106 106 0 0 1 212 0v422z" fill="#8A7458" opacity=".45"/>
+  <rect x="662" y="640" width="120" height="322" fill="#3B3328" opacity=".22"/>
+  <rect x="110" y="610" width="86" height="30" rx="15" fill="#1E1C18"/>
+  <text x="153" y="630" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="1" fill="#F8F6F1" text-anchor="middle">VIEW WORK</text>
+  <text x="752" y="990" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2" fill="#EFEAE0" text-anchor="middle">CASA DO RIO — 2025</text>
+  <g>
+    <rect x="110" y="700" width="190" height="140" fill="url(#m-thumb)"/>
+    <rect x="318" y="700" width="190" height="140" fill="#D7CBBA"/>
+    <path d="M318 840v-70l48-40 60 58 42-30 40 32v50z" fill="#A89377"/>
+    <rect x="110" y="860" width="190" height="1" fill="#CFC8BA"/>
+    <text x="110" y="882" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="1.5" fill="#6F685C">RESIDENTIAL</text>
+    <text x="318" y="882" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="1.5" fill="#6F685C">HOSPITALITY</text>
+  </g>
+  <path d="M110 1010h780" stroke="#CFC8BA" stroke-width="1"/>
+  <text x="110" y="1044" font-family="Georgia, 'Times New Roman', serif" font-size="30" fill="#1E1C18">Selected work</text>
+  <text x="890" y="1044" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="2" fill="#6F685C" text-anchor="end">(01 — 12)</text>
+  <text x="110" y="1120" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2" fill="#8A8274">© MERIDIAN ARQUITECTOS, 2026</text>
+  <text x="890" y="1120" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2" fill="#8A8274" text-anchor="end">38.7223° N, 9.1393° W</text>
+</svg>

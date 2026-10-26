@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="Cobalt Labs website cover">
+  <defs>
+    <radialGradient id="c-orb" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#E8FF9C"/>
+      <stop offset="0.45" stop-color="#C8F94A"/>
+      <stop offset="1" stop-color="#5E7A0F" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="c-lime" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#D8FF72"/>
+      <stop offset="1" stop-color="#A6D42F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1250" fill="#090B0A"/>
+  <g stroke="#F4F6EF" stroke-opacity=".06">
+    <path d="M0 310h1000M0 620h1000M0 930h1000M0 1240h1000"/>
+    <path d="M250 0v1250M500 0v1250M750 0v1250"/>
+  </g>
+  <circle cx="790" cy="720" r="430" fill="url(#c-orb)"/>
+  <circle cx="790" cy="720" r="238" fill="none" stroke="#0A0C0B" stroke-opacity=".35"/>
+  <circle cx="790" cy="720" r="320" fill="none" stroke="#0A0C0B" stroke-opacity=".18"/>
+  <g>
+    <rect x="70" y="72" width="28" height="28" rx="6" fill="#C8F94A"/>
+    <path d="M78 86h12M84 80v12" stroke="#090B0A" stroke-width="2"/>
+    <text x="112" y="93" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="bold" letter-spacing="4" fill="#F4F6EF">COBALT</text>
+    <text x="930" y="92" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="2" fill="#8E9C86" text-anchor="end">DOCS   BLOG   LOGIN</text>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="bold" letter-spacing="-6">
+    <text x="66" y="410" font-size="168" fill="#F4F6EF">SHIP</text>
+    <text x="66" y="566" font-size="168" fill="#F4F6EF">FASTER.</text>
+    <text x="66" y="722" font-size="168" fill="none" stroke="#8A9C7A" stroke-width="1.5">BUILD</text>
+    <text x="66" y="878" font-size="168" fill="none" stroke="#8A9C7A" stroke-width="1.5">BOLDER.</text>
+  </g>
+  <text x="72" y="962" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#A7B3A0">Infrastructure for teams shipping at the edge.</text>
+  <rect x="70" y="1004" width="238" height="58" rx="29" fill="url(#c-lime)"/>
+  <text x="189" y="1039" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" letter-spacing="1" fill="#0B0D0A" text-anchor="middle">START BUILDING →</text>
+  <rect x="328" y="1004" width="168" height="58" rx="29" fill="none" stroke="#4B5247"/>
+  <text x="412" y="1039" font-family="Arial, Helvetica, sans-serif" font-size="14" letter-spacing="1" fill="#CED6C8" text-anchor="middle">READ DOCS</text>
+  <g>
+    <rect x="70" y="1110" width="380" height="76" rx="10" fill="#101410" stroke="#2A3128"/>
+    <circle cx="96" cy="1132" r="4" fill="#C8F94A"/>
+    <text x="110" y="1137" font-family="Courier New, monospace" font-size="11" fill="#7E8B77">deploy — production</text>
+    <text x="92" y="1165" font-family="Courier New, monospace" font-size="12" fill="#D7E4CF">✓ 1.2s   edge: global</text>
+  </g>
+  <text x="930" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2" fill="#6A7564" text-anchor="end">COBALT.DEV — 2026</text>
+  <path d="M70 1206h860" stroke="#2A3128"/>
+  <text x="70" y="1234" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2" fill="#6A7564">DEVELOPER TOOLS</text>
+  <text x="930" y="1234" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2" fill="#6A7564" text-anchor="end">WEB DESIGN / DEVELOPMENT</text>
+</svg>

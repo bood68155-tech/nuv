@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="Véra Skin store cover">
+  <defs>
+    <linearGradient id="v-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F5ECE5"/>
+      <stop offset="1" stop-color="#E9D8CC"/>
+    </linearGradient>
+    <linearGradient id="v-glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C99B7B"/>
+      <stop offset="0.45" stop-color="#A9714F"/>
+      <stop offset="1" stop-color="#7E4E33"/>
+    </linearGradient>
+    <linearGradient id="v-glass2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E4CDB9"/>
+      <stop offset="0.5" stop-color="#D2AE94"/>
+      <stop offset="1" stop-color="#B38360"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#v-bg)"/>
+  <circle cx="500" cy="650" r="400" fill="#EFE0D4"/>
+  <path d="M170 980V700a330 330 0 0 1 660 0v280z" fill="none" stroke="#D8BDAA" stroke-width="1.5"/>
+  <text x="500" y="130" font-family="Georgia, 'Times New Roman', serif" font-size="58" letter-spacing="18" fill="#3A2A22" text-anchor="middle">VÉRA</text>
+  <text x="500" y="166" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="4" fill="#8A6C58" text-anchor="middle">BOTANICAL SKINCARE</text>
+  <text x="130" y="126" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2" fill="#8A6C58">NEW — THE RESET RITUAL</text>
+  <text x="870" y="126" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2" fill="#8A6C58" text-anchor="end">SHOP  ·  STORY  ·  BAG</text>
+  <ellipse cx="290" cy="1010" rx="120" ry="18" fill="#C7A992" opacity=".45"/>
+  <ellipse cx="500" cy="1010" rx="120" ry="18" fill="#C7A992" opacity=".45"/>
+  <ellipse cx="710" cy="1010" rx="120" ry="18" fill="#C7A992" opacity=".45"/>
+  <g>
+    <rect x="252" y="614" width="76" height="26" rx="4" fill="#2B2925"/>
+    <rect x="264" y="640" width="52" height="34" fill="#D6C7B5"/>
+    <rect x="240" y="674" width="100" height="330" rx="12" fill="url(#v-glass)"/>
+    <rect x="258" y="714" width="64" height="200" rx="3" fill="#F2E8DC"/>
+    <text x="290" y="748" font-family="Georgia, 'Times New Roman', serif" font-size="16" letter-spacing="3" fill="#3A2A22" text-anchor="middle">VERA</text>
+    <text x="290" y="770" font-family="Arial, Helvetica, sans-serif" font-size="7" letter-spacing="1.5" fill="#8A6C58" text-anchor="middle">HYDRATING SERUM</text>
+    <path d="M258 830h64M258 846h64M258 862h64" stroke="#D8BFA9" stroke-width="1"/>
+    <text x="290" y="892" font-family="Arial, Helvetica, sans-serif" font-size="7" letter-spacing="1" fill="#8A6C58" text-anchor="middle">30 ML / 1 FL OZ</text>
+  </g>
+  <g>
+    <rect x="470" y="560" width="60" height="24" rx="4" fill="#2B2925"/>
+    <rect x="480" y="584" width="40" height="30" fill="#E3D5C3"/>
+    <rect x="462" y="614" width="76" height="390" rx="10" fill="url(#v-glass2)"/>
+    <rect x="476" y="656" width="48" height="290" rx="3" fill="#F4EBDF"/>
+    <text x="500" y="692" font-family="Georgia, 'Times New Roman', serif" font-size="14" letter-spacing="2" fill="#3A2A22" text-anchor="middle">VERA</text>
+    <text x="500" y="712" font-family="Arial, Helvetica, sans-serif" font-size="6" letter-spacing="1" fill="#8A6C58" text-anchor="middle">RENEWAL OIL</text>
+    <circle cx="500" cy="780" r="26" fill="none" stroke="#C6A98F" stroke-width="1"/>
+    <text x="500" y="786" font-family="Georgia, 'Times New Roman', serif" font-size="16" fill="#8A6C58" text-anchor="middle">v</text>
+    <text x="500" y="910" font-family="Arial, Helvetica, sans-serif" font-size="7" letter-spacing="1" fill="#8A6C58" text-anchor="middle">30 ML / 1 FL OZ</text>
+  </g>
+  <g>
+    <rect x="672" y="650" width="70" height="24" rx="4" fill="#2B2925"/>
+    <rect x="684" y="674" width="46" height="30" fill="#DFD0BE"/>
+    <rect x="664" y="704" width="92" height="300" rx="10" fill="#E7D8C9"/>
+    <rect x="680" y="746" width="60" height="210" rx="3" fill="#FBF6EE"/>
+    <text x="710" y="782" font-family="Georgia, 'Times New Roman', serif" font-size="15" letter-spacing="2" fill="#3A2A22" text-anchor="middle">VERA</text>
+    <text x="710" y="802" font-family="Arial, Helvetica, sans-serif" font-size="6" letter-spacing="1" fill="#8A6C58" text-anchor="middle">CLEANSING BALM</text>
+    <path d="M680 850h60M680 866h60" stroke="#D8BFA9"/>
+    <text x="710" y="920" font-family="Arial, Helvetica, sans-serif" font-size="7" letter-spacing="1" fill="#8A6C58" text-anchor="middle">60 ML / 2 FL OZ</text>
+  </g>
+  <path d="M130 1060h740" stroke="#D8BDAA"/>
+  <text x="130" y="1100" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2.5" fill="#6E5646">CLEAN FORMULAS</text>
+  <text x="500" y="1100" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2.5" fill="#6E5646" text-anchor="middle">MADE IN SMALL BATCHES</text>
+  <text x="870" y="1100" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2.5" fill="#6E5646" text-anchor="end">DERMATOLOGIST TESTED</text>
+  <text x="500" y="1165" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="26" fill="#6E5646" text-anchor="middle">Skin, in its softest form.</text>
+  <text x="500" y="1210" font-family="Arial, Helvetica, sans-serif" font-size="9" letter-spacing="3" fill="#9C806C" text-anchor="middle">VERA.SKIN</text>
+</svg>

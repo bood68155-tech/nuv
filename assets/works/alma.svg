@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="Alma Journal editorial cover">
+  <defs>
+    <linearGradient id="al-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D99B63"/>
+      <stop offset="0.55" stop-color="#B9654B"/>
+      <stop offset="1" stop-color="#5E2A2E"/>
+    </linearGradient>
+    <linearGradient id="al-hill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5B2A30"/>
+      <stop offset="1" stop-color="#2C1417"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1250" fill="#4B1D24"/>
+  <text x="70" y="86" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="4" fill="#D8B7A0">ALMA JOURNAL</text>
+  <text x="930" y="86" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="3" fill="#D8B7A0" text-anchor="end">ISSUE 07 — SPRING 2026</text>
+  <path d="M70 112h860" stroke="#8B4B4E"/>
+  <text x="70" y="330" font-family="Georgia, 'Times New Roman', serif" font-size="190" letter-spacing="-6" fill="#F0DFC9">ALMA</text>
+  <text x="930" y="330" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="34" fill="#D8B7A0" text-anchor="end">no. 07</text>
+  <text x="72" y="380" font-family="Arial, Helvetica, sans-serif" font-size="12" letter-spacing="6" fill="#D8B7A0">DESIGN · CULTURE · PLACE</text>
+  <rect x="70" y="440" width="860" height="560" fill="url(#al-sky)"/>
+  <circle cx="640" cy="610" r="92" fill="#F2DFC4"/>
+  <path d="M70 1000V820c88-54 150-38 226-92 72-52 120 30 196 4 90-30 142-96 236-64 72 25 124 36 202 22v310z" fill="url(#al-hill)"/>
+  <path d="M70 1000V900c98-30 148 20 232-16 78-34 148 18 226 0 96-22 156-76 240-42 62 25 108 18 162 8v150z" fill="#34161A"/>
+  <g stroke="#F0DFC9" stroke-opacity=".5">
+    <path d="M70 1050h860"/>
+  </g>
+  <text x="70" y="1094" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="42" fill="#F0DFC9">The quiet architecture</text>
+  <text x="70" y="1134" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="42" fill="#F0DFC9">of belonging.</text>
+  <text x="930" y="1094" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2" fill="#D8B7A0" text-anchor="end">WORDS — L. MARCHETTI</text>
+  <text x="930" y="1118" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="2" fill="#D8B7A0" text-anchor="end">PHOTOGRAPHY — A. OKAFOR</text>
+  <path d="M70 1170h860" stroke="#8B4B4E"/>
+  <text x="70" y="1210" font-family="Arial, Helvetica, sans-serif" font-size="9" letter-spacing="3" fill="#B98C80">A PRINTED QUARTERLY ABOUT THE SPACES WE MAKE</text>
+  <text x="930" y="1210" font-family="Arial, Helvetica, sans-serif" font-size="9" letter-spacing="3" fill="#B98C80" text-anchor="end">ALMAJOURNAL.COM</text>
+  <text x="70" y="1240" font-family="Arial, Helvetica, sans-serif" font-size="9" letter-spacing="3" fill="#8B4B4E">EDITORIAL IDENTITY / ART DIRECTION</text>
+</svg>

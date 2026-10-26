@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="1000" height="1250" role="img" aria-label="Forme Studio identity cover">
+  <defs>
+    <linearGradient id="f-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EAE6DD"/>
+      <stop offset="1" stop-color="#D9D3C6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1250" fill="url(#f-bg)"/>
+  <g stroke="#C9C2B4" stroke-width="1">
+    <path d="M0 100h1000M0 1150h1000M100 0v1250M900 0v1250"/>
+  </g>
+  <text x="100" y="72" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="3" fill="#6C665B">FORME STUDIO — IDENTITY SYSTEM</text>
+  <text x="900" y="72" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="3" fill="#6C665B" text-anchor="end">2024 / REYKJAVÍK</text>
+  <g transform="rotate(-8 400 620)">
+    <rect x="150" y="300" width="470" height="640" fill="#14130F"/>
+    <text x="190" y="356" font-family="Arial, Helvetica, sans-serif" font-size="9" letter-spacing="3" fill="#8F887A">CF. 01</text>
+    <text x="190" y="470" font-family="Georgia, 'Times New Roman', serif" font-size="92" fill="#EFEBE2">Forme</text>
+    <text x="190" y="510" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="5" fill="#A39B8B">FURNITURE / OBJECTS</text>
+    <path d="M190 560h390" stroke="#4A463D"/>
+    <g fill="#EFEBE2" opacity=".9">
+      <circle cx="216" cy="620" r="16"/>
+      <rect x="262" y="604" width="32" height="32"/>
+      <path d="M330 604h32v32h-32z" fill="none" stroke="#EFEBE2" stroke-width="1.5"/>
+      <path d="M388 636l16-32 16 32z"/>
+    </g>
+    <text x="190" y="730" font-family="Arial, Helvetica, sans-serif" font-size="9" letter-spacing="2" fill="#8F887A">MATERIALS</text>
+    <text x="190" y="760" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="20" fill="#D8D2C4">Oak, steel, wool.</text>
+    <text x="590" y="900" font-family="Arial, Helvetica, sans-serif" font-size="9" letter-spacing="2" fill="#8F887A" text-anchor="end">FORMESTUDIO.IS</text>
+  </g>
+  <g transform="rotate(7 620 780)">
+    <rect x="360" y="420" width="470" height="640" fill="#F4F0E7"/>
+    <rect x="360" y="420" width="470" height="640" fill="none" stroke="#D3CCBE"/>
+    <text x="400" y="480" font-family="Arial, Helvetica, sans-serif" font-size="9" letter-spacing="3" fill="#7C7568">BRAND MANUAL — VOL. 01</text>
+    <text x="400" y="600" font-family="Georgia, 'Times New Roman', serif" font-size="84" fill="#14130F">Forme</text>
+    <text x="400" y="634" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="36" fill="#6C665B">studio</text>
+    <path d="M400 690h380" stroke="#D3CCBE"/>
+    <text x="400" y="735" font-family="Arial, Helvetica, sans-serif" font-size="11" line-height="1.6" fill="#4C473E">A furniture practice shaping quiet objects</text>
+    <text x="400" y="757" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#4C473E">for considered homes.</text>
+    <g>
+      <rect x="400" y="810" width="112" height="112" fill="#14130F"/>
+      <text x="456" y="880" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#F4F0E7" text-anchor="middle">F</text>
+      <rect x="530" y="810" width="112" height="112" fill="#D9D3C6"/>
+      <text x="586" y="880" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#14130F" text-anchor="middle">F</text>
+      <rect x="660" y="810" width="112" height="112" fill="#A49A86"/>
+      <text x="716" y="880" font-family="Georgia, 'Times New Roman', serif" font-size="44" fill="#F4F0E7" text-anchor="middle">F</text>
+    </g>
+    <text x="400" y="990" font-family="Arial, Helvetica, sans-serif" font-size="9" letter-spacing="2" fill="#8B8477">FORME IS A REGISTERED TRADEMARK</text>
+    <text x="400" y="1020" font-family="Arial, Helvetica, sans-serif" font-size="9" letter-spacing="2" fill="#8B8477">OF FORME STUDIO EHF.</text>
+  </g>
+  <text x="100" y="1200" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="3" fill="#6C665B">VISUAL IDENTITY / ART DIRECTION / PRINT</text>
+  <text x="900" y="1200" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="3" fill="#6C665B" text-anchor="end">NUV® — 2024</text>
+</svg>
