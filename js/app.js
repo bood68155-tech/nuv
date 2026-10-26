@@ -92,6 +92,11 @@
         : '<p>Add Instagram, LinkedIn or X in the control panel and they appear here.</p>');
     }
 
+    var drawerList = document.getElementById("drawerSocials");
+    if (drawerList) {
+      drawerList.innerHTML = markup || '<p class="drawer-value">Add Instagram, LinkedIn or X in the control panel.</p>';
+    }
+
     var icons = document.getElementById("footerIcons");
     if (!icons) return;
 
@@ -143,6 +148,15 @@
       if (emailIsValid) mailButton.href = "mailto:" + email;
     }
 
+    var drawerEmail = document.getElementById("drawerEmail");
+    if (drawerEmail) {
+      drawerEmail.hidden = !emailIsValid;
+      if (emailIsValid) {
+        drawerEmail.href = "mailto:" + email;
+        drawerEmail.textContent = email;
+      }
+    }
+
     var instagram = safeUrl(settings.instagram);
     var instagramButton = document.getElementById("contactInstagram");
     var mobileInstagram = document.getElementById("mobileInstagram");
@@ -178,27 +192,27 @@
     return state.projects.filter(function (project) { return project.category === state.filter; });
   }
 
-  function projectCard(project, index) {
+  function workRow(project, index) {
     var image = safeUrl(project.image, true);
     var tags = Array.isArray(project.tags) ? project.tags : [];
     var id = escapeHtml(project.id);
     var title = escapeHtml(project.title);
-    var cover = '<span class="work-cover-fallback" aria-hidden="true">' + escapeHtml(initials(project.title)) + "</span>" +
-      (image ? '<img src="' + escapeHtml(image) + '" alt="' + title + ' project cover" loading="lazy" decoding="async">' : "") +
-      '<span class="work-hover" aria-hidden="true">' +
-        '<span class="work-hover-pill">' + escapeHtml(project.year) + "</span>" +
-        '<span class="work-hover-pill">View project →</span>' +
-      "</span>";
 
-    return '<article class="work-card" style="--i:' + index + '">' +
-      '<button class="work-cover" type="button" data-open-project="' + id + '" aria-label="Open project: ' + title + '">' + cover + "</button>" +
-      '<div class="work-info">' +
-        '<h3 class="work-name"><button type="button" data-open-project="' + id + '">' + title + "</button></h3>" +
-        (project.description ? '<p class="work-summary">' + escapeHtml(project.description) + "</p>" : "") +
-        (tags.length ? '<div class="work-tags">' + tags.map(function (tag) {
-          return '<span class="work-tag">' + escapeHtml(tag) + "</span>";
-        }).join("") + "</div>" : "") +
+    return '<article class="work-row" style="--i:' + index + '" data-project-row="' + id + '"' +
+      ' data-preview="' + escapeHtml(image) + '"' +
+      ' data-preview-initials="' + escapeHtml(initials(project.title)) + '">' +
+      '<div class="work-row-main">' +
+        '<p class="work-row-top">' +
+          "<span>" + escapeHtml(project.year) + "</span>" +
+          (project.result ? "<span>" + escapeHtml(project.result) + "</span>" : "") +
+          '<button class="work-row-link" type="button" data-open-project="' + id + '">View project <span aria-hidden="true">→</span></button>' +
+        "</p>" +
+        '<h3 class="work-row-title"><button type="button" data-open-project="' + id + '">' + title + "</button></h3>" +
+        (project.description ? '<p class="work-row-desc">' + escapeHtml(project.description) + "</p>" : "") +
       "</div>" +
+      '<ul class="work-row-tags">' + tags.map(function (tag) {
+        return '<li class="work-tag">' + escapeHtml(tag) + "</li>";
+      }).join("") + "</ul>" +
     "</article>";
   }
 
@@ -231,13 +245,7 @@
       return;
     }
 
-    els.grid.innerHTML = projects.map(projectCard).join("");
-
-    els.grid.querySelectorAll("img").forEach(function (img) {
-      img.addEventListener("error", function () {
-        img.style.display = "none";
-      });
-    });
+    els.grid.innerHTML = projects.map(workRow).join("");
   }
 
   function setFilter(filter) {
@@ -280,6 +288,17 @@
       return '<span class="work-tag">' + escapeHtml(tag) + "</span>";
     }).join("");
 
+    if (els.dialogResult) {
+      if (project.result) {
+        els.dialogResult.hidden = false;
+        els.dialogResult.innerHTML = "<b>" + escapeHtml(project.result) + "</b>" +
+          escapeHtml(project.resultNote || "Result at launch");
+      } else {
+        els.dialogResult.hidden = true;
+        els.dialogResult.textContent = "";
+      }
+    }
+
     var href = safeUrl(project.link);
     if (href) {
       els.dialogLink.hidden = false;
@@ -317,6 +336,9 @@
     applySettings(store.getSettings());
     updateCounts();
     renderWork();
+    if (window.NUVSections && typeof window.NUVSections.refresh === "function") {
+      window.NUVSections.refresh();
+    }
   }
 
   /* ---------- Gaza studio clock ---------- */
@@ -395,6 +417,7 @@
     });
 
     dialog.addEventListener("close", function () {
+      if (dialog.open) return;
       document.body.classList.remove("dialog-open");
     });
   }
@@ -425,6 +448,66 @@
     });
   }
 
+  /* ---------- Cursor preview for the work list ---------- */
+
+  function initWorkPreview() {
+    if (!els.grid) return;
+    if (!window.matchMedia("(hover: hover) and (min-width: 1001px)").matches) return;
+
+    var preview = document.createElement("div");
+    preview.className = "work-preview";
+    preview.setAttribute("aria-hidden", "true");
+    preview.innerHTML = "<span></span><img alt=\"\">";
+    document.body.appendChild(preview);
+
+    var image = preview.querySelector("img");
+    var fallback = preview.querySelector("span");
+    var current = null;
+
+    function hide() {
+      current = null;
+      preview.classList.remove("is-visible");
+    }
+
+    function place(event) {
+      var half = preview.offsetWidth / 2;
+      var x = Math.min(Math.max(event.clientX, half + 12), window.innerWidth - half - 12);
+      var y = Math.min(Math.max(event.clientY, preview.offsetHeight / 2 + 12), window.innerHeight - preview.offsetHeight / 2 - 12);
+      preview.style.left = x + "px";
+      preview.style.top = y + "px";
+    }
+
+    image.addEventListener("error", function () { image.style.display = "none"; });
+
+    els.grid.addEventListener("mousemove", function (event) {
+      var row = event.target.closest("[data-project-row]");
+      if (!row) {
+        hide();
+        return;
+      }
+
+      place(event);
+      if (row === current) return;
+      current = row;
+
+      var src = row.getAttribute("data-preview");
+      fallback.textContent = row.getAttribute("data-preview-initials") || "";
+
+      if (src) {
+        image.style.display = "";
+        image.src = src;
+      } else {
+        image.style.display = "none";
+        image.removeAttribute("src");
+      }
+
+      preview.classList.add("is-visible");
+    });
+
+    els.grid.addEventListener("mouseleave", hide);
+    window.addEventListener("scroll", hide, { passive: true });
+  }
+
   function toast(message, isError) {
     if (!els.toasts) return;
     var node = document.createElement("div");
@@ -448,6 +531,7 @@
     els.dialogMeta = document.getElementById("projectDialogMeta");
     els.dialogDesc = document.getElementById("projectDialogDesc");
     els.dialogTags = document.getElementById("projectDialogTags");
+    els.dialogResult = document.getElementById("projectDialogResult");
     els.dialogImage = document.getElementById("projectDialogImage");
     els.dialogFallback = document.getElementById("projectDialogFallback");
     els.dialogLink = document.getElementById("projectDialogLink");
@@ -462,18 +546,19 @@
       });
     });
 
-    if (els.grid) {
-      els.grid.addEventListener("click", function (event) {
-        var trigger = event.target.closest("[data-open-project]");
-        if (trigger) openProject(trigger.getAttribute("data-open-project"));
-      });
-    }
+    document.addEventListener("click", function (event) {
+      var trigger = event.target.closest("[data-open-project]");
+      if (trigger) openProject(trigger.getAttribute("data-open-project"));
+    });
 
     if (els.projectDialog) {
       els.projectDialog.addEventListener("click", function (event) {
         if (event.target === els.projectDialog) els.projectDialog.close();
       });
       els.projectDialog.addEventListener("close", function () {
+        // Ignore a close event queued by a previous dialog that lands after this
+        // one has reopened, or the page would unlock behind an open modal.
+        if (els.projectDialog.open) return;
         document.body.classList.remove("dialog-open");
       });
       if (els.dialogClose) {
@@ -554,6 +639,7 @@
     renderWork();
     bindEvents();
     setupReveal();
+    initWorkPreview();
     startClock();
     initAbout();
     initSound();

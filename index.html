@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NUV® — Digital Design &amp; Development Studio</title>
   <meta name="description" content="NUV is an independent digital studio building websites, e-commerce stores, custom software and brand identities for ambitious teams.">
-  <meta name="theme-color" content="#06182e">
+  <meta name="theme-color" content="#e5e5e0">
   <meta property="og:type" content="website">
   <meta property="og:title" content="NUV® — Digital Design &amp; Development Studio">
   <meta property="og:description" content="Websites, e-commerce stores, software and identities — designed and built in-house.">
@@ -14,6 +14,7 @@
   <link rel="apple-touch-icon" href="assets/logo-mark.png">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/sections.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -24,15 +25,16 @@
         <a class="brand" href="#top" aria-label="NUV — back to top">
           <img class="brand-mark" src="assets/logo-mark.png" alt="" width="44" height="44">
           <span class="brand-word"><span data-text="brandName">NUV</span><sup>®</sup></span>
-          <span class="brand-tag">Digital studio</span>
         </a>
+
+        <p class="nav-note">(<span data-text="heroKicker">Digital partner for ambitious brands</span>)</p>
 
         <nav class="nav-links" aria-label="Primary">
           <a href="#work">Work</a>
           <a href="#services">Services</a>
-          <a href="#book">Book a call</a>
+          <a href="#process">Process</a>
+          <a href="#faqs">FAQs</a>
           <button type="button" data-open-about>Founder</button>
-          <a href="#contact">Contact</a>
         </nav>
 
         <div class="nav-actions">
@@ -40,195 +42,373 @@
             <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           </button>
           <a class="btn btn-solid nav-cta" href="#contact">
-            <span data-text="heroPrimaryLabel">Start a project</span>
+            <span data-text="navCtaLabel">Start a project</span>
             <span class="btn-icon" aria-hidden="true">↗</span>
           </a>
-          <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-            <span></span><span></span>
+          <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu">
+            <span class="nav-toggle-lines" aria-hidden="true"><i></i><i></i></span>
+            <span class="nav-toggle-label">Menu</span>
           </button>
-        </div>
-      </div>
-
-      <div class="mobile-menu" id="mobileMenu">
-        <nav aria-label="Mobile">
-          <a href="#work"><span>01</span>Work</a>
-          <a href="#services"><span>02</span>Services</a>
-          <a href="#book"><span>03</span>Book a call</a>
-          <a href="#contact"><span>04</span>Contact</a>
-        </nav>
-        <button class="mobile-about" type="button" data-open-about>About the founder <span aria-hidden="true">↗</span></button>
-        <a class="btn btn-solid" href="#contact"><span data-text="heroPrimaryLabel">Start a project</span> <span aria-hidden="true">↗</span></a>
-        <div class="mobile-menu-foot">
-          <a id="mobileInstagram" href="https://www.instagram.com/nuv.562/" target="_blank" rel="noopener">Instagram ↗</a>
-          <span data-text="location">Working worldwide</span>
         </div>
       </div>
     </header>
 
+    <div class="nav-drawer" id="navDrawer" hidden>
+      <div class="nav-drawer-inner">
+        <div class="nav-drawer-head">
+          <p class="eyebrow">(Menu)</p>
+          <button class="icon-btn" id="navDrawerClose" type="button" aria-label="Close menu">✕</button>
+        </div>
+
+        <nav class="drawer-links" aria-label="Drawer">
+          <a href="#work"><span>01</span>Work</a>
+          <a href="#services"><span>02</span>Services</a>
+          <a href="#process"><span>03</span>Process</a>
+          <a href="#faqs"><span>04</span>FAQs</a>
+          <a href="#book"><span>05</span>Book a call</a>
+          <a href="#contact"><span>06</span>Contact</a>
+        </nav>
+
+        <div class="drawer-foot">
+          <div class="drawer-block">
+            <p class="eyebrow">Get in touch</p>
+            <a class="drawer-email" id="drawerEmail" href="mailto:hello@nuv.agency">hello@nuv.agency</a>
+          </div>
+          <div class="drawer-block">
+            <p class="eyebrow">Studio</p>
+            <p class="drawer-value"><span data-text="location">Gaza · working worldwide</span></p>
+          </div>
+          <div class="drawer-block">
+            <p class="eyebrow">Elsewhere</p>
+            <div class="drawer-socials" id="drawerSocials"></div>
+          </div>
+          <div class="drawer-actions">
+            <button class="btn btn-ghost" type="button" data-open-about>About the founder <span aria-hidden="true">↗</span></button>
+            <a class="btn btn-solid" href="#contact"><span data-text="navCtaLabel">Start a project</span> <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <main id="main">
+      <!-- ============ Hero ============ -->
       <section class="hero" id="top" aria-labelledby="heroTitle">
         <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-grain" aria-hidden="true"></div>
+
         <div class="container hero-inner">
-          <div class="hero-meta" data-reveal>
-            <p class="eyebrow"><span class="dot dot-live" aria-hidden="true"></span><span data-text="availability">Available for new projects</span></p>
-            <p class="eyebrow hero-meta-mid" data-text="heroKicker">Independent digital studio</p>
-            <p class="eyebrow" data-text="location">Working worldwide</p>
-          </div>
+          <p class="eyebrow hero-eyebrow" data-reveal>
+            <span class="dot dot-live" aria-hidden="true"></span>
+            <span data-text="availability">Available for new projects</span>
+            <span class="hero-eyebrow-sep" aria-hidden="true">/</span>
+            <span data-text="location">Gaza · working worldwide</span>
+          </p>
 
           <h1 class="hero-title" id="heroTitle">
-            <span class="hero-line hero-line-outline" data-text="heroLine1">DIGITAL THINGS</span>
-            <span class="hero-line" data-text="heroLine2">THAT MATTER.</span>
+            <span class="hero-line" data-text="heroLine1">Your ideas have</span>
+            <span class="hero-line hero-line-outline" data-text="heroLine2">outgrown your site.</span>
           </h1>
 
-          <div class="hero-foot" data-reveal>
-            <p class="hero-intro" data-text="heroIntro">NUV is a design and development studio building sharp websites, high-converting stores, custom software and identities for brands that want to be remembered.</p>
+          <div class="hero-foot">
+            <p class="hero-lede" data-text="heroIntro">
+              NUV is a design and development studio building sharp websites, high-converting stores, custom software and identities for brands that want to be remembered.
+            </p>
 
-            <div class="hero-actions">
-              <a class="btn btn-solid" href="#contact">
-                <span data-text="heroPrimaryLabel">Start a project</span>
+            <div class="hero-actions" data-reveal>
+              <a class="btn btn-solid btn-lg" href="#book">
+                <span data-text="heroPrimaryLabel">Schedule an intro call</span>
                 <span class="btn-icon" aria-hidden="true">↗</span>
               </a>
-              <a class="btn btn-ghost" href="#work">
-                <span data-text="heroSecondaryLabel">View selected work</span>
+              <a class="btn btn-ghost btn-lg" href="#work">
+                <span data-text="heroSecondaryLabel">See the work</span>
               </a>
             </div>
 
-            <div class="hero-stamp">
-              <img src="assets/logo-mark.png" alt="" width="88" height="88">
+            <div class="hero-stamp" data-reveal>
+              <img src="assets/logo-mark.png" alt="" width="76" height="76">
               <div class="hero-stamp-copy">
                 <span class="hero-stamp-name"><span data-text="brandName">NUV</span><sup>®</sup></span>
-                <span class="hero-stamp-sub">Design · Development<br>Identity</span>
+                <span class="hero-stamp-sub">Design · Development<br>Identity · Software</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="ticker" aria-label="NUV services">
-          <div class="ticker-track">
-            <div class="ticker-group">
-              <span>Web development</span><span class="ticker-star" aria-hidden="true">✳</span>
-              <span class="ticker-ghost">E-commerce stores</span><span class="ticker-star" aria-hidden="true">✳</span>
-              <span>Software solutions</span><span class="ticker-star" aria-hidden="true">✳</span>
-              <span class="ticker-ghost">Graphic design</span><span class="ticker-star" aria-hidden="true">✳</span>
-            </div>
-            <div class="ticker-group" aria-hidden="true">
-              <span>Web development</span><span class="ticker-star">✳</span>
-              <span class="ticker-ghost">E-commerce stores</span><span class="ticker-star">✳</span>
-              <span>Software solutions</span><span class="ticker-star">✳</span>
-              <span class="ticker-ghost">Graphic design</span><span class="ticker-star">✳</span>
+        <a class="hero-scroll" href="#wins" aria-label="Scroll to client wins">
+          <span>Scroll</span>
+          <span class="hero-scroll-line" aria-hidden="true"></span>
+        </a>
+      </section>
+
+      <!-- ============ Client wins rotator ============ -->
+      <section class="wins" id="wins" aria-label="Client wins">
+        <div class="container wins-inner">
+          <p class="wins-label">
+            <span>Client wins</span>
+            <span class="wins-year">• <span id="winsYear">2026</span></span>
+          </p>
+          <div class="wins-stage" id="winsStage" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- ============ Ambition marquee ============ -->
+      <div class="marquee marquee-ambition" aria-hidden="true">
+        <div class="marquee-track" id="marqueeTrack">
+          <span class="marquee-item">Websites and identities that reflect your ambition</span>
+          <span class="marquee-star">✳</span>
+        </div>
+      </div>
+
+      <!-- ============ Brands we've helped ============ -->
+      <section class="brands" id="brands" aria-labelledby="brandsTitle">
+        <div class="container brands-head">
+          <p class="eyebrow">Brands we've helped</p>
+          <h2 class="brands-title" id="brandsTitle">Trusted by teams who care how things look</h2>
+        </div>
+        <div class="brands-rail">
+          <div class="brands-track" id="brandsTrack"></div>
+        </div>
+      </section>
+
+      <!-- ============ The gap ============ -->
+      <section class="gap section" id="gap" aria-labelledby="gapTitle">
+        <div class="container gap-inner">
+          <p class="eyebrow" data-reveal>(The gap)</p>
+          <h2 class="gap-title display" id="gapTitle">
+            <span class="gap-line" data-reveal>We close</span>
+            <span class="gap-line text-outline" data-reveal>that gap.</span>
+          </h2>
+          <div class="gap-body">
+            <p class="gap-copy" data-text="gapText" data-reveal>
+              Your website is where ideal customers decide whether you are worth their time. We take what makes you irreplaceable, shape the whole experience around it, and make sure people feel it before they read another word.
+            </p>
+            <a class="link-arrow" href="#book" data-reveal>Book an intro call <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Success stories rail ============ -->
+      <section class="stories section" id="stories" aria-labelledby="storiesTitle">
+        <div class="container stories-head">
+          <div>
+            <p class="eyebrow">Success stories</p>
+            <h2 class="display stories-title" id="storiesTitle">Outcomes,<br><span class="text-outline">not just pretty pages.</span></h2>
+          </div>
+          <p class="stories-lede">Every project starts with a business problem and ends with a number we can point at. Here are the ones we are proudest of.</p>
+        </div>
+
+        <div class="stories-rail" id="storiesRail" tabindex="0" role="group" aria-label="Success stories — scroll horizontally"></div>
+
+        <div class="container stories-foot">
+          <a class="stories-all" href="#work">
+            <span class="stories-all-count" id="storiesCount">08</span>
+            <span>View all success stories</span>
+            <span class="stories-all-arrow" aria-hidden="true">(→)</span>
+          </a>
+          <div class="stories-nav">
+            <button class="rail-btn" id="storiesPrev" type="button" aria-label="Previous story">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14.5 6l-6 6 6 6"/></svg>
+            </button>
+            <button class="rail-btn" id="storiesNext" type="button" aria-label="Next story">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9.5 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Testimonials ============ -->
+      <section class="quotes section" id="quotes" aria-labelledby="quotesTitle">
+        <div class="container quotes-inner">
+          <div class="quotes-head">
+            <p class="eyebrow">Kind words</p>
+            <h2 class="visually-hidden" id="quotesTitle">What clients say</h2>
+            <p class="quotes-count display"><span id="quoteIndex">01</span><span class="quotes-count-slash">/</span><span id="quoteTotal">03</span></p>
+          </div>
+
+          <div class="quotes-stage" id="quotesStage" aria-live="polite"></div>
+
+          <div class="quotes-foot">
+            <div class="quotes-dots" id="quotesDots" role="tablist" aria-label="Choose a testimonial"></div>
+            <div class="quotes-nav">
+              <button class="rail-btn" id="quotesPrev" type="button" aria-label="Previous testimonial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14.5 6l-6 6 6 6"/></svg>
+              </button>
+              <button class="rail-btn" id="quotesNext" type="button" aria-label="Next testimonial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9.5 6l6 6-6 6"/></svg>
+              </button>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- ============ Services ============ -->
+      <section class="services section" id="services" aria-labelledby="servicesTitle">
+        <div class="container">
+          <div class="services-head" data-reveal>
+            <div>
+              <p class="eyebrow">What we can help with</p>
+              <h2 class="display" id="servicesTitle">Everything a brand needs,<br><span class="text-outline">under one roof.</span></h2>
+            </div>
+            <p class="services-intro">Strategy, design and engineering live in the same studio — so nothing gets lost between the idea and the thing people actually use.</p>
+          </div>
+
+          <ul class="service-list" id="serviceList">
+            <li class="service-row" data-reveal>
+              <span class="service-num">01</span>
+              <h3 class="service-name">Brand Strategy</h3>
+              <p class="service-copy">Positioning, messaging and the story that makes you the obvious choice — before a single pixel is drawn.</p>
+              <span class="service-arrow" aria-hidden="true">↗</span>
+            </li>
+            <li class="service-row" data-reveal>
+              <span class="service-num">02</span>
+              <h3 class="service-name">Visual Identity</h3>
+              <p class="service-copy">Wordmarks, type systems, colour and art direction that make a brand unmistakable at every touchpoint.</p>
+              <span class="service-arrow" aria-hidden="true">↗</span>
+            </li>
+            <li class="service-row" data-reveal>
+              <span class="service-num">03</span>
+              <h3 class="service-name">Website Strategy</h3>
+              <p class="service-copy">Sitemaps, copy direction and conversion paths — the blueprint that keeps design decisions honest.</p>
+              <span class="service-arrow" aria-hidden="true">↗</span>
+            </li>
+            <li class="service-row" data-reveal>
+              <span class="service-num">04</span>
+              <h3 class="service-name">Website Design</h3>
+              <p class="service-copy">Bold, editorial interfaces designed to feel premium and to give visitors one clear reason to lean in.</p>
+              <span class="service-arrow" aria-hidden="true">↗</span>
+            </li>
+            <li class="service-row" data-reveal>
+              <span class="service-num">05</span>
+              <h3 class="service-name">Website Development</h3>
+              <p class="service-copy">Fast, accessible builds with motion that earns its place — from first wireframe to launch day.</p>
+              <span class="service-arrow" aria-hidden="true">↗</span>
+            </li>
+            <li class="service-row" data-reveal>
+              <span class="service-num">06</span>
+              <h3 class="service-name">Custom Software</h3>
+              <p class="service-copy">Dashboards, portals and internal tools that remove friction from how your business actually runs.</p>
+              <span class="service-arrow" aria-hidden="true">↗</span>
+            </li>
+          </ul>
+
+          <div class="services-foot" data-reveal>
+            <p class="services-note">Not sure which one you need? Most projects start with a 30-minute intro call.</p>
+            <a class="btn btn-solid" href="#book">Schedule an intro call <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Process ============ -->
+      <section class="process section" id="process" aria-labelledby="processTitle">
+        <div class="container">
+          <div class="process-head" data-reveal>
+            <div>
+              <p class="eyebrow">Project process</p>
+              <h2 class="display" id="processTitle">Three steps,<br><span class="text-outline">no surprises.</span></h2>
+            </div>
+            <p class="process-intro">You always know what is happening, what is next and what we need from you. No black boxes, no silence.</p>
+          </div>
+
+          <ol class="process-list">
+            <li class="process-step" data-reveal>
+              <p class="process-num">Step 01</p>
+              <h3 class="process-title">We uncover your story</h3>
+              <p class="process-copy">We dig into your brand, surface what makes you irreplaceable and shape it into sharp positioning and a website strategy that connects in seconds.</p>
+              <ul class="process-tags">
+                <li>Discovery call</li><li>Positioning</li><li>Sitemap</li>
+              </ul>
+              <a class="link-arrow" href="#work">See step 01 in action <span aria-hidden="true">↗</span></a>
+            </li>
+            <li class="process-step" data-reveal>
+              <p class="process-num">Step 02</p>
+              <h3 class="process-title">We shape your digital presence</h3>
+              <p class="process-copy">With the narrative locked, we design and build a brand and website that feel premium, signal credibility and give your audience one clear reason to act.</p>
+              <ul class="process-tags">
+                <li>Identity</li><li>Interface design</li><li>Build</li>
+              </ul>
+              <a class="link-arrow" href="#work">See step 02 in action <span aria-hidden="true">↗</span></a>
+            </li>
+            <li class="process-step" data-reveal>
+              <p class="process-num">Step 03</p>
+              <h3 class="process-title">We send it into the world</h3>
+              <p class="process-copy">Your brand and website go live as a long-term asset that turns attention into opportunity, attracts the clients you were built for and grows with you.</p>
+              <ul class="process-tags">
+                <li>Launch</li><li>Handover</li><li>90-day support</li>
+              </ul>
+              <a class="link-arrow" href="#work">See step 03 in action <span aria-hidden="true">↗</span></a>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============ FAQs ============ -->
+      <section class="faqs section" id="faqs" aria-labelledby="faqsTitle">
+        <div class="container faqs-inner">
+          <div class="faqs-head" data-reveal>
+            <p class="eyebrow">FAQs</p>
+            <h2 class="display" id="faqsTitle">Before you<br><span class="text-outline">partner with us.</span></h2>
+            <p class="faqs-lede">Here is what you need to consider before we start working together.</p>
+          </div>
+
+          <div class="faq-list" id="faqList">
+            <details class="faq" open>
+              <summary><span class="faq-q">Who do you usually work with?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+              <div class="faq-body"><p>Founder-led businesses that have built a real reputation but whose brand and website have not kept up with their growth. That includes agencies, studios, professional services, commerce brands and early-stage products.</p></div>
+            </details>
+            <details class="faq">
+              <summary><span class="faq-q">Who actually does the work?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+              <div class="faq-body"><p>Abood leads every engagement — strategy, creative direction and your main point of contact from first call to launch, supported by a small, carefully chosen team of collaborators on design and development.</p></div>
+            </details>
+            <details class="faq">
+              <summary><span class="faq-q">How long does a project take?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+              <div class="faq-body"><p>Most brand and website projects run four to ten weeks end to end. Timelines flex with scope, but we set milestones from day one so there are no surprises.</p></div>
+            </details>
+            <details class="faq">
+              <summary><span class="faq-q">How do we stay in touch?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+              <div class="faq-body"><p>A shared project space holds timelines and deliverables, and you get async video updates plus weekly messages on WhatsApp or email. Live calls are reserved for decisions and milestones.</p></div>
+            </details>
+            <details class="faq">
+              <summary><span class="faq-q">What does it cost?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+              <div class="faq-body"><p>Websites start from $2,500 and most projects land between $4,000 and $12,000 depending on scope. We will send a tailored proposal after the discovery call — no fixed packages, no padded retainers.</p></div>
+            </details>
+            <details class="faq">
+              <summary><span class="faq-q">Do I need a full rebrand?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+              <div class="faq-body"><p>Not always. If your identity still represents who you are, we build on it and focus on the website. If it no longer reflects the quality of your work, we will tell you honestly and fix it first.</p></div>
+            </details>
+            <details class="faq">
+              <summary><span class="faq-q">What happens after launch?</span><span class="faq-icon" aria-hidden="true"></span></summary>
+              <div class="faq-body"><p>You get 90 days of hands-on support, plus documentation and a walkthrough so your team can update the site themselves. Ongoing care plans are available if you would rather we handle it.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ Work ============ -->
       <section class="work section" id="work" aria-labelledby="workTitle">
         <div class="container">
           <div class="work-head" data-reveal>
             <div>
-              <p class="eyebrow">Portfolio</p>
+              <p class="eyebrow">All success stories</p>
               <h2 class="display work-title" id="workTitle">Selected work</h2>
             </div>
             <p class="work-index display" aria-label="Total projects">(<span id="workCount">09</span>)</p>
           </div>
 
-          <div class="work-layout">
-            <aside class="work-side" aria-label="Filter projects">
-              <div class="work-side-inner">
-                <p class="eyebrow">Filter by service</p>
-                <div class="filters" role="group" aria-label="Filter projects by category">
-                  <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">All Projects <span class="filter-count" data-filter-count="all">09</span></button>
-                  <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Web <span class="filter-count" data-filter-count="web">03</span></button>
-                  <button class="filter-btn" type="button" data-filter="stores" aria-pressed="false">Stores <span class="filter-count" data-filter-count="stores">03</span></button>
-                  <button class="filter-btn" type="button" data-filter="designs" aria-pressed="false">Designs <span class="filter-count" data-filter-count="designs">03</span></button>
-                </div>
-                <p class="work-note">A selection of recent collaborations across web, commerce and identity — designed and built end to end.</p>
-                <a class="link-arrow" href="#contact">Start a project <span aria-hidden="true">→</span></a>
-              </div>
-            </aside>
-
-            <div class="work-grid" id="workGrid" aria-live="polite"></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="services section" id="services" aria-labelledby="servicesTitle">
-        <div class="container">
-          <div class="services-head" data-reveal>
-            <div>
-              <p class="eyebrow">What we do</p>
-              <h2 class="display" id="servicesTitle">Four disciplines.<br><span class="text-outline">One studio.</span></h2>
+          <div class="work-bar" data-reveal>
+            <p class="eyebrow">Filter by service</p>
+            <div class="filters" role="group" aria-label="Filter projects by category">
+              <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">All Projects <span class="filter-count" data-filter-count="all">09</span></button>
+              <button class="filter-btn" type="button" data-filter="web" aria-pressed="false">Web <span class="filter-count" data-filter-count="web">03</span></button>
+              <button class="filter-btn" type="button" data-filter="stores" aria-pressed="false">Stores <span class="filter-count" data-filter-count="stores">03</span></button>
+              <button class="filter-btn" type="button" data-filter="designs" aria-pressed="false">Designs <span class="filter-count" data-filter-count="designs">03</span></button>
             </div>
-            <p class="services-intro">Strategy, design and engineering live under one roof — so nothing gets lost between the idea and the thing people actually use.</p>
           </div>
 
-          <div class="services-grid">
-            <article class="service-card" data-reveal>
-              <div class="service-top">
-                <span class="service-index">01</span>
-                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-                  <rect x="2.5" y="4" width="19" height="15" rx="2"/>
-                  <path d="M2.5 8.5h19M6 12h5"/>
-                </svg>
-              </div>
-              <h3>Web Development</h3>
-              <p>Fast, accessible websites with a point of view — designed and built in-house, from first wireframe to launch day.</p>
-              <ul class="service-tags">
-                <li>Design systems</li><li>Front-end</li><li>CMS builds</li><li>Performance</li>
-              </ul>
-              <a class="service-link" href="#contact">Discuss a website <span aria-hidden="true">↗</span></a>
-            </article>
-
-            <article class="service-card" data-reveal>
-              <div class="service-top">
-                <span class="service-index">02</span>
-                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-                  <path d="M5 7.5h14l1 13H4l1-13Z"/>
-                  <path d="M8.5 7.5V6a3.5 3.5 0 0 1 7 0v1.5"/>
-                </svg>
-              </div>
-              <h3>E-Commerce Stores</h3>
-              <p>Storefronts that look as good as they sell — conversion-minded builds with checkout flows people actually finish.</p>
-              <ul class="service-tags">
-                <li>Shopify</li><li>Headless commerce</li><li>CRO</li><li>Subscriptions</li>
-              </ul>
-              <a class="service-link" href="#contact">Discuss a store <span aria-hidden="true">↗</span></a>
-            </article>
-
-            <article class="service-card" data-reveal>
-              <div class="service-top">
-                <span class="service-index">03</span>
-                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-                  <rect x="2.5" y="3.5" width="19" height="17" rx="2"/>
-                  <path d="m6.5 9 2.5 2.5-2.5 2.5M12 14h4"/>
-                </svg>
-              </div>
-              <h3>Software Solutions</h3>
-              <p>Custom tools and products that remove friction from your business — dashboards, portals and internal platforms.</p>
-              <ul class="service-tags">
-                <li>Product design</li><li>Web apps</li><li>APIs</li><li>Automation</li>
-              </ul>
-              <a class="service-link" href="#contact">Discuss a product <span aria-hidden="true">↗</span></a>
-            </article>
-
-            <article class="service-card" data-reveal>
-              <div class="service-top">
-                <span class="service-index">04</span>
-                <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-                  <path d="m12 3 5.5 5.5L8 18l-5 1 1-5 8-11Z"/>
-                  <path d="m10 6 5.5 5.5M14.5 20.5h6"/>
-                </svg>
-              </div>
-              <h3>Graphic Design</h3>
-              <p>Identities, art direction and print systems that make a brand unmistakable at every touchpoint — on screen and off.</p>
-              <ul class="service-tags">
-                <li>Brand identity</li><li>Art direction</li><li>Packaging</li><li>Motion</li>
-              </ul>
-              <a class="service-link" href="#contact">Discuss a brand <span aria-hidden="true">↗</span></a>
-            </article>
-          </div>
+          <div class="work-list" id="workGrid" aria-live="polite"></div>
         </div>
       </section>
 
+      <!-- ============ Booking ============ -->
       <section class="book section" id="book" aria-labelledby="bookTitle">
         <div class="container">
           <div class="book-head" data-reveal>
@@ -340,36 +520,38 @@
         </div>
       </section>
 
-      <section class="contact section" id="contact" aria-labelledby="contactTitle">
+      <!-- ============ CTA / contact ============ -->
+      <section class="cta section" id="contact" aria-labelledby="contactTitle">
         <div class="container">
-          <div class="contact-head" data-reveal>
-            <p class="eyebrow">Contact</p>
-            <h2 class="contact-title display" id="contactTitle">
-              <span class="contact-line" data-text="contactHeading">HAVE A PROJECT?</span>
-              <span class="contact-line contact-line-outline" data-text="contactHeadingAccent">LET'S MAKE IT REAL.</span>
+          <div class="cta-head" data-reveal>
+            <p class="eyebrow">(Next step)</p>
+            <h2 class="cta-title display" id="contactTitle">
+              <span class="cta-line" data-text="contactHeading">Ready to build</span>
+              <span class="cta-line text-outline" data-text="contactHeadingAccent">an experience that moves people?</span>
+              <span class="cta-arrow" aria-hidden="true">→</span>
             </h2>
           </div>
 
-          <div class="contact-grid">
-            <div class="contact-main" data-reveal>
-              <p class="contact-copy" data-text="contactText">Tell us what you are building. We reply within two working days with next steps, a rough timeline and an honest take on how we can help.</p>
+          <div class="cta-grid">
+            <div class="cta-main" data-reveal>
+              <p class="cta-copy" data-text="contactText">Tell us what you are building. We reply within two working days with next steps, a rough timeline and an honest take on how we can help.</p>
 
-              <a class="contact-email" id="contactEmail" href="mailto:hello@nuv.agency">
+              <a class="cta-email" id="contactEmail" href="mailto:hello@nuv.agency">
                 <span id="contactEmailLabel">hello@nuv.agency</span>
-                <span class="contact-email-icon" aria-hidden="true">↗</span>
+                <span class="cta-email-icon" aria-hidden="true">↗</span>
               </a>
 
-              <div class="contact-actions">
-                <a class="btn btn-solid" id="contactMailBtn" href="mailto:hello@nuv.agency">Email the studio <span aria-hidden="true">↗</span></a>
+              <div class="cta-actions">
+                <a class="btn btn-solid" id="contactMailBtn" href="mailto:hello@nuv.agency">Tell us your story <span aria-hidden="true">↗</span></a>
                 <a class="btn btn-ghost" id="contactInstagram" href="https://www.instagram.com/nuv.562/" target="_blank" rel="noopener">Instagram</a>
                 <button class="btn btn-ghost" type="button" data-open-about>About the founder</button>
               </div>
             </div>
 
-            <div class="contact-aside" data-reveal>
+            <div class="cta-aside" data-reveal>
               <div class="contact-block">
                 <p class="eyebrow">Studio</p>
-                <p class="contact-value"><span data-text="location">Working worldwide</span></p>
+                <p class="contact-value"><span data-text="location">Gaza · working worldwide</span></p>
               </div>
               <div class="contact-block">
                 <p class="eyebrow">Availability</p>
@@ -379,12 +561,17 @@
                 <p class="eyebrow">Elsewhere</p>
                 <div class="social-list" id="socialLinks"></div>
               </div>
-              <div class="contact-block" id="phoneBlock" hidden>
+              <div class="contact-block contact-block-wide" id="phoneBlock" hidden>
                 <p class="eyebrow">Phone</p>
                 <p class="contact-value"><a id="contactPhone" href="#"></a></p>
               </div>
             </div>
           </div>
+
+          <figure class="cta-quote" data-reveal>
+            <blockquote>&ldquo;<span data-text="ctaQuote">A passionate team who listens deeply, collaborates openly, and always delivers with care.</span>&rdquo;</blockquote>
+            <figcaption>— <span data-text="ctaQuoteAuthor">University of Sydney</span></figcaption>
+          </figure>
         </div>
       </section>
     </main>
@@ -400,6 +587,8 @@
           <nav class="footer-nav" aria-label="Footer">
             <a href="#work">Work</a>
             <a href="#services">Services</a>
+            <a href="#process">Process</a>
+            <a href="#faqs">FAQs</a>
             <a href="#book">Book a call</a>
             <button type="button" data-open-about>Founder</button>
             <a href="#contact">Contact</a>
@@ -501,6 +690,7 @@
           <p class="eyebrow" id="projectDialogMeta">Web — 2026</p>
           <h2 id="projectDialogTitle">Project</h2>
           <p class="lightbox-desc" id="projectDialogDesc"></p>
+          <p class="lightbox-result" id="projectDialogResult" hidden></p>
           <div class="tag-row" id="projectDialogTags"></div>
           <a class="btn btn-solid lightbox-link" id="projectDialogLink" href="#" target="_blank" rel="noopener" hidden>Visit live project <span aria-hidden="true">↗</span></a>
         </div>
@@ -546,7 +736,7 @@
             </div>
             <button class="btn btn-solid" id="addProjectBtn" type="button"><span aria-hidden="true">+</span> Add project</button>
           </header>
-          <p class="admin-panel-intro">Add work to the public grid, reorder nothing, and edit anything — title, category, image, description and link.</p>
+          <p class="admin-panel-intro">Add work to the public grid and edit anything — title, category, image, description, result and link.</p>
           <div class="admin-list" id="adminProjectList"></div>
         </section>
 
@@ -614,22 +804,39 @@
                   <span>Secondary button label</span>
                   <input name="heroSecondaryLabel" type="text" maxlength="32">
                 </label>
+                <label class="field">
+                  <span>Header button label</span>
+                  <input name="navCtaLabel" type="text" maxlength="32">
+                </label>
               </div>
             </section>
 
             <section class="admin-card">
               <div class="admin-card-head">
-                <h3>Contact</h3>
+                <h3>The gap</h3>
+                <p>The statement between the hero and the success stories.</p>
+              </div>
+              <div class="form-grid">
+                <label class="field form-span-2">
+                  <span>Statement</span>
+                  <textarea name="gapText" rows="3" maxlength="320"></textarea>
+                </label>
+              </div>
+            </section>
+
+            <section class="admin-card">
+              <div class="admin-card-head">
+                <h3>Contact &amp; closing</h3>
                 <p>Where people reach you, and the headline above it.</p>
               </div>
               <div class="form-grid">
                 <label class="field">
-                  <span>Contact headline — line 1</span>
+                  <span>Closing headline — line 1</span>
                   <input name="contactHeading" type="text" maxlength="30">
                 </label>
                 <label class="field">
-                  <span>Contact headline — line 2</span>
-                  <input name="contactHeadingAccent" type="text" maxlength="30">
+                  <span>Closing headline — line 2</span>
+                  <input name="contactHeadingAccent" type="text" maxlength="40">
                 </label>
                 <label class="field form-span-2">
                   <span>Contact introduction</span>
@@ -650,6 +857,73 @@
                 <label class="field">
                   <span>Footer note</span>
                   <input name="footerNote" type="text" maxlength="140">
+                </label>
+                <label class="field form-span-2">
+                  <span>Closing quote</span>
+                  <textarea name="ctaQuote" rows="2" maxlength="240"></textarea>
+                </label>
+                <label class="field form-span-2">
+                  <span>Closing quote attribution</span>
+                  <input name="ctaQuoteAuthor" type="text" maxlength="90">
+                </label>
+              </div>
+            </section>
+
+            <section class="admin-card">
+              <div class="admin-card-head">
+                <h3>Testimonials</h3>
+                <p>The three quotes in the slider. These ship as demo copy — replace them with real client words before you go live.</p>
+              </div>
+              <div class="form-grid">
+                <label class="field form-span-2">
+                  <span>Quote 1</span>
+                  <textarea name="quote1" rows="2" maxlength="420"></textarea>
+                </label>
+                <label class="field">
+                  <span>Name 1</span>
+                  <input name="quote1Name" type="text" maxlength="60">
+                </label>
+                <label class="field">
+                  <span>Role 1</span>
+                  <input name="quote1Role" type="text" maxlength="80">
+                </label>
+                <label class="field form-span-2">
+                  <span>Note 1 <em>(optional)</em></span>
+                  <input name="quote1Note" type="text" maxlength="120">
+                </label>
+
+                <label class="field form-span-2">
+                  <span>Quote 2</span>
+                  <textarea name="quote2" rows="2" maxlength="420"></textarea>
+                </label>
+                <label class="field">
+                  <span>Name 2</span>
+                  <input name="quote2Name" type="text" maxlength="60">
+                </label>
+                <label class="field">
+                  <span>Role 2</span>
+                  <input name="quote2Role" type="text" maxlength="80">
+                </label>
+                <label class="field form-span-2">
+                  <span>Note 2 <em>(optional)</em></span>
+                  <input name="quote2Note" type="text" maxlength="120">
+                </label>
+
+                <label class="field form-span-2">
+                  <span>Quote 3</span>
+                  <textarea name="quote3" rows="2" maxlength="420"></textarea>
+                </label>
+                <label class="field">
+                  <span>Name 3</span>
+                  <input name="quote3Name" type="text" maxlength="60">
+                </label>
+                <label class="field">
+                  <span>Role 3</span>
+                  <input name="quote3Role" type="text" maxlength="80">
+                </label>
+                <label class="field form-span-2">
+                  <span>Note 3 <em>(optional)</em></span>
+                  <input name="quote3Note" type="text" maxlength="120">
                 </label>
               </div>
             </section>
@@ -742,8 +1016,24 @@
             </select>
           </label>
           <label class="field">
+            <span>Year</span>
+            <input name="year" type="number" min="2000" max="2100" step="1" inputmode="numeric" placeholder="2026">
+          </label>
+          <label class="field">
             <span>Project link <em>(optional)</em></span>
             <input name="link" type="text" inputmode="url" maxlength="300" placeholder="https://…">
+          </label>
+          <label class="field">
+            <span>Result <em>(optional)</em></span>
+            <input name="result" type="text" maxlength="12" placeholder="+21%">
+          </label>
+          <label class="field form-span-2">
+            <span>Result note <em>(optional)</em></span>
+            <input name="resultNote" type="text" maxlength="90" placeholder="More enquiries converted into signed projects">
+          </label>
+          <label class="field form-span-2">
+            <span>Service tags <em>(comma separated)</em></span>
+            <input name="tags" type="text" maxlength="200" placeholder="Brand Strategy, Website Design, Website Development">
           </label>
           <div class="field form-span-2">
             <span>Image URL</span>
@@ -794,6 +1084,7 @@
   <script src="js/data.js"></script>
   <script src="js/store.js"></script>
   <script src="js/ambient.js"></script>
+  <script src="js/sections.js"></script>
   <script src="js/booking.js"></script>
   <script src="js/app.js"></script>
   <script src="js/admin.js"></script>

@@ -82,6 +82,8 @@
     var tags = Array.isArray(raw.tags)
       ? raw.tags.filter(function (tag) { return typeof tag === "string" && tag.trim(); }).slice(0, 6)
       : [categoryLabel(category)];
+    var year = Number(raw.year);
+    if (!year || year < 1900 || year > 2200) year = new Date().getFullYear();
     return {
       id: String(raw.id || "project-" + Date.now().toString(36)),
       title: title.slice(0, 90),
@@ -89,10 +91,18 @@
       description: String(raw.description || "").trim().slice(0, 600),
       image: String(raw.image || "").trim(),
       link: String(raw.link || "").trim(),
-      year: Number(raw.year) || new Date().getFullYear(),
+      year: year,
+      result: String(raw.result || "").trim().slice(0, 12),
+      resultNote: String(raw.resultNote || "").trim().slice(0, 90),
       tags: tags,
       createdAt: raw.createdAt || new Date().toISOString()
     };
+  }
+
+  function parseTags(value, fallback) {
+    if (typeof value !== "string") return fallback;
+    var list = value.split(",").map(function (tag) { return tag.trim(); }).filter(Boolean).slice(0, 6);
+    return list.length ? list : fallback;
   }
 
   function getProjects() {
@@ -128,8 +138,10 @@
       description: input.description,
       image: input.image,
       link: input.link,
-      year: new Date().getFullYear(),
-      tags: [categoryLabel(input.category)],
+      year: input.year || new Date().getFullYear(),
+      result: input.result,
+      resultNote: input.resultNote,
+      tags: parseTags(input.tags, [categoryLabel(input.category)]),
       createdAt: new Date().toISOString()
     });
     projects.unshift(project);
@@ -153,8 +165,10 @@
       description: input.description,
       image: input.image,
       link: input.link,
-      year: current.year,
-      tags: current.tags,
+      year: input.year || current.year,
+      result: input.result,
+      resultNote: input.resultNote,
+      tags: parseTags(input.tags, current.tags),
       createdAt: current.createdAt
     });
     projects[index] = next;

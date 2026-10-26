@@ -2,6 +2,9 @@
  * NUV — default content.
  * Everything in this file can be edited from the admin panel (/admin).
  * The admin writes to localStorage; this file is only the starting point.
+ *
+ * The projects, their results and the three testimonials are demo content:
+ * replace them with real work and real client words before publishing.
  */
 window.NUV_DEFAULTS = {
   settings: {
@@ -10,22 +13,45 @@ window.NUV_DEFAULTS = {
     metaDescription:
       "NUV is an independent digital studio building websites, e-commerce stores, custom software and brand identities for ambitious teams.",
 
-    heroKicker: "Independent digital studio",
-    heroLine1: "DIGITAL THINGS",
-    heroLine2: "THAT MATTER.",
+    heroKicker: "Digital partner for ambitious brands",
+    heroLine1: "Your ideas have",
+    heroLine2: "outgrown your site.",
     heroIntro:
       "NUV is a design and development studio building sharp websites, high-converting stores, custom software and identities for brands that want to be remembered.",
-    heroPrimaryLabel: "Start a project",
-    heroSecondaryLabel: "View selected work",
+    heroPrimaryLabel: "Schedule an intro call",
+    heroSecondaryLabel: "See the work",
+    navCtaLabel: "Start a project",
     availability: "Available for new projects",
-    location: "Working worldwide",
+    location: "Gaza · working worldwide",
 
-    contactHeading: "HAVE A PROJECT?",
-    contactHeadingAccent: "LET'S MAKE IT REAL.",
+    gapText:
+      "Your website is where ideal customers decide whether you are worth their time. We take what makes you irreplaceable, shape the whole experience around it, and make sure people feel it before they read another word.",
+
+    contactHeading: "Ready to build",
+    contactHeadingAccent: "an experience that moves people?",
     contactText:
       "Tell us what you are building. We reply within two working days with next steps, a rough timeline and an honest take on how we can help.",
     email: "hello@nuv.agency",
     phone: "",
+
+    ctaQuote: "A passionate team who listens deeply, collaborates openly, and always delivers with care.",
+    ctaQuoteAuthor: "Meridian Arquitectos",
+
+    quote1:
+      "A passionate team who listens deeply, collaborates openly, and always delivers with care. They treated our practice like it was their own.",
+    quote1Name: "Hana Radwan",
+    quote1Role: "Director, Meridian Arquitectos",
+    quote1Note: "Working with us since 2024",
+    quote2:
+      "They found the sharpest version of our story and built a site that finally matches it. The quality of enquiries changed within weeks, not months.",
+    quote2Name: "Tomas Meyer",
+    quote2Role: "Founder, Northwind Supply",
+    quote2Note: "Outdoor goods, est. 2019",
+    quote3:
+      "Genuinely the calmest project we have run. Decisions were quick because the thinking had already been done properly.",
+    quote3Name: "Layla Farouk",
+    quote3Role: "Creative Director, Forme Studio",
+    quote3Note: "Furniture and objects",
 
     instagram: "https://www.instagram.com/nuv.562/",
     linkedin: "",
@@ -53,7 +79,9 @@ window.NUV_DEFAULTS = {
       image: "assets/works/meridian.svg",
       link: "",
       year: 2026,
-      tags: ["Web design", "Web development", "CMS"],
+      result: "+21%",
+      resultNote: "More enquiries converted into signed projects",
+      tags: ["Website Strategy", "Website Design", "Website Development"],
       createdAt: "2026-02-12T10:00:00.000Z"
     },
     {
@@ -65,7 +93,9 @@ window.NUV_DEFAULTS = {
       image: "assets/works/northwind.svg",
       link: "",
       year: 2025,
-      tags: ["E-commerce", "Shopify", "Art direction"],
+      result: "3.1×",
+      resultNote: "Return on ad spend in the first quarter",
+      tags: ["E-commerce", "Website Design", "Website Development"],
       createdAt: "2025-11-03T10:00:00.000Z"
     },
     {
@@ -77,7 +107,9 @@ window.NUV_DEFAULTS = {
       image: "assets/works/forma.svg",
       link: "",
       year: 2024,
-      tags: ["Brand identity", "Print", "Art direction"],
+      result: "$180K",
+      resultNote: "In new work within 30 days of launch",
+      tags: ["Brand Strategy", "Visual Identity", "Art Direction"],
       createdAt: "2024-09-18T10:00:00.000Z"
     },
     {
@@ -89,7 +121,9 @@ window.NUV_DEFAULTS = {
       image: "assets/works/atlas.svg",
       link: "",
       year: 2026,
-      tags: ["Product design", "Front-end", "Design system"],
+      result: "−42%",
+      resultNote: "Time spent reconciling transactions each month",
+      tags: ["Product Design", "Website Development", "Design System"],
       createdAt: "2026-01-24T10:00:00.000Z"
     },
     {
@@ -101,7 +135,9 @@ window.NUV_DEFAULTS = {
       image: "assets/works/vera.svg",
       link: "",
       year: 2024,
-      tags: ["E-commerce", "Brand identity", "Subscriptions"],
+      result: "+64%",
+      resultNote: "Repeat purchase rate after the redesign",
+      tags: ["E-commerce", "Visual Identity", "Subscriptions"],
       createdAt: "2024-06-07T10:00:00.000Z"
     },
     {
@@ -113,7 +149,9 @@ window.NUV_DEFAULTS = {
       image: "assets/works/alma.svg",
       link: "",
       year: 2026,
-      tags: ["Editorial", "Visual identity"],
+      result: "12K",
+      resultNote: "Paying subscribers in the first six months",
+      tags: ["Visual Identity", "Art Direction", "Editorial"],
       createdAt: "2026-03-02T10:00:00.000Z"
     },
     {
@@ -125,7 +163,9 @@ window.NUV_DEFAULTS = {
       image: "assets/works/cobalt.svg",
       link: "",
       year: 2025,
-      tags: ["Web design", "Development", "Design system"],
+      result: "+90%",
+      resultNote: "Engagement on product case studies",
+      tags: ["Website Strategy", "Website Design", "Website Development"],
       createdAt: "2025-08-21T10:00:00.000Z"
     },
     {
@@ -137,7 +177,9 @@ window.NUV_DEFAULTS = {
       image: "assets/works/kova.svg",
       link: "",
       year: 2025,
-      tags: ["E-commerce", "Packaging", "Brand identity"],
+      result: "+38%",
+      resultNote: "Subscription retention after the rebrand",
+      tags: ["E-commerce", "Packaging", "Brand Strategy"],
       createdAt: "2025-05-14T10:00:00.000Z"
     },
     {
@@ -149,7 +191,9 @@ window.NUV_DEFAULTS = {
       image: "assets/works/helios.svg",
       link: "",
       year: 2025,
-      tags: ["Brand identity", "Motion", "Presentation"],
+      result: "$2M+",
+      resultNote: "Seed round closed on the new narrative",
+      tags: ["Brand Strategy", "Visual Identity", "Motion"],
       createdAt: "2025-02-09T10:00:00.000Z"
     }
   ]

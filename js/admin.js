@@ -100,11 +100,12 @@
         (image ? '<img src="' + escapeHtml(image) + '" alt="" loading="lazy">' : "");
       var label = store.categoryLabel(project.category);
       var liked = project.link ? "<span>Linked</span>" : "";
+      var result = project.result ? "<span>" + escapeHtml(project.result) + "</span>" : "";
       return '<div class="admin-item" data-project-id="' + escapeHtml(project.id) + '">' +
         '<div class="admin-item-thumb" aria-hidden="true">' + thumb + "</div>" +
         '<div class="admin-item-body">' +
           "<h3>" + escapeHtml(project.title) + "</h3>" +
-          '<p class="admin-item-meta"><span>' + escapeHtml(label) + "</span><span>" + escapeHtml(project.year) + "</span>" + liked + "</p>" +
+          '<p class="admin-item-meta"><span>' + escapeHtml(label) + "</span><span>" + escapeHtml(project.year) + "</span>" + result + liked + "</p>" +
           '<p class="admin-item-desc">' + escapeHtml(project.description || "No description yet.") + "</p>" +
         "</div>" +
         '<div class="admin-item-actions">' +
@@ -263,6 +264,11 @@
     els.projectForm.elements.namedItem("description").value = project ? project.description : "";
     els.projectForm.elements.namedItem("image").value = project ? project.image : "";
     els.projectForm.elements.namedItem("link").value = project ? project.link : "";
+    els.projectForm.elements.namedItem("year").value = project ? project.year : new Date().getFullYear();
+    els.projectForm.elements.namedItem("result").value = project ? project.result || "" : "";
+    els.projectForm.elements.namedItem("resultNote").value = project ? project.resultNote || "" : "";
+    els.projectForm.elements.namedItem("tags").value =
+      project && Array.isArray(project.tags) ? project.tags.join(", ") : "";
 
     setPreview(project ? project.image : "");
 
@@ -288,7 +294,11 @@
       category: String(form.elements.namedItem("category").value || "web"),
       description: String(form.elements.namedItem("description").value || "").trim(),
       image: normalizeImage(form.elements.namedItem("image").value),
-      link: normalizeUrl(form.elements.namedItem("link").value)
+      link: normalizeUrl(form.elements.namedItem("link").value),
+      year: Number(form.elements.namedItem("year").value) || undefined,
+      result: String(form.elements.namedItem("result").value || "").trim(),
+      resultNote: String(form.elements.namedItem("resultNote").value || "").trim(),
+      tags: String(form.elements.namedItem("tags").value || "")
     };
 
     function showError(message) {
@@ -351,7 +361,7 @@
         canvas.width = Math.max(1, Math.round(image.width * scale));
         canvas.height = Math.max(1, Math.round(image.height * scale));
         var context = canvas.getContext("2d");
-        context.fillStyle = "#06182e";
+        context.fillStyle = "#e5e5e0";
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
@@ -407,7 +417,12 @@
 
       els.confirmOk.onclick = function () { finish(true); };
       els.confirmCancel.onclick = function () { finish(false); };
-      els.confirmDialog.onclose = function () { finish(false); };
+      els.confirmDialog.onclose = function () {
+        // A close event queued by an earlier confirmation can land after this one
+        // has already opened; only read it as a cancel when the dialog is shut.
+        if (els.confirmDialog.open) return;
+        finish(false);
+      };
 
       if (els.confirmDialog.open) els.confirmDialog.close();
       els.confirmDialog.showModal();
@@ -567,6 +582,7 @@
         button.addEventListener("click", closeEditor);
       });
       els.editorDialog.addEventListener("close", function () {
+        if (els.editorDialog.open) return;
         state.editingId = null;
       });
     }
