@@ -5,3 +5,6 @@ desktop.ini
 .idea/
 node_modules/
 *.log
+
+# local research scratch
+.research/

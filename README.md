@@ -1,130 +1,88 @@
-# NUV® — Digital Studio
+# NUV® — Brand, Web & 3D Studio
 
-A single-page site for **NUV**, a digital studio offering web development, e-commerce stores, software solutions and graphic design.
+A single-page studio site for **NUV**, built as a light-theme, section-for-section
+interpretation of the Monolog studio layout: oversized grotesk typography, mono
+metadata, warm paper surfaces, a floating client-wins hero, a service list with
+live testimonial and image previews, a sticky project journey, an FAQ accordion,
+and a Cal.com-style intro-call scheduler that hands the booking to WhatsApp.
 
-The layout follows the studio/editorial structure of the reference site: a fixed header with a dark badge call to action, an oversized hero statement, a client-wins rotator, a scrolling ambition marquee, a brand marquee, a "we close that gap" statement, a horizontal success-story rail, a testimonial slider, a service list, a three-step process, an FAQ accordion, a filterable work list, a Cal.com-style booking widget and a footer that ends in a halftone wave.
+## Brand details
+
+| | |
+| --- | --- |
+| Studio | NUV Agency |
+| Founder | Abood — 20, based in Gaza, studying Accounting at Al-Azhar University |
+| WhatsApp | [+970 599 608 181](https://wa.me/970599608181) |
+| TikTok | [@nuv059](https://tiktok.com/@nuv059) |
+| Instagram | [@nuv.562](https://www.instagram.com/nuv.562/) |
+| Email | hello@nuv.agency |
+| Time zone | Asia/Hebron |
+
+All "Start a project" calls to action open WhatsApp directly. The booking modal
+uses the same handoff: pick a date and time, add your details, and the confirmed
+slot opens in WhatsApp pre-filled for Abood to hold.
 
 ## Page sections
 
 | # | Section | Anchor | Notes |
 | --- | --- | --- | --- |
-| 1 | Hero | `#top` | Availability, headline, introduction, CTAs, scroll cue |
-| 2 | Client wins | `#wins` | Rotates one statement per project that has a result |
-| 3 | Ambition marquee | — | Infinite scrolling statement |
-| 4 | Brands we've helped | `#brands` | Marquee built from project titles |
-| 5 | The gap | `#gap` | Statement and supporting copy |
-| 6 | Success stories | `#stories` | Horizontal rail of project cards with results |
-| 7 | Testimonials | `#quotes` | Three-quote slider with counter |
-| 8 | Services | `#services` | Six-row interactive service list |
-| 9 | Process | `#process` | Three numbered steps |
-| 10 | FAQs | `#faqs` | Accordion, one answer open at a time |
-| 11 | Work | `#work` | Filterable list with a cursor image preview |
-| 12 | Booking | `#book` | Intro-call scheduler |
-| 13 | Closing CTA | `#contact` | Headline, email, links, closing quote |
-| 14 | Footer | — | Socials, Gaza clock, icon dock, halftone wave |
+| 1 | Hero | `#top` | Display headline, intro, booking CTA, floating result cards |
+| 2 | Brands | — | Infinite name marquee |
+| 3 | The gap | `#gap` | Sticky testimonial, statement, oversized "WE CLOSE THAT GAP" |
+| 4 | Success stories | `#work` | Six project rows with cover, result and case-study dialog |
+| 5 | Services | `#services` | Six services; hover swaps testimonial and preview image |
+| 6 | Project journey | `#process` | Three steps with sticky side previews |
+| 7 | FAQs | `#faqs` | One-at-a-time accordion + founder card |
+| 8 | Closing CTA | `#contact` | "Tell us your story" + WhatsApp button |
+| 9 | Footer | — | Navigation, socials, live Hebron clock, oversized wordmark |
 
-## Pages
+The About modal (nav → About, footer, or founder card) carries the founder bio.
+Work rows open a case-study dialog with a "Start a similar project" link.
 
-| Route | What it is |
-| --- | --- |
-| `/` | Public site |
-| `/#/admin` | Admin control panel (full-screen overlay) |
-| `/admin/` | Small redirect page that opens the control panel |
+## Technology
 
-Everything is a single static page with hash routing, so it works on GitHub Pages, Netlify, Vercel or any static host.
-
-## The admin panel
-
-Open it from the **Admin** link in the footer, or go directly to `/#/admin`.
-
-**Projects**
-- Add, edit and delete portfolio items.
-- Fields: title, category (Web / Stores / Designs), year, image, description, project link, **result** (for example `+21%`), result note and service tags (comma separated).
-- The result feeds the client-wins rotator, the success-story rail, the work list and the project lightbox.
-- Images can be uploaded from your computer — they're resized to 1400px and stored as a data URL in the browser.
-- Changes appear across every section immediately.
-
-**Site settings**
-- Brand name, browser title and meta description.
-- Homepage hero: eyebrow, availability, two headline lines, introduction, primary, secondary and header button labels.
-- The gap statement.
-- Contact: closing headline, introduction, email, phone, location, footer note and the closing quote.
-- Testimonials: three quotes with a name, role and optional note.
-- Founder story and the booking widget (meeting name, duration, location, description).
-- Social links: Instagram, LinkedIn, X/Twitter (empty fields are hidden on the site).
-- Reset demo content restores the original project list and default copy.
-
-Edits are saved to `localStorage` (`nuv.projects.v1` and `nuv.settings.v1`). There is no server, so content is per-browser: it won't follow you to another device or browser profile. The admin route is not password-protected — it only edits the local browser storage.
-
-## Before you publish
-
-The shipped content is **demo content**. Replace it before going live:
-
-- The nine projects, their descriptions, results (`+21%`, `3.1×`…) and result notes are invented.
-- The three testimonials and their attributions are invented.
-- The FAQ answers, including the price range, and the process copy are placeholders.
-
-The services, process and FAQ copy lives in `index.html`; the projects and testimonials live in `js/data.js` and can also be edited in the admin panel.
-
-## Run locally
-
-No build step or dependencies.
-
-```bash
-# from this folder
-python -m http.server 8080
-```
-
-Then open <http://localhost:8080>. Opening `index.html` directly also works in most browsers, but a local server is recommended so `localStorage` has a stable origin.
-
-## Deploy
-
-### GitHub Pages
-1. Push the repository to GitHub.
-2. Open **Settings → Pages**.
-3. Set **Source** to *Deploy from a branch*, branch `main`, folder `/ (root)`.
-4. Save. The site publishes at `https://<user>.github.io/nuv/`.
-
-The admin lives at `https://<user>.github.io/nuv/#/admin`.
-
-## Project structure
+No build step and no dependencies. Plain HTML, CSS and ES5-era JavaScript,
+self-hosted fonts, SVG artwork and a generated Web Audio ambient pad behind the
+sound toggle.
 
 ```
 nuv/
-├── index.html            Public site + admin overlay markup
-├── admin/index.html      /admin redirect
+├── index.html              Page markup and all section content
 ├── css/
-│   ├── styles.css        Design system, layout, admin, modals
-│   └── sections.css      The section set (drawer, marquees, rails, sliders, FAQ, work list)
+│   ├── styles.css          Design tokens, nav, hero, footer, dialogs, reveals
+│   └── sections.css        Section layouts, booking widget, responsive rules
 ├── js/
-│   ├── data.js           Default settings and seed projects
-│   ├── store.js          localStorage persistence + CRUD
-│   ├── ambient.js        Generated ambient pad for the sound toggle
-│   ├── sections.js       Drawer, marquees, rotator, sliders, FAQ accordion
-│   ├── booking.js        Cal.com-style intro-call scheduler
-│   ├── app.js            Public rendering, work list, filters, lightbox
-│   └── admin.js          Admin routing, CRUD forms, settings
+│   ├── app.js              Nav, reveals, marquees, services, dialogs, cursor, clock
+│   ├── booking.js          Asia/Hebron calendar, slots, WhatsApp handoff
+│   └── ambient.js          Generative ambient sound for the sound toggle
 ├── assets/
-│   ├── logo.jpg          Original brand artwork
-│   ├── logo-mark.png     Cropped logo tile used in the UI/favicon
-│   ├── fonts/            Self-hosted Archivo, Inter Tight, JetBrains Mono
-│   └── works/            Nine custom SVG portfolio covers
+│   ├── hero-studio.svg     Wide hero artwork
+│   ├── logo-mark.png       NUV hat mark (nav, favicon, modals)
+│   ├── fonts/              Archivo, Inter Tight, JetBrains Mono
+│   └── works/              Nine SVG project covers
 └── README.md
 ```
 
-## Editing the starting content
+## Run locally
 
-Two places define the site's initial content:
+```bash
+python -m http.server 8080
+```
 
-- `js/data.js` — default settings, testimonials and the nine demo projects.
-- `index.html` — the services, process, FAQ and footer copy.
+Open <http://localhost:8080>. Opening `index.html` directly also works.
 
-Changes made in the admin override `js/data.js` in that browser. To ship new defaults to everyone, edit `js/data.js` (and the static copy in `index.html` for text that isn't settings-driven), then bump the storage keys in `js/store.js` or use **Reset demo content** to pick them up locally.
+## Editing content
 
-## Notes on the ambient sound
+Copy, projects, services, testimonials and FAQ answers live directly in
+`index.html`. Project modal details are carried by `data-project-*` attributes on
+each `.work-media` button. Service testimonials and preview images live in the
+`SERVICES` array at the top of `js/app.js`.
 
-The sound toggle plays a generative ambient pad built with the Web Audio API — four slowly detuning voices through a warm low-pass filter, with a quiet bed of filtered noise. There is no audio file and no network request, and the context is created on the first click so it never fights the browser's autoplay policy. To use a licensed track instead, replace `js/ambient.js` with an `<audio>` element behind the same `#soundToggle` button.
+## Notes
 
-## Notes on the booking widget
-
-The widget is entirely client-side. It computes real Gaza instants (DST-correct) for every slot, blocks Fridays and Saturdays, keeps a one-hour lead time, and hands the confirmed slot to Google Calendar. No confirmation email is sent, because there is no server — the held slot only lives in the page.
+- The projects, results, testimonials and brand names are **demo content**.
+  Replace them with real work before treating the site as a portfolio.
+- The booking widget is client-side only: no confirmation email is sent. The
+  requested slot is deliberately routed to WhatsApp so Abood can confirm it.
+- Ambient sound is generated in the browser on first click; it respects the
+  browser's autoplay policy and `prefers-reduced-motion`.

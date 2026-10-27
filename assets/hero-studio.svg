@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="Low-slung concrete and glass studio house at golden hour">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dcdcd5"/>
+      <stop offset="0.55" stop-color="#e8e6de"/>
+      <stop offset="1" stop-color="#f1eee5"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.72" cy="0.28" r="0.5">
+      <stop offset="0" stop-color="#fffdf4" stop-opacity="0.95"/>
+      <stop offset="0.45" stop-color="#f7f0dc" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#f7f0dc" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b9c3bd"/>
+      <stop offset="0.55" stop-color="#87948d"/>
+      <stop offset="1" stop-color="#5d6a60"/>
+    </linearGradient>
+    <linearGradient id="room" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c69a68"/>
+      <stop offset="0.6" stop-color="#9d7147"/>
+      <stop offset="1" stop-color="#6d4c31"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9aa078"/>
+      <stop offset="0.55" stop-color="#7b8260"/>
+      <stop offset="1" stop-color="#565d40"/>
+    </linearGradient>
+    <linearGradient id="deck" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c2bba9"/>
+      <stop offset="1" stop-color="#a49c88"/>
+    </linearGradient>
+    <linearGradient id="slab" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d8d3c5"/>
+      <stop offset="1" stop-color="#b8b2a2"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="0.5" cy="0.45" r="0.78">
+      <stop offset="0.6" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#2b2a23" stop-opacity="0.22"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="soft2" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect width="1600" height="900" fill="url(#sun)"/>
+
+  <!-- distant hills -->
+  <path d="M0 402 L220 372 L392 392 L560 356 L760 388 L960 366 L1180 392 L1380 368 L1600 396 L1600 470 L0 470Z" fill="#cfcec3" opacity="0.55"/>
+  <path d="M0 430 L260 412 L470 428 L700 404 L930 426 L1160 408 L1400 424 L1600 410 L1600 500 L0 500Z" fill="#c3c2b5" opacity="0.4"/>
+
+  <!-- tree line -->
+  <g fill="#5b6248" opacity="0.5">
+    <ellipse cx="1490" cy="392" rx="90" ry="34"/>
+    <ellipse cx="1420" cy="404" rx="62" ry="24"/>
+    <ellipse cx="1536" cy="414" rx="70" ry="26"/>
+  </g>
+
+  <!-- house shadow -->
+  <ellipse cx="820" cy="690" rx="700" ry="52" fill="#3b3a2e" opacity="0.16" filter="url(#soft)"/>
+
+  <!-- interior wall -->
+  <rect x="196" y="352" width="1180" height="298" fill="#6b5b46"/>
+
+  <!-- warm interior -->
+  <rect x="222" y="368" width="1128" height="268" fill="url(#room)"/>
+  <rect x="222" y="368" width="1128" height="268" fill="#1c1a14" opacity="0.12"/>
+
+  <!-- interior details: furniture silhouettes -->
+  <g fill="#3f2f20" opacity="0.55">
+    <rect x="300" y="560" width="210" height="52" rx="6"/>
+    <rect x="330" y="520" width="150" height="44" rx="8"/>
+    <rect x="610" y="590" width="120" height="42" rx="4"/>
+    <rect x="1010" y="548" width="260" height="58" rx="6"/>
+    <rect x="1120" y="500" width="150" height="50" rx="8"/>
+  </g>
+  <ellipse cx="470" cy="620" rx="90" ry="10" fill="#f4e6c8" opacity="0.18"/>
+  <circle cx="880" cy="470" r="26" fill="#f4e1b8" opacity="0.5"/>
+
+  <!-- glass wall -->
+  <rect x="222" y="368" width="1128" height="268" fill="url(#glass)" opacity="0.55"/>
+  <rect x="222" y="368" width="1128" height="268" fill="url(#glass)" opacity="0.18"/>
+  <g stroke="#3f463f" stroke-width="7" opacity="0.55">
+    <line x1="410" y1="368" x2="410" y2="636"/>
+    <line x1="610" y1="368" x2="610" y2="636"/>
+    <line x1="812" y1="368" x2="812" y2="636"/>
+    <line x1="1012" y1="368" x2="1012" y2="636"/>
+    <line x1="1210" y1="368" x2="1210" y2="636"/>
+  </g>
+  <rect x="222" y="368" width="1128" height="268" fill="none" stroke="#e6e3d7" stroke-width="3" opacity="0.4"/>
+
+  <!-- roof slab -->
+  <rect x="118" y="316" width="1358" height="42" fill="url(#slab)"/>
+  <rect x="118" y="358" width="1358" height="10" fill="#8b8475" opacity="0.55"/>
+  <rect x="118" y="316" width="1358" height="4" fill="#eeebe0"/>
+
+  <!-- columns -->
+  <g fill="#b4ad9c">
+    <rect x="206" y="368" width="16" height="268"/>
+    <rect x="1300" y="368" width="18" height="268"/>
+    <rect x="1330" y="368" width="12" height="268"/>
+  </g>
+
+  <!-- deck -->
+  <rect x="96" y="636" width="1408" height="46" fill="url(#deck)"/>
+  <rect x="96" y="636" width="1408" height="4" fill="#dcd6c7" opacity="0.7"/>
+  <g stroke="#8f8774" stroke-width="2" opacity="0.45">
+    <line x1="250" y1="640" x2="250" y2="682"/>
+    <line x1="470" y1="640" x2="470" y2="682"/>
+    <line x1="720" y1="640" x2="720" y2="682"/>
+    <line x1="980" y1="640" x2="980" y2="682"/>
+    <line x1="1240" y1="640" x2="1240" y2="682"/>
+  </g>
+
+  <!-- grass -->
+  <path d="M0 676 C 240 662, 520 690, 800 678 C 1080 666, 1330 690, 1600 672 L1600 900 L0 900Z" fill="url(#grass)"/>
+  <path d="M0 752 C 300 730, 560 762, 860 744 C 1140 728, 1380 754, 1600 738 L1600 900 L0 900Z" fill="#4b5237" opacity="0.25"/>
+
+  <!-- foreground planting -->
+  <g fill="#3f4630" opacity="0.75">
+    <path d="M120 900 C 130 820, 180 780, 240 760 C 210 810, 200 856, 196 900Z"/>
+    <path d="M1500 900 C 1490 826, 1440 788, 1382 766 C 1410 816, 1420 858, 1426 900Z"/>
+    <ellipse cx="70" cy="742" rx="120" ry="26"/>
+    <ellipse cx="1552" cy="756" rx="130" ry="28"/>
+  </g>
+
+  <!-- sun glint on glass -->
+  <path d="M980 368 L1180 368 L1010 636 L900 636Z" fill="#fffdf6" opacity="0.12"/>
+
+  <rect width="1600" height="900" fill="url(#vignette)"/>
+</svg>

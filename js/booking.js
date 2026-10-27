@@ -1,20 +1,20 @@
 /*
- * NUV — booking widget.
- * A self-contained Cal.com-style intro-call scheduler: a Gaza-local month
- * calendar, 30-minute slots inside working hours, a details step and an
- * add-to-calendar handoff. Everything runs in the browser — the held slot is
- * stored on this device, and there is no server to email a confirmation.
+ * NUV® — intro-call booking.
+ * A self-contained Cal.com-style scheduler: Gaza/Hebron month calendar,
+ * 30-minute slots inside working hours, a details step, and a WhatsApp
+ * handoff so the requested slot lands in Abood's messages.
  */
 (function () {
   "use strict";
 
-  var TZ = "Asia/Gaza";
+  var TZ = "Asia/Hebron";
+  var WHATSAPP = "https://wa.me/970599608181";
   var SLOT_START = 9 * 60;
   var SLOT_END = 17 * 60;
   var STEP = 30;
   var LEAD_MINUTES = 60;
   var WINDOW_DAYS = 75;
-  var WEEKEND = [5, 6]; // Friday and Saturday in Gaza
+  var WEEKEND = [5, 6]; // Friday and Saturday
   var MONTHS = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -30,7 +30,7 @@
     booked: null
   };
 
-  /* ---------- Time zone helpers ---------- */
+  /* ---------- Time-zone helpers ---------- */
 
   var partsFormatter = null;
   var clockFormatter = null;
@@ -38,20 +38,12 @@
   try {
     partsFormatter = new Intl.DateTimeFormat("en-GB", {
       timeZone: TZ,
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      weekday: "short",
-      hour12: false
+      year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit", second: "2-digit",
+      weekday: "short", hour12: false
     });
     clockFormatter = new Intl.DateTimeFormat("en-GB", {
-      timeZone: TZ,
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false
+      timeZone: TZ, hour: "2-digit", minute: "2-digit", hour12: false
     });
   } catch (error) {
     partsFormatter = null;
@@ -60,7 +52,6 @@
 
   var WEEKDAY_INDEX = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
 
-  // Wall-clock parts of an instant, as seen in Gaza.
   function partsOf(date) {
     if (partsFormatter) {
       var map = {};
@@ -77,7 +68,6 @@
         weekday: WEEKDAY_INDEX[map.weekday] == null ? 0 : WEEKDAY_INDEX[map.weekday]
       };
     }
-    // Fallback for engines without time-zone data: Gaza as UTC+2.
     var shifted = new Date(date.getTime() + 120 * 60000);
     return {
       y: shifted.getUTCFullYear(),
@@ -104,7 +94,6 @@
     return "GMT" + sign + hours + (mins ? ":" + (mins < 10 ? "0" + mins : mins) : "");
   }
 
-  // The instant whose Gaza wall-clock time is the given day and minute.
   function instantFor(y, m, d, minutes) {
     var utcGuess = Date.UTC(y, m, d, Math.floor(minutes / 60), minutes % 60, 0, 0);
     var instant = utcGuess;
@@ -138,29 +127,12 @@
     return (hours < 10 ? "0" + hours : String(hours)) + ":" + (mins < 10 ? "0" + mins : String(mins));
   }
 
-  function durationMinutes() {
-    var raw = settings().bookingDuration || "30m";
-    var match = /^(\d+)\s*(h|hr|hour|hours|m|min|mins|minute|minutes)?/i.exec(String(raw).trim());
-    if (!match) return 30;
-    var value = Number(match[1]);
-    if (!value) return 30;
-    return /^h/i.test(match[2] || "") ? value * 60 : value;
-  }
-
-  function settings() {
-    try {
-      return window.NUVStore ? window.NUVStore.getSettings() : {};
-    } catch (error) {
-      return {};
-    }
-  }
-
   /* ---------- Availability ---------- */
 
   function slotIsOpen(y, m, d, minutes) {
     var seed = (y * 372 + (m + 1) * 31 + d) * 977 + minutes * 13;
     var value = Math.sin(seed) * 43758.5453;
-    return value - Math.floor(value) > 0.33;
+    return value - Math.floor(value) > 0.3;
   }
 
   function openSlots(y, m, d) {
@@ -203,6 +175,7 @@
   }
 
   function renderCalendar() {
+    if (!els.days) return;
     els.month.textContent = monthLabel(state.year, state.month);
 
     var html = "";
@@ -217,11 +190,12 @@
     for (i = 1; i <= total; i += 1) {
       var bookable = dayIsBookable(state.year, state.month, i);
       var isToday = serial(state.year, state.month, i) === serial(state.today.y, state.today.m, state.today.d);
-      var isSelected = state.selected
-        && state.selected.y === state.year
-        && state.selected.m === state.month
-        && state.selected.d === i;
+      var isSelected = state.selected &&
+        state.selected.y === state.year &&
+        state.selected.m === state.month &&
+        state.selected.d === i;
       var label = MONTHS[state.month] + " " + i + (bookable ? "" : " — unavailable");
+
       html += '<button class="book-day' + (isToday ? " is-today" : "") + (isSelected ? " is-selected" : "") + '"' +
         ' type="button" data-book-day="' + i + '"' +
         (bookable ? "" : " disabled") +
@@ -231,7 +205,10 @@
 
     els.days.innerHTML = html;
 
-    if (els.prev) els.prev.disabled = !(state.year > state.today.y || (state.year === state.today.y && state.month > state.today.m));
+    if (els.prev) {
+      els.prev.disabled = !(state.year > state.today.y ||
+        (state.year === state.today.y && state.month > state.today.m));
+    }
     if (els.next) {
       var ahead = (state.year - state.today.y) * 12 + (state.month - state.today.m);
       els.next.disabled = ahead >= 4;
@@ -239,9 +216,11 @@
   }
 
   function renderSlots() {
+    if (!els.slots) return;
+
     if (!state.selected) {
       els.slotsTitle.textContent = "Available times";
-      els.slots.innerHTML = '<p class="book-slots-empty">Every slot in reach is booked. Email us and we will find a time.</p>';
+      els.slots.innerHTML = '<p class="book-slots-empty">Every slot in reach is booked. Message us on WhatsApp and we will find a time.</p>';
       return;
     }
 
@@ -264,17 +243,15 @@
   }
 
   function showView(view) {
-    els.picker.hidden = view !== "picker";
-    els.form.hidden = view !== "form";
-    els.done.hidden = view !== "done";
+    if (els.picker) els.picker.hidden = view !== "picker";
+    if (els.form) els.form.hidden = view !== "form";
+    if (els.done) els.done.hidden = view !== "done";
   }
 
   function selectDay(y, m, d) {
     state.selected = { y: y, m: m, d: d, minutes: null };
-    if (state.year !== y || state.month !== m) {
-      state.year = y;
-      state.month = m;
-    }
+    state.year = y;
+    state.month = m;
     render();
   }
 
@@ -284,16 +261,25 @@
     return WEEKDAYS[weekdayOf(y, m, d)] + ", " + d + " " + MONTHS[m] + " " + y;
   }
 
+  function localComparison(instant) {
+    var gazaOffset = offsetMinutes(instant);
+    var localOffset = -instant.getTimezoneOffset();
+    var localTime = instant.toLocaleString(undefined, {
+      weekday: "long", hour: "2-digit", minute: "2-digit", hour12: false
+    });
+
+    if (gazaOffset === localOffset) return "Your clock matches Hebron — same time for you.";
+    return "That is " + localTime + " where you are (" + offsetLabel(localOffset) + ").";
+  }
+
   function chooseSlot(minutes) {
     if (!state.selected) return;
     state.selected.minutes = minutes;
 
     var instant = instantFor(state.selected.y, state.selected.m, state.selected.d, minutes);
-    var duration = durationMinutes();
 
     els.summaryTime.textContent = longDate(state.selected.y, state.selected.m, state.selected.d) + " · " + timeLabel(minutes);
-    els.summaryMeta.textContent = duration + "m · " + (settings().bookingLocation || "Google Meet") +
-      " · " + TZ + " (" + offsetLabel(offsetMinutes(instant)) + ")";
+    els.summaryMeta.textContent = "30m · Google Meet · " + TZ + " (" + offsetLabel(offsetMinutes(instant)) + ")";
     els.summaryLocal.textContent = localComparison(instant);
 
     els.error.hidden = true;
@@ -301,17 +287,6 @@
 
     var nameField = els.form.elements.namedItem("name");
     if (nameField) nameField.focus();
-  }
-
-  function localComparison(instant) {
-    var gazaOffset = offsetMinutes(instant);
-    var localOffset = -instant.getTimezoneOffset();
-    var localTime = instant.toLocaleString(undefined, { weekday: "long", hour: "2-digit", minute: "2-digit", hour12: false });
-
-    if (gazaOffset === localOffset) {
-      return "Your clock matches Gaza — same time for you.";
-    }
-    return "That is " + localTime + " in your time zone (" + offsetLabel(localOffset) + ").";
   }
 
   function showError(message, fieldName) {
@@ -323,22 +298,21 @@
     }
   }
 
-  function calendarUrl() {
-    var duration = durationMinutes();
+  function calendarUrl(name, email, notes) {
     var instant = instantFor(state.selected.y, state.selected.m, state.selected.d, state.selected.minutes);
-    var end = new Date(instant.getTime() + duration * 60000);
+    var end = new Date(instant.getTime() + 30 * 60000);
     var stamp = function (date) {
       return date.toISOString().replace(/[-:]|\.\d{3}/g, "");
     };
-    var details = "Intro call with " + state.booked.name + " (" + state.booked.email + ")." +
-      (state.booked.notes ? "\n\nNotes: " + state.booked.notes : "") +
-      "\n\nThe Google Meet link arrives by email before the call.";
+    var details = "Intro call with " + name + " (" + email + ")." +
+      (notes ? "\n\nNotes: " + notes : "") +
+      "\n\nArrange the Google Meet link with Abood on WhatsApp.";
     var params = [
       ["action", "TEMPLATE"],
-      ["text", settings().bookingTitle || "Intro call w/ Abood @ NUV"],
+      ["text", "Intro call w/ Abood @ NUV"],
       ["dates", stamp(instant) + "/" + stamp(end)],
       ["details", details],
-      ["location", settings().bookingLocation || "Google Meet"],
+      ["location", "Google Meet"],
       ["ctz", TZ]
     ];
     return "https://calendar.google.com/calendar/render?" + params.map(function (pair) {
@@ -348,6 +322,7 @@
 
   function submitBooking(event) {
     event.preventDefault();
+
     if (!state.selected || state.selected.minutes == null) {
       showView("picker");
       return;
@@ -368,16 +343,28 @@
 
     state.booked = { name: name, email: email, notes: notes };
 
-    var stamped = longDate(state.selected.y, state.selected.m, state.selected.d) + " · " +
-      timeLabel(state.selected.minutes) + " " + TZ;
+    var dateLabel = longDate(state.selected.y, state.selected.m, state.selected.d);
+    var stamped = dateLabel + " · " + timeLabel(state.selected.minutes) + " " + TZ;
+
     els.doneTitle.textContent = stamped;
-    els.doneMeta.textContent = durationMinutes() + "m · " + (settings().bookingLocation || "Google Meet") +
-      " · " + TZ + " · booked for " + name;
-    els.calendarLink.href = calendarUrl();
+    els.doneMeta.textContent = "30m · Google Meet · " + TZ + " · for " + name;
+    els.calendarLink.href = calendarUrl(name, email, notes);
+
+    var message = "Hi Abood, I'd like to book the intro call.\n\n" +
+      "When: " + dateLabel + " at " + timeLabel(state.selected.minutes) + " (" + TZ + ")\n" +
+      "Name: " + name + "\n" +
+      "Email: " + email +
+      (notes ? "\nProject: " + notes : "") +
+      "\n\nBooked through nuv.agency";
+
+    var link = WHATSAPP + "?text=" + encodeURIComponent(message);
+    els.whatsapp.href = link;
 
     els.error.hidden = true;
     showView("done");
-    els.doneBadge.focus();
+
+    window.open(link, "_blank", "noopener");
+    if (els.doneBadge) els.doneBadge.focus();
   }
 
   /* ---------- Clock ---------- */
@@ -409,10 +396,7 @@
       els.prev.addEventListener("click", function () {
         var month = state.month - 1;
         var year = state.year;
-        if (month < 0) {
-          month = 11;
-          year -= 1;
-        }
+        if (month < 0) { month = 11; year -= 1; }
         state.year = year;
         state.month = month;
         render();
@@ -423,10 +407,7 @@
       els.next.addEventListener("click", function () {
         var month = state.month + 1;
         var year = state.year;
-        if (month > 11) {
-          month = 0;
-          year += 1;
-        }
+        if (month > 11) { month = 0; year += 1; }
         state.year = year;
         state.month = month;
         render();
@@ -446,6 +427,7 @@
       els.restart.addEventListener("click", function () {
         showView("picker");
         render();
+        if (els.month) els.month.scrollIntoView({ block: "nearest" });
       });
     }
   }
@@ -469,6 +451,7 @@
     els.doneMeta = document.getElementById("bookDoneMeta");
     els.doneBadge = document.querySelector(".book-done-badge");
     els.calendarLink = document.getElementById("bookCalendarLink");
+    els.whatsapp = document.getElementById("bookWhatsapp");
     els.back = document.getElementById("bookBack");
     els.restart = document.getElementById("bookRestart");
     els.nowClock = document.getElementById("bookNowClock");
