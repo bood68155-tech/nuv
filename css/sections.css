@@ -72,15 +72,15 @@
 /* Abood's portrait replaces the initials placeholder in the booking panel. */
 img.avatar {
   display: block;
-  object-fit: cover;
-  background: var(--navy-2);
+  object-fit: contain;
+  background-color: var(--navy-2);
 }
 
 .booking-host .avatar-photo {
   width: 48px;
   height: 48px;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   border-radius: 50%;
   border: 1px solid rgba(243, 245, 248, 0.42);
@@ -97,7 +97,8 @@ img.avatar {
   width: 62%;
   height: auto;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: var(--navy-2);
   box-shadow: 0 0 0 1px rgba(243, 245, 248, 0.22), 0 16px 36px rgba(5, 15, 31, 0.4);
 }
 
@@ -866,8 +867,9 @@ img.avatar {
   width: 45%;
   height: auto;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+  background-color: var(--navy-2);
   border-radius: 50%;
   opacity: 0.95;
   transition: transform 0.9s var(--ease);
@@ -1619,8 +1621,9 @@ dialog.modal[open] .project-shell {
   width: 78px;
   height: auto;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+  background-color: var(--navy);
   border-radius: 50%;
   margin-top: auto;
 }
