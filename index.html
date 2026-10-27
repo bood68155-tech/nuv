@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NUV® — Brand, Web &amp; 3D Studio</title>
   <meta name="description" content="NUV is an independent brand and web studio in Gaza. We build identities and websites for ambitious founders whose presence hasn't caught up to their reputation.">
-  <meta name="theme-color" content="#eae8e1">
+  <meta name="theme-color" content="#e9ebf0">
   <meta property="og:type" content="website">
   <meta property="og:title" content="NUV® — Brand, Web &amp; 3D Studio">
   <meta property="og:description" content="We build brand identities and websites for ambitious founders. Let's build an experience that moves people.">
@@ -60,9 +60,9 @@
         <button class="sound" id="soundToggle" type="button" aria-pressed="false" aria-label="Play ambient sound" title="Ambient sound — play">
           <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         </button>
-        <a class="btn btn-dark nav-cta" href="https://wa.me/970599608181" target="_blank" rel="noopener">
+        <button class="btn btn-dark nav-cta" type="button" data-open-booking>
           <span>Start a project</span><span class="btn-arrow" aria-hidden="true">↗</span>
-        </a>
+        </button>
         <button class="menu-btn" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
           <span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
           <span class="menu-label">Menu</span>
@@ -96,9 +96,9 @@
           <a href="https://www.instagram.com/nuv.562/" target="_blank" rel="noopener">Instagram ↗</a>
         </div>
       </div>
-      <a class="btn btn-dark btn-lg mobile-cta" href="https://wa.me/970599608181" target="_blank" rel="noopener">
+      <button class="btn btn-dark btn-lg mobile-cta" type="button" data-open-booking>
         <span>Start a project</span><span class="btn-arrow" aria-hidden="true">↗</span>
-      </a>
+      </button>
     </div>
   </div>
 
@@ -354,6 +354,60 @@
       </div>
     </section>
 
+    <!-- ============ Voices ============ -->
+    <section class="voices" id="voices" aria-labelledby="voicesTitle">
+      <div class="shell voices-head">
+        <p class="mono" data-reveal>(In their words)</p>
+        <p class="mono voices-counter" data-reveal data-reveal-delay="1"><span id="voiceIndex">01</span> / 03</p>
+      </div>
+
+      <div class="shell voices-grid">
+        <aside class="voices-aside" data-reveal>
+          <span class="voices-mark" aria-hidden="true">✳</span>
+          <p class="voices-aside-note">Founders and directors who let us close the gap for them.</p>
+          <p class="mono">Selected · 2024 — 2026</p>
+        </aside>
+
+        <div class="voices-main" data-reveal data-reveal-delay="1">
+          <h2 class="visually-hidden" id="voicesTitle">What clients say about working with NUV</h2>
+
+          <div class="voices-stack" id="voicesStack">
+            <figure class="voice is-active" data-voice="0">
+              <blockquote>“They found the sharpest version of our story and built a site that finally matches it. The quality of enquiries changed within weeks, not months.”</blockquote>
+              <figcaption class="quote-meta">
+                <span class="avatar" aria-hidden="true">TM</span>
+                <span><b>Tomas Meyer</b><em>Founder, Northwind Supply</em></span>
+              </figcaption>
+            </figure>
+
+            <figure class="voice" data-voice="1" aria-hidden="true">
+              <blockquote>“A passionate team who listens deeply, collaborates openly, and always delivers with care. They treated our practice like it was their own.”</blockquote>
+              <figcaption class="quote-meta">
+                <span class="avatar" aria-hidden="true">HR</span>
+                <span><b>Hana Radwan</b><em>Director, Meridian Arquitectos</em></span>
+              </figcaption>
+            </figure>
+
+            <figure class="voice" data-voice="2" aria-hidden="true">
+              <blockquote>“Genuinely the calmest project we have run. Decisions were quick because the thinking had already been done properly — and everything, down to the packaging, feels considered now.”</blockquote>
+              <figcaption class="quote-meta">
+                <span class="avatar" aria-hidden="true">LF</span>
+                <span><b>Layla Farouk</b><em>Creative Director, Forme Studio</em></span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="voices-controls">
+            <div class="voices-nav">
+              <button class="icon-btn" type="button" id="voicePrev" aria-label="Previous testimonial">←</button>
+              <button class="icon-btn" type="button" id="voiceNext" aria-label="Next testimonial">→</button>
+            </div>
+            <button class="link-arrow link-light" type="button" data-open-booking>Book an intro call <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ Services ============ -->
     <section class="services" id="services" aria-labelledby="servicesTitle">
       <div class="shell services-head">
@@ -500,7 +554,7 @@
         <aside class="faqs-aside">
           <div class="founder-card" data-reveal>
             <div class="founder-portrait">
-              <img src="assets/logo-mark.png" alt="" width="120" height="120" loading="lazy">
+              <img class="founder-photo" src="assets/abood.jpg" alt="Abood, founder of NUV" width="140" height="140" loading="lazy">
               <span class="mono founder-tag">Abood · Founder</span>
             </div>
             <p class="mono">Gaza · Asia/Hebron</p>
@@ -641,7 +695,7 @@
         </div>
 
         <div class="booking-host">
-          <span class="avatar avatar-lg" aria-hidden="true">A</span>
+          <img class="avatar avatar-lg avatar-photo" src="assets/abood.jpg" alt="Abood, founder of NUV" width="42" height="42" fetchpriority="high">
           <span><b>Abood</b><em>Founder, NUV</em></span>
         </div>
 

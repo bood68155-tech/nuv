@@ -591,6 +591,62 @@
     window.requestAnimationFrame(loop);
   }
 
+  /* ---------- Voices (testimonial stage) ---------- */
+
+  function initVoices() {
+    var stack = $("#voicesStack");
+    if (!stack) return;
+
+    var voices = $$(".voice", stack);
+    var section = $("#voices");
+    var indexEl = $("#voiceIndex");
+    var prev = $("#voicePrev");
+    var next = $("#voiceNext");
+    if (voices.length < 2) return;
+
+    var index = 0;
+    var timer = null;
+
+    function show(nextIndex) {
+      index = (nextIndex + voices.length) % voices.length;
+      voices.forEach(function (voice, i) {
+        var active = i === index;
+        voice.classList.toggle("is-active", active);
+        voice.setAttribute("aria-hidden", active ? "false" : "true");
+      });
+      if (indexEl) indexEl.textContent = String(index + 1).padStart(2, "0");
+    }
+
+    function stop() {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    function start() {
+      stop();
+      if (reducedMotion) return;
+      timer = window.setInterval(function () { show(index + 1); }, 7000);
+    }
+
+    if (prev) {
+      prev.addEventListener("click", function () { show(index - 1); start(); });
+    }
+    if (next) {
+      next.addEventListener("click", function () { show(index + 1); start(); });
+    }
+    if (section) {
+      section.addEventListener("pointerenter", stop);
+      section.addEventListener("pointerleave", start);
+      section.addEventListener("focusin", stop);
+      section.addEventListener("focusout", start);
+    }
+
+    show(0);
+    start();
+  }
+
   /* ---------- Init ---------- */
 
   function init() {
@@ -600,6 +656,7 @@
     initMobileMenu();
     initMarquees();
     initReveals();
+    initVoices();
     initServices();
     initFaqs();
     initDialogs();

@@ -65,8 +65,40 @@
   width: 42px;
   height: 42px;
   font-size: 12px;
-  background: rgba(243, 241, 233, 0.12);
+  background: rgba(243, 245, 248, 0.12);
   color: var(--cream);
+}
+
+/* Abood's portrait replaces the initials placeholder in the booking panel. */
+img.avatar {
+  display: block;
+  object-fit: cover;
+  background: var(--navy-2);
+}
+
+.booking-host .avatar-photo {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(243, 245, 248, 0.42);
+  box-shadow: 0 10px 24px rgba(5, 15, 31, 0.34);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.booking-host:hover .avatar-photo {
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 14px 30px rgba(5, 15, 31, 0.5);
+}
+
+.founder-portrait img.founder-photo {
+  width: 62%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(243, 245, 248, 0.22), 0 16px 36px rgba(5, 15, 31, 0.4);
+}
+
+.founder-card:hover .founder-portrait img.founder-photo {
+  transform: scale(1.05);
 }
 
 .quote-meta b {
@@ -242,7 +274,7 @@
   position: absolute;
   left: 14px;
   bottom: 14px;
-  background: rgba(243, 241, 233, 0.92);
+  background: rgba(243, 245, 248, 0.92);
   color: var(--ink);
   padding: 6px 9px;
   backdrop-filter: blur(6px);
@@ -511,7 +543,7 @@
   position: absolute;
   left: 10px;
   bottom: 10px;
-  background: rgba(243, 241, 233, 0.92);
+  background: rgba(243, 245, 248, 0.92);
   color: var(--ink);
   padding: 5px 8px;
 }
@@ -700,7 +732,7 @@
   justify-content: space-between;
   padding: 8px 12px;
   color: var(--ink);
-  background: linear-gradient(to top, rgba(234, 232, 225, 0.92), rgba(234, 232, 225, 0));
+  background: linear-gradient(to top, rgba(233, 235, 240, 0.94), rgba(233, 235, 240, 0));
 }
 
 /* ---------- Process: motion ---------- */
@@ -817,8 +849,8 @@
 .founder-portrait {
   aspect-ratio: 4 / 4.7;
   background:
-    radial-gradient(120% 90% at 70% 20%, rgba(61, 91, 128, 0.55), transparent 60%),
-    linear-gradient(160deg, var(--navy-2), #08111c);
+    radial-gradient(120% 90% at 70% 20%, rgba(41, 83, 148, 0.55), transparent 60%),
+    linear-gradient(160deg, var(--navy-2), #050f1f);
   display: grid;
   place-items: center;
   margin-bottom: 0.5rem;
@@ -981,7 +1013,7 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(90% 70% at 50% 40%, rgba(234, 232, 225, 0.55), rgba(234, 232, 225, 0.9) 70%),
+    radial-gradient(90% 70% at 50% 40%, rgba(233, 235, 240, 0.55), rgba(233, 235, 240, 0.9) 70%),
     linear-gradient(to bottom, var(--paper), transparent 18%, transparent 82%, var(--paper));
 }
 
@@ -1069,7 +1101,7 @@ dialog.modal[open] {
 }
 
 dialog.modal::backdrop {
-  background: rgba(11, 24, 40, 0.55);
+  background: rgba(6, 18, 40, 0.6);
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
 }
@@ -1136,7 +1168,7 @@ dialog.modal[open] .project-shell {
 }
 
 .booking-close {
-  border-color: rgba(243, 241, 233, 0.28);
+  border-color: rgba(243, 245, 248, 0.28);
   color: var(--cream);
 }
 
@@ -1186,7 +1218,7 @@ dialog.modal[open] .project-shell {
 }
 
 .booking-facts {
-  border-top: 1px solid rgba(243, 241, 233, 0.16);
+  border-top: 1px solid rgba(243, 245, 248, 0.16);
   margin-top: 0.4rem;
 }
 
@@ -1196,7 +1228,7 @@ dialog.modal[open] .project-shell {
   justify-content: space-between;
   gap: 1rem;
   padding: 8px 0;
-  border-bottom: 1px solid rgba(243, 241, 233, 0.1);
+  border-bottom: 1px solid rgba(243, 245, 248, 0.1);
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.04em;
@@ -1235,7 +1267,7 @@ dialog.modal[open] .project-shell {
 
 .booking-fine a {
   color: var(--cream);
-  border-bottom: 1px solid rgba(243, 241, 233, 0.4);
+  border-bottom: 1px solid rgba(243, 245, 248, 0.4);
 }
 
 .booking-main {
@@ -1322,7 +1354,7 @@ dialog.modal[open] .project-shell {
 }
 
 .book-day:hover:not(:disabled) {
-  background: rgba(19, 19, 16, 0.08);
+  background: rgba(11, 27, 49, 0.08);
 }
 
 .book-day:disabled {
@@ -1556,14 +1588,14 @@ dialog.modal[open] .project-shell {
   top: 14px;
   right: 14px;
   z-index: 2;
-  background: rgba(234, 232, 225, 0.8);
+  background: rgba(233, 235, 240, 0.86);
   backdrop-filter: blur(6px);
 }
 
 .about-portrait {
   background:
-    radial-gradient(120% 80% at 70% 15%, rgba(61, 91, 128, 0.6), transparent 62%),
-    linear-gradient(165deg, var(--navy-2), #08111c);
+    radial-gradient(120% 80% at 70% 15%, rgba(41, 83, 148, 0.6), transparent 62%),
+    linear-gradient(165deg, var(--navy-2), #050f1f);
   color: var(--cream);
   padding: 28px;
   display: flex;
@@ -1676,7 +1708,7 @@ dialog.modal[open] .project-shell {
   top: 14px;
   right: 14px;
   z-index: 2;
-  background: rgba(234, 232, 225, 0.85);
+  background: rgba(233, 235, 240, 0.88);
   backdrop-filter: blur(6px);
 }
 
@@ -2124,3 +2156,241 @@ dialog.modal[open] .project-shell {
     justify-content: space-between;
   }
 }
+
+/* =========================================================================
+   Voices — testimonial band (numbered quote stage, Monolog-style)
+   ========================================================================= */
+
+.voices {
+  position: relative;
+  overflow: hidden;
+  background: var(--navy);
+  color: var(--cream);
+  padding-block: var(--section-y);
+}
+
+.voices::before {
+  content: "";
+  position: absolute;
+  inset: -35% -15% auto;
+  height: 85%;
+  background: radial-gradient(58% 100% at 22% 0%, rgba(41, 83, 148, 0.55), transparent 68%);
+  pointer-events: none;
+}
+
+.voices .shell {
+  position: relative;
+}
+
+.voices-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(243, 245, 248, 0.16);
+  color: var(--cream-dim);
+}
+
+.voices-counter span {
+  color: var(--cream);
+}
+
+.voices-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 2.1fr);
+  gap: clamp(1.6rem, 4vw, 4.5rem);
+  margin-top: clamp(2.4rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.voices-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.voices-mark {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1;
+  color: var(--cream);
+  transition: transform 0.9s var(--ease);
+}
+
+.voices:hover .voices-mark {
+  transform: rotate(180deg);
+}
+
+.voices-aside-note {
+  max-width: 26ch;
+  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+  color: var(--cream-dim);
+}
+
+.voices-aside .mono {
+  color: rgba(243, 245, 248, 0.45);
+}
+
+.voices-stack {
+  display: grid;
+}
+
+.voice {
+  grid-area: 1 / 1;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: opacity 0.6s var(--ease), transform 0.7s var(--ease), visibility 0.6s;
+}
+
+.voice.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.voice blockquote {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 3.1vw, 2.9rem);
+  line-height: 1.15;
+  letter-spacing: -0.032em;
+  text-wrap: balance;
+}
+
+.voice .quote-meta {
+  margin-top: clamp(1.4rem, 3vw, 2.4rem);
+}
+
+.voice .quote-meta b {
+  font-size: 13px;
+}
+
+.voice .quote-meta em {
+  color: var(--cream-dim);
+}
+
+.voice .avatar {
+  width: 36px;
+  height: 36px;
+  background: rgba(243, 245, 248, 0.14);
+  color: var(--cream);
+}
+
+.voices-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+  margin-top: clamp(1.8rem, 4vw, 3rem);
+}
+
+.voices-nav {
+  display: flex;
+  gap: 10px;
+}
+
+.voices-nav .icon-btn {
+  border-color: rgba(243, 245, 248, 0.3);
+  color: var(--cream);
+}
+
+.voices-nav .icon-btn:hover {
+  background: var(--cream);
+  color: var(--navy);
+}
+
+.voices :focus-visible {
+  outline-color: var(--cream);
+}
+
+.link-light {
+  color: var(--cream);
+  border-bottom-color: rgba(243, 245, 248, 0.35);
+}
+
+.link-light:hover {
+  border-bottom-color: var(--cream);
+}
+
+@media (max-width: 1024px) {
+  .voices-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .voices-aside {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem;
+  }
+  .voices-aside-note {
+    max-width: 34ch;
+    order: 3;
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .voice blockquote {
+    font-size: clamp(1.28rem, 6.2vw, 1.75rem);
+  }
+  .voices-controls {
+    gap: 1rem;
+  }
+}
+
+/* =========================================================================
+   Micro-interactions — small, cheap, and everywhere
+   ========================================================================= */
+
+.btn:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+.quote-card {
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+}
+
+.quote-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--line);
+  box-shadow: 0 22px 48px rgba(11, 27, 49, 0.12);
+}
+
+.work-body h3 {
+  transition: transform 0.55s var(--ease);
+}
+
+.work-item:hover .work-body h3 {
+  transform: translateX(6px);
+}
+
+.work-media-tag {
+  transition: transform 0.55s var(--ease);
+}
+
+.work-item:hover .work-media-tag {
+  transform: translate(0, -4px);
+}
+
+.faq-icon {
+  transition: transform 0.45s var(--ease);
+}
+
+.faq-q:hover .faq-icon {
+  transform: scale(1.3);
+}
+
+.step-media figcaption {
+  transition: letter-spacing 0.5s var(--ease);
+}
+
+.step:hover .step-media figcaption {
+  letter-spacing: 0.04em;
+}
+

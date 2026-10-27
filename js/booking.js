@@ -9,6 +9,7 @@
 
   var TZ = "Asia/Hebron";
   var WHATSAPP = "https://wa.me/970599608181";
+  var NOTIFY = "https://formsubmit.co/ajax/bood68155@gmail.com";
   var SLOT_START = 9 * 60;
   var SLOT_END = 17 * 60;
   var STEP = 30;
@@ -320,6 +321,34 @@
     }).join("&");
   }
 
+  /* ---------- Notification ---------- */
+
+  // Fires the booking details at Abood's inbox (FormSubmit relay) without
+  // holding up the WhatsApp handoff. Failures are swallowed on purpose:
+  // the visitor still gets their confirmation either way.
+  function notifyAbood(name, email, notes, when) {
+    if (!window.fetch || !window.Promise) return;
+
+    var payload = {
+      _subject: "New NUV intro-call request — " + name,
+      _template: "table",
+      _captcha: "false",
+      name: name,
+      email: email,
+      message: "Intro call requested through the NUV booking calendar.",
+      When: when + " (" + TZ + ")",
+      Duration: "30 minutes · Google Meet",
+      Project: notes || "—",
+      Source: "nuv.agency — booking modal"
+    };
+
+    window.fetch(NOTIFY, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload)
+    }).catch(function () { /* notification is best-effort */ });
+  }
+
   function submitBooking(event) {
     event.preventDefault();
 
@@ -364,6 +393,7 @@
     showView("done");
 
     window.open(link, "_blank", "noopener");
+    notifyAbood(name, email, notes, stamped);
     if (els.doneBadge) els.doneBadge.focus();
   }
 
