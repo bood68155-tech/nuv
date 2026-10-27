@@ -79,6 +79,10 @@ img.avatar {
 .booking-host .avatar-photo {
   width: 48px;
   height: 48px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
   border: 1px solid rgba(243, 245, 248, 0.42);
   box-shadow: 0 10px 24px rgba(5, 15, 31, 0.34);
   transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
@@ -860,6 +864,10 @@ img.avatar {
 
 .founder-portrait img {
   width: 45%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
   border-radius: 50%;
   opacity: 0.95;
   transition: transform 0.9s var(--ease);
@@ -1609,6 +1617,10 @@ dialog.modal[open] .project-shell {
 
 .about-portrait img {
   width: 78px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
   border-radius: 50%;
   margin-top: auto;
 }
@@ -2108,6 +2120,9 @@ dialog.modal[open] .project-shell {
   }
   .founder-portrait img {
     width: 31%;
+  }
+  .founder-portrait img.founder-photo {
+    width: 44%;
   }
   .founder-card .btn {
     width: 100%;
