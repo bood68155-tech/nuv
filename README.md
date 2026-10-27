@@ -11,7 +11,7 @@ and a Cal.com-style intro-call scheduler that hands the booking to WhatsApp.
 | | |
 | --- | --- |
 | Studio | NUV Agency |
-| Founder | Abood — 20, based in Gaza, studying Accounting at Al-Azhar University |
+| Founder | Abood, 20, Gaza, Al-Azhar University |
 | WhatsApp | [+970 599 608 181](https://wa.me/970599608181) |
 | TikTok | [@nuv059](https://tiktok.com/@nuv059) |
 | Instagram | [@nuv.562](https://www.instagram.com/nuv.562/) |
