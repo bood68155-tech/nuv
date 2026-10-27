@@ -30,8 +30,8 @@ slot opens in WhatsApp pre-filled for Abood to hold.
 | 2 | Brands | — | Infinite name marquee |
 | 3 | The gap | `#gap` | Sticky testimonial, statement, oversized "WE CLOSE THAT GAP" |
 | 4 | Success stories | `#work` | Six project rows with cover, result and case-study dialog |
-| 5 | Services | `#services` | Six services; hover swaps testimonial and preview image |
-| 6 | Project journey | `#process` | Three steps with sticky side previews |
+| 5 | Services | `#services` | Six services cascade in; hover swaps testimonial and preview image |
+| 6 | Project journey | `#process` | STEP 01—03 with staggered copy reveals, rolling "see step" links and sticky side previews |
 | 7 | FAQs | `#faqs` | One-at-a-time accordion + founder card |
 | 8 | Closing CTA | `#contact` | "Tell us your story" + WhatsApp button |
 | 9 | Footer | — | Navigation, socials, live Hebron clock, oversized wordmark |

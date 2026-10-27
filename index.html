@@ -20,6 +20,7 @@
       .loader { display: none !important; }
       .hero-title .line > span { transform: none !important; }
       [data-reveal] { opacity: 1 !important; transform: none !important; }
+      .process-title { transform: none !important; }
     </style>
   </noscript>
 </head>
@@ -356,11 +357,11 @@
     <!-- ============ Services ============ -->
     <section class="services" id="services" aria-labelledby="servicesTitle">
       <div class="shell services-head">
-        <div>
+        <div data-reveal>
           <p class="mono">(What we can help with)</p>
           <h2 id="servicesTitle">Six ways we close the gap.</h2>
         </div>
-        <p class="services-intro">Strategy, identity and engineering live in one studio, so nothing gets lost between the idea and the thing people actually use.</p>
+        <p class="services-intro" data-reveal data-reveal-delay="1">Strategy, identity and engineering live in one studio, so nothing gets lost between the idea and the thing people actually use.</p>
       </div>
 
       <div class="shell services-grid">
@@ -372,10 +373,10 @@
               <span><b id="serviceQuoteName">Tomas Meyer</b><em id="serviceQuoteRole">Founder, Northwind Supply</em></span>
             </figcaption>
           </figure>
-          <div class="services-index mono"><span id="serviceIndex">01</span> <span>/ 06</span></div>
+          <div class="services-index mono" data-reveal data-reveal-delay="2"><span id="serviceIndex">01</span> <span>/ 06</span></div>
         </aside>
 
-        <div class="services-list" id="serviceList" role="list" aria-label="Services">
+        <div class="services-list" id="serviceList" role="list" aria-label="Services" data-reveal data-reveal-delay="1">
           <button class="service-row is-active" type="button" role="listitem" data-service="0" data-service-name="Brand Strategy" aria-pressed="true">
             <span class="service-num mono">01</span>
             <span class="service-name">Brand Strategy</span>
@@ -407,13 +408,13 @@
             <span class="service-arrow" aria-hidden="true">↗</span>
           </button>
 
-          <div class="services-list-foot">
+          <div class="services-list-foot" data-reveal data-reveal-delay="2">
             <p class="mono">Not sure which one you need?</p>
             <a class="link-arrow" id="serviceCta" href="https://wa.me/970599608181" target="_blank" rel="noopener">Start with Brand Strategy <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 
-        <div class="services-preview" aria-hidden="true">
+        <div class="services-preview" aria-hidden="true" data-reveal data-reveal-delay="2">
           <img id="serviceImage" src="assets/works/forma.svg" alt="" loading="lazy">
           <span class="services-preview-tag mono" id="servicePreviewTag">01 — Brand Strategy</span>
         </div>
@@ -423,63 +424,69 @@
     <!-- ============ Process ============ -->
     <section class="process" id="process" aria-labelledby="processTitle">
       <div class="shell process-head">
-        <p class="mono">(Project process)</p>
-        <p class="mono">03 steps · 4—8 weeks</p>
+        <p class="mono" data-reveal>(Project process)</p>
+        <p class="mono" data-reveal data-reveal-delay="1">03 steps · 4—8 weeks</p>
       </div>
-      <div class="process-title-wrap">
+      <div class="process-title-wrap" data-reveal>
         <h2 class="process-title" id="processTitle">Project journey</h2>
       </div>
 
       <div class="shell process-steps">
         <article class="step" data-reveal>
-          <div class="step-meta">
-            <p class="mono">Step</p>
-            <p class="step-num">01</p>
+          <div class="step-meta" data-reveal data-reveal-delay="1">
+            <p class="step-num"><span class="mono step-word">Step</span>01</p>
             <span class="step-mark" aria-hidden="true">✳</span>
           </div>
-          <div class="step-copy">
+          <div class="step-copy" data-reveal data-reveal-delay="1">
             <h3>We find the story only you can tell</h3>
             <p>We dig into your brand, surface what makes you irreplaceable, and shape it into sharp positioning and a website strategy that connects in seconds.</p>
             <p class="mono step-tags">Discovery · Positioning · Sitemap</p>
-            <button class="link-arrow" type="button" data-open-step="0">See step 01 in action <span aria-hidden="true">↗</span></button>
+            <button class="link-arrow link-roll" type="button" data-open-step="0" aria-label="See step 01 in action">
+              <span class="roll" aria-hidden="true"><span class="roll-track"><span>See step 01 in action</span><span>See step 01 in action</span></span></span>
+              <span aria-hidden="true">↗</span>
+            </button>
           </div>
-          <figure class="step-media">
+          <figure class="step-media" data-reveal data-reveal-delay="2">
             <img src="assets/works/northwind.svg" alt="Website strategy and discovery work for Northwind Supply" loading="lazy">
             <figcaption class="mono"><span>Discovery</span><span>01 / 03</span></figcaption>
           </figure>
         </article>
 
         <article class="step" data-reveal>
-          <div class="step-meta">
-            <p class="mono">Step</p>
-            <p class="step-num">02</p>
+          <div class="step-meta" data-reveal data-reveal-delay="1">
+            <p class="step-num"><span class="mono step-word">Step</span>02</p>
             <span class="step-mark" aria-hidden="true">✳</span>
           </div>
-          <div class="step-copy">
+          <div class="step-copy" data-reveal data-reveal-delay="1">
             <h3>We shape how it looks and moves</h3>
             <p>With the narrative locked, we design and build a brand and website that feel premium, signal credibility, and give your audience one clear reason to lean in and act.</p>
             <p class="mono step-tags">Identity · Interface · 3D &amp; motion</p>
-            <button class="link-arrow" type="button" data-open-step="1">See step 02 in action <span aria-hidden="true">↗</span></button>
+            <button class="link-arrow link-roll" type="button" data-open-step="1" aria-label="See step 02 in action">
+              <span class="roll" aria-hidden="true"><span class="roll-track"><span>See step 02 in action</span><span>See step 02 in action</span></span></span>
+              <span aria-hidden="true">↗</span>
+            </button>
           </div>
-          <figure class="step-media">
+          <figure class="step-media" data-reveal data-reveal-delay="2">
             <img src="assets/works/forma.svg" alt="Visual identity system designed for Forme Studio" loading="lazy">
             <figcaption class="mono"><span>Design &amp; build</span><span>02 / 03</span></figcaption>
           </figure>
         </article>
 
         <article class="step" data-reveal>
-          <div class="step-meta">
-            <p class="mono">Step</p>
-            <p class="step-num">03</p>
+          <div class="step-meta" data-reveal data-reveal-delay="1">
+            <p class="step-num"><span class="mono step-word">Step</span>03</p>
             <span class="step-mark" aria-hidden="true">✳</span>
           </div>
-          <div class="step-copy">
+          <div class="step-copy" data-reveal data-reveal-delay="1">
             <h3>We send it into the world</h3>
             <p>Your brand and website go live as a long-term asset that turns attention into opportunity, attracts the clients you were built for, and grows with you.</p>
             <p class="mono step-tags">Launch · Handover · 90-day support</p>
-            <button class="link-arrow" type="button" data-open-step="2">See step 03 in action <span aria-hidden="true">↗</span></button>
+            <button class="link-arrow link-roll" type="button" data-open-step="2" aria-label="See step 03 in action">
+              <span class="roll" aria-hidden="true"><span class="roll-track"><span>See step 03 in action</span><span>See step 03 in action</span></span></span>
+              <span aria-hidden="true">↗</span>
+            </button>
           </div>
-          <figure class="step-media">
+          <figure class="step-media" data-reveal data-reveal-delay="2">
             <img src="assets/works/meridian.svg" alt="Launched website for Meridian Arquitectos" loading="lazy">
             <figcaption class="mono"><span>Launch</span><span>03 / 03</span></figcaption>
           </figure>
