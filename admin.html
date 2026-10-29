@@ -33,6 +33,9 @@
         <p class="gate-note" id="gateNote">Enter the passcode to manage projects, case studies and showcases.</p>
       </div>
 
+      <input class="visually-hidden-input" type="text" name="username" id="gateUser"
+        autocomplete="username" value="admin" tabindex="-1" aria-hidden="true">
+
       <label class="field">
         <span>Passcode</span>
         <input type="password" id="gatePass" name="pass" autocomplete="current-password" minlength="4" required>
@@ -85,9 +88,9 @@
         <p class="publish-note" id="publishNote" hidden></p>
 
         <p class="head-hint mono">
-          Edits save to this browser instantly, so you can refresh the site to preview them.
-          To publish for every visitor, download <b>data/projects.json</b> and commit it to the repo —
-          then “Discard local edits” so the published file takes over.
+          With Firebase configured, every save writes straight to Firestore and the site updates live — nothing else to do.
+          Without it, edits save to this browser; publish by downloading <b>data/projects.json</b> and committing it,
+          then “Discard local edits”.
         </p>
       </section>
 
@@ -188,6 +191,7 @@
     <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
   </div>
 
+  <script src="js/firebase-config.js" defer></script>
   <script src="js/projects.js" defer></script>
   <script src="js/admin.js" defer></script>
 </body>

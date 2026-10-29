@@ -168,6 +168,172 @@
       });
   }
 
+  /* ---------- Firebase Firestore (optional live layer) ---------- */
+
+  var SDK_BASE = "https://www.gstatic.com/firebasejs/12.4.0";
+  var COLLECTION = "projects";
+  var firebaseConnect = null;
+
+  function isFirebaseConfigured() {
+    var config = window.NUVFirebaseConfig;
+    return !!(config && typeof config === "object" && config.apiKey && config.projectId);
+  }
+
+  /* A hanging network call must never strand the UI: every Firebase promise
+     resolves within `ms` so callers can fall back to local data. */
+  function withTimeout(promise, ms) {
+    return new Promise(function (resolve, reject) {
+      var timer = window.setTimeout(function () {
+        reject(new Error("firebase-timeout"));
+      }, ms);
+      promise.then(function (value) {
+        window.clearTimeout(timer);
+        resolve(value);
+      }, function (error) {
+        window.clearTimeout(timer);
+        reject(error);
+      });
+    });
+  }
+
+  /* Loads the CDN SDK only when a config exists. Any failure (offline, file://,
+     blocked CDN, bad config) resolves to null so callers fall back cleanly,
+     and the failure is cached so one page session never stalls twice. */
+  function connectFirebase() {
+    if (!isFirebaseConfigured()) return Promise.resolve(null);
+    if (firebaseConnect) return firebaseConnect;
+
+    firebaseConnect = withTimeout(Promise.all([
+      import(SDK_BASE + "/firebase-app.js"),
+      import(SDK_BASE + "/firebase-firestore.js")
+    ]), 10000).then(function (modules) {
+      var appModule = modules[0];
+      var fs = modules[1];
+      var app;
+      try {
+        app = appModule.getApp("nuv");
+      } catch (error) {
+        app = appModule.initializeApp(firebaseConfig(), "nuv");
+      }
+      return { fs: fs, db: fs.getFirestore(app) };
+    }).catch(function () {
+      return null;
+    }).then(function (ctx) {
+      firebaseConnect = Promise.resolve(ctx);
+      return ctx;
+    });
+
+    return firebaseConnect;
+  }
+
+  function firebaseConfig() {
+    return window.NUVFirebaseConfig || {};
+  }
+
+  /* Snapshot -> ordered project list (null when the collection is empty, so
+     the caller keeps whatever it is already showing instead of blanking). */
+  function listFromSnapshot(snapshot) {
+    var list = [];
+    snapshot.forEach(function (entry) {
+      var data = entry.data() || {};
+      var project = {};
+      FIELDS.forEach(function (field) {
+        project[field] = typeof data[field] === "string" ? data[field].trim() : "";
+      });
+      project.id = data.id || entry.id;
+      project.order = typeof data.order === "number" ? data.order : 9999;
+      if (project.title) list.push(project);
+    });
+
+    list.sort(function (a, b) {
+      if (a.order !== b.order) return a.order - b.order;
+      return a.title.localeCompare(b.title);
+    });
+
+    return normalize(list);
+  }
+
+  /* Real-time feed of the published list. Resolves to an unsubscribe function
+     when the listener is live, or to null when Firestore is not in play. The
+     status callback reports "live" on the first snapshot, "offline" on an
+     explicit error, and "unavailable" if neither arrives within 10s — the
+     listener itself stays attached, so a late connection still resumes. */
+  function subscribeProjects(onData, onStatus) {
+    if (!isFirebaseConfigured()) return Promise.resolve(null);
+
+    return connectFirebase().then(function (ctx) {
+      if (!ctx) {
+        if (onStatus) onStatus("unavailable");
+        return null;
+      }
+
+      var settled = false;
+      var watchdog = window.setTimeout(function () {
+        if (settled) return;
+        settled = true;
+        if (onStatus) onStatus("unavailable");
+      }, 10000);
+
+      try {
+        var unsubscribe = ctx.fs.onSnapshot(
+          ctx.fs.collection(ctx.db, COLLECTION),
+          function (snapshot) {
+            window.clearTimeout(watchdog);
+            settled = true;
+            var projects = listFromSnapshot(snapshot);
+            if (onStatus) onStatus("live");
+            if (projects && onData) onData(projects);
+          },
+          function () {
+            window.clearTimeout(watchdog);
+            settled = true;
+            if (onStatus) onStatus("offline");
+          }
+        );
+        return unsubscribe;
+      } catch (error) {
+        window.clearTimeout(watchdog);
+        if (onStatus) onStatus("unavailable");
+        return null;
+      }
+    });
+  }
+
+  /* Whole-list publish: sets every doc with its `order` and deletes docs that
+     are no longer in the list, in one atomic batch. */
+  function remoteSync(list) {
+    var clean = normalize(list) || [];
+
+    return connectFirebase().then(function (ctx) {
+      if (!ctx) throw new Error("firebase-unavailable");
+      var fs = ctx.fs;
+      var collectionRef = fs.collection(ctx.db, COLLECTION);
+
+      return withTimeout(fs.getDocs(collectionRef), 12000).then(function (snapshot) {
+        var batch = fs.writeBatch(ctx.db);
+        var keep = {};
+
+        clean.forEach(function (project, index) {
+          var ref = fs.doc(collectionRef, project.id);
+          var data = {};
+          FIELDS.forEach(function (field) {
+            data[field] = project[field];
+          });
+          data.order = index;
+          data.updatedAt = Date.now();
+          keep[ref.id] = true;
+          batch.set(ref, data);
+        });
+
+        snapshot.docs.forEach(function (entry) {
+          if (!keep[entry.id]) batch.delete(entry.ref);
+        });
+
+        return withTimeout(batch.commit(), 12000);
+      });
+    });
+  }
+
   /* ---------- Site rendering ---------- */
 
   function projectMarkup(project, total) {
@@ -225,20 +391,50 @@
 
   function initSite() {
     var local = readLocal();
-    var initial = render(local || clone(DEFAULTS));
+    var rendered = render(local || clone(DEFAULTS));
+    var renderedKey = JSON.stringify(rendered);
+    var gotLive = false;
+    var staticTried = false;
 
-    // Swap in the committed data once it arrives, unless this browser has
-    // local admin edits, which always win.
-    fetchSiteData().then(function (published) {
-      if (!published || readLocal()) return;
-      if (JSON.stringify(published) === JSON.stringify(initial)) return;
-      render(published);
+    function applyList(projects) {
+      if (!projects) return;
+      var key = JSON.stringify(projects);
+      if (key === renderedKey) return;
+      renderedKey = key;
+      render(projects);
+    }
+
+    /* Firebase not in play (or unreachable): the committed JSON stays the
+       publish path, with local edits and defaults behind it. */
+    function staticFallback() {
+      if (staticTried) return;
+      staticTried = true;
+      fetchSiteData().then(function (published) {
+        if (!published || readLocal()) return;
+        applyList(published);
+      });
+    }
+
+    subscribeProjects(
+      function (projects) {
+        gotLive = true;
+        applyList(projects);
+      },
+      function (status) {
+        document.documentElement.setAttribute("data-nuv-feed", status);
+        if (status !== "live" && !gotLive) staticFallback();
+      }
+    ).then(function (unsubscribe) {
+      if (unsubscribe) return;
+      document.documentElement.setAttribute("data-nuv-feed", "off");
+      staticFallback();
     });
   }
 
   window.NUVProjects = {
     STORAGE_KEY: STORAGE_KEY,
     DATA_URL: DATA_URL,
+    COLLECTION: COLLECTION,
     FIELDS: FIELDS,
     DEFAULTS: clone(DEFAULTS),
     clone: clone,
@@ -249,6 +445,10 @@
     writeLocal: writeLocal,
     clearLocal: clearLocal,
     fetchSiteData: fetchSiteData,
+    isFirebaseConfigured: isFirebaseConfigured,
+    connectFirebase: connectFirebase,
+    subscribeProjects: subscribeProjects,
+    remoteSync: remoteSync,
     render: render
   };
 

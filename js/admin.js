@@ -28,7 +28,11 @@
     projects: [],
     published: null,
     editingId: null,
-    mode: "login" // create | login | change
+    mode: "login", // create | login | change
+    feed: "off", // connecting | live | offline | unavailable | off
+    live: false,
+    writeFailed: false,
+    unsubscribe: null
   };
 
   var els = {};
@@ -234,16 +238,60 @@
   /* ---------- Data ---------- */
 
   function loadProjects() {
+    if (state.unsubscribe) {
+      state.unsubscribe();
+      state.unsubscribe = null;
+    }
+
+    state.live = false;
+    state.writeFailed = false;
+    state.feed = P.isFirebaseConfigured() ? "connecting" : "off";
+
+    // Paint the cached list instantly; the live feed replaces it on arrival.
     var local = P.readLocal();
     if (local) {
       state.projects = local;
       renderList();
-    } else {
+    }
+
+    /* Firebase not in play: the committed JSON / local cache stays the source. */
+    function staticFallback() {
+      if (state.projects.length) {
+        updatePublishNote();
+        return;
+      }
       P.fetchSiteData().then(function (published) {
         state.projects = published || P.clone(P.DEFAULTS);
         renderList();
+        updatePublishNote();
       });
     }
+
+    if (P.isFirebaseConfigured()) {
+      P.subscribeProjects(
+        function (projects) {
+          state.live = true;
+          state.feed = "live";
+          state.projects = projects;
+          renderList();
+          updatePublishNote();
+        },
+        function (status) {
+          state.feed = status;
+          updatePublishNote();
+        }
+      ).then(function (unsubscribe) {
+        if (unsubscribe) {
+          state.unsubscribe = unsubscribe;
+          return;
+        }
+        state.feed = "unavailable";
+        staticFallback();
+      });
+    } else {
+      staticFallback();
+    }
+
     P.fetchSiteData().then(function (published) {
       state.published = published;
       updatePublishNote();
@@ -254,7 +302,28 @@
     P.writeLocal(state.projects);
     renderList();
     updatePublishNote();
-    if (message) toast(message);
+
+    var configured = P.isFirebaseConfigured();
+    var base = message || (configured
+      ? "Saved"
+      : "Saved — refresh the site to preview");
+
+    if (!configured) {
+      toast(base);
+      return;
+    }
+
+    // Every mutation (save, delete, reorder, import, reset) publishes the
+    // whole list in one batch, so Firestore is always the full truth.
+    P.remoteSync(P.clone(state.projects)).then(function () {
+      state.writeFailed = false;
+      updatePublishNote();
+      toast(base + " — live on the site");
+    }).catch(function () {
+      state.writeFailed = true;
+      updatePublishNote();
+      toast(base + " in this browser only — Firestore write failed");
+    });
   }
 
   function sameAsPublished() {
@@ -264,13 +333,26 @@
 
   function updatePublishNote() {
     if (!els.publishNote) return;
-    if (state.published && !sameAsPublished()) {
-      els.publishNote.hidden = false;
-      els.publishNote.textContent =
-        "Unpublished changes: this browser shows your local edits, visitors still see the committed data/projects.json. Download it and commit to publish.";
+
+    var text = "";
+
+    if (state.writeFailed) {
+      text = "Last Firestore write failed — these changes live only in this browser. Check the security rules on the projects collection.";
+    } else if (state.feed === "live") {
+      text = "Live via Firestore — every save here reaches the site in real time, no export or commit needed.";
+    } else if (state.feed === "connecting") {
+      text = "Connecting to Firestore…";
+    } else if (state.feed === "offline" || state.feed === "unavailable") {
+      text = "Firestore unreachable — edits stay in this browser, visitors keep seeing the last live list.";
+    } else if (state.published && !sameAsPublished()) {
+      text = "Unpublished changes: this browser shows your local edits, visitors still see the committed data/projects.json. Download it and commit to publish.";
     } else if (state.published && sameAsPublished()) {
+      text = "Published data matches what visitors see.";
+    }
+
+    if (text) {
       els.publishNote.hidden = false;
-      els.publishNote.textContent = "Published data matches what visitors see.";
+      els.publishNote.textContent = text;
     } else {
       els.publishNote.hidden = true;
     }
@@ -419,7 +501,7 @@
       state.projects.push(draft);
     }
 
-    saveProjects("Saved — refresh the site to preview");
+    saveProjects();
     closeEditor();
   }
 

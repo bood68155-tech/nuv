@@ -57,8 +57,9 @@ nuv/
 │   └── admin.css           Admin panel styling (responsive)
 ├── js/
 │   ├── app.js              Nav, reveals, marquees, services, dialogs, cursor, clock
-│   ├── projects.js         Shared project data layer for site + admin
-│   ├── admin.js            Passcode gate, project CRUD, import/export
+│   ├── firebase-config.js  Firebase web app config (empty = local-only mode)
+│   ├── projects.js         Shared data layer: Firestore, localStorage, JSON
+│   ├── admin.js            Passcode gate, project CRUD, Firestore writes
 │   ├── booking.js          Asia/Hebron calendar, slots, WhatsApp handoff
 │   └── ambient.js          Generative ambient sound for the sound toggle
 ├── assets/
@@ -84,18 +85,45 @@ Open <http://localhost:8080>. Opening `index.html` directly also works.
 Open **`admin.html`**. On first visit you choose a passcode (stored as a hash in
 that browser), then you can add, edit, reorder and delete work rows without
 touching HTML: title, tag line, cover image, card summary, case-study text and
-the result figure. The site picks changes up immediately in that browser.
+the result figure.
 
-Resolution order for the success-stories list:
+With **Firebase Firestore** configured (below), every save writes straight to
+the `projects` collection and the site picks it up in real time — visitors see
+changes within a second, with no export or commit.
+
+Without Firebase, resolution order for the success-stories list is:
 
 1. `localStorage` override — edits made in `admin.html` on this browser
 2. `data/projects.json` — the committed, published list
 3. The defaults inside `js/projects.js`
 
-To publish for every visitor: press **Download data/projects.json**, replace
-`data/projects.json` with it and commit, then press **Discard local edits** so
-the published file takes over. **Import JSON** does the reverse: paste a list
-back in from a file.
+In that fallback mode, publish by pressing **Download data/projects.json**,
+replacing `data/projects.json` and committing it, then **Discard local edits**
+so the published file takes over. **Import JSON** does the reverse.
+
+### Firebase (live sync, free Spark plan)
+
+1. [Firebase console](https://console.firebase.google.com) → Add project →
+   **Register a Web app** → copy the generated config object.
+2. Paste it into **`js/firebase-config.js`** and commit. The SDK (v12.4.0 from
+   `gstatic.com`) is loaded on demand from the CDN — no build step, no npm.
+3. In Firestore, publish rules that let anyone read and this panel write:
+
+   ```
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       match /projects/{projectId} {
+         allow read: if true;
+         allow write: if true;  // demo lock — add Firebase Auth to restrict
+       }
+     }
+   }
+   ```
+
+Leaving the config empty keeps everything exactly as before: no network calls,
+and the site falls back to local data / `data/projects.json` whenever Firebase
+is unconfigured, offline or unreachable.
 
 ### Everything else
 
@@ -109,7 +137,8 @@ of `js/app.js`.
   Replace them with real work before treating the site as a portfolio.
 - The admin panel is locked with a browser-local passcode: it keeps the panel
   out of casual reach, but it is not server-side authentication. Real access
-  control would need a backend.
+  control would need a backend — and the open Firestore `write` rule above is
+  the same trade-off: add Firebase Auth before treating it as a hard gate.
 - The booking widget is client-side only: no confirmation email is sent. The
   requested slot is deliberately routed to WhatsApp so Abood can confirm it.
 - Ambient sound is generated in the browser on first click; it respects the
