@@ -414,6 +414,24 @@ ul, ol {
 
 @media (hover: none), (pointer: coarse) {
   .cursor { display: none; }
+
+  /* Touch parity: every desktop hover micro-interaction gets a press
+     equivalent, so phones feel the same as the pointer experience. */
+  .btn:active { transform: scale(0.97); }
+  .btn-dark:active { background: var(--navy); }
+  .btn-light:active { background: #ffffff; }
+  .btn:active .btn-arrow { transform: translate(1px, -1px); }
+  .link-arrow:active { border-color: var(--ink); }
+  .link-arrow:active span { transform: translateX(3px); }
+  .icon-btn:active { background: var(--ink); color: var(--cream); }
+  .brand:active .brand-mark { transform: rotate(-8deg) scale(1.04); }
+  .sound:active { border-color: var(--ink); }
+  .menu-btn:active .menu-lines i:last-child { width: 100%; }
+  .hero-media:active img { transform: scale(1.055); }
+  .footer-col a:active,
+  .footer-col button:active { border-color: var(--cream-dim); }
+  .footer-mail > a:first-child:active { opacity: 0.65; }
+  .footer-mail-wa:active { background: var(--cream); color: var(--navy); }
 }
 
 /* ---------- Navigation ---------- */
@@ -1362,7 +1380,7 @@ body.is-ready .hero-title .line:nth-child(4) > span { transition-delay: 0.27s; }
   .hero-media-tag {
     left: 8px;
     bottom: 8px;
-    font-size: 8px;
+    font-size: 9px;
     padding: 6px 8px;
     gap: 0.6rem;
   }
@@ -1385,11 +1403,11 @@ body.is-ready .hero-title .line:nth-child(4) > span { transition-delay: 0.27s; }
     font-size: 12px;
   }
   .win-card p {
-    font-size: 9.5px;
+    font-size: 10px;
   }
   .win-card em {
-    font-size: 6.5px;
-    margin-top: 3px;
+    font-size: 7.5px;
+    margin-top: 4px;
   }
   .hero-bottom {
     flex-wrap: wrap;
@@ -1423,6 +1441,6 @@ body.is-ready .hero-title .line:nth-child(4) > span { transition-delay: 0.27s; }
   }
   .footer-bottom {
     gap: 0.5rem 1rem;
-    font-size: 8px;
+    font-size: 9px;
   }
 }
