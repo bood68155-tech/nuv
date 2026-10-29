@@ -198,23 +198,36 @@
   /* ---------- Scroll reveals ---------- */
 
   function initReveals() {
-    var items = $$("[data-reveal]");
-    if (!items.length) return;
+    var observer = null;
 
-    if (!("IntersectionObserver" in window) || reducedMotion) {
-      items.forEach(function (item) { item.classList.add("is-in"); });
-      return;
+    // Observes any [data-reveal] node that has not been handled yet, so
+    // content rendered after init (e.g. the admin-driven work list) still
+    // gets its scroll reveal instead of staying invisible.
+    function scan() {
+      var items = $$("[data-reveal]").filter(function (item) {
+        return !item.hasAttribute("data-reveal-seen");
+      });
+      if (!items.length) return;
+
+      items.forEach(function (item) {
+        item.setAttribute("data-reveal-seen", "");
+        if (observer) observer.observe(item);
+        else item.classList.add("is-in");
+      });
     }
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-in");
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    if ("IntersectionObserver" in window && !reducedMotion) {
+      observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-in");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    }
 
-    items.forEach(function (item) { observer.observe(item); });
+    window.NUVReveals = { scan: scan };
+    scan();
   }
 
   /* ---------- Services ---------- */

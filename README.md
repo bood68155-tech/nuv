@@ -48,11 +48,17 @@ sound toggle.
 ```
 nuv/
 ├── index.html              Page markup and all section content
+├── admin.html              Passcode-locked portfolio manager
+├── data/
+│   └── projects.json       Published project list, served to the site
 ├── css/
 │   ├── styles.css          Design tokens, nav, hero, footer, dialogs, reveals
-│   └── sections.css        Section layouts, booking widget, responsive rules
+│   ├── sections.css        Section layouts, booking widget, responsive rules
+│   └── admin.css           Admin panel styling (responsive)
 ├── js/
 │   ├── app.js              Nav, reveals, marquees, services, dialogs, cursor, clock
+│   ├── projects.js         Shared project data layer for site + admin
+│   ├── admin.js            Passcode gate, project CRUD, import/export
 │   ├── booking.js          Asia/Hebron calendar, slots, WhatsApp handoff
 │   └── ambient.js          Generative ambient sound for the sound toggle
 ├── assets/
@@ -73,15 +79,37 @@ Open <http://localhost:8080>. Opening `index.html` directly also works.
 
 ## Editing content
 
-Copy, projects, services, testimonials and FAQ answers live directly in
-`index.html`. Project modal details are carried by `data-project-*` attributes on
-each `.work-media` button. Service testimonials and preview images live in the
-`SERVICES` array at the top of `js/app.js`.
+### Admin panel (projects, case studies, showcases)
+
+Open **`admin.html`**. On first visit you choose a passcode (stored as a hash in
+that browser), then you can add, edit, reorder and delete work rows without
+touching HTML: title, tag line, cover image, card summary, case-study text and
+the result figure. The site picks changes up immediately in that browser.
+
+Resolution order for the success-stories list:
+
+1. `localStorage` override — edits made in `admin.html` on this browser
+2. `data/projects.json` — the committed, published list
+3. The defaults inside `js/projects.js`
+
+To publish for every visitor: press **Download data/projects.json**, replace
+`data/projects.json` with it and commit, then press **Discard local edits** so
+the published file takes over. **Import JSON** does the reverse: paste a list
+back in from a file.
+
+### Everything else
+
+Copy, services, testimonials and FAQ answers live directly in `index.html`.
+Service testimonials and preview images live in the `SERVICES` array at the top
+of `js/app.js`.
 
 ## Notes
 
 - The projects, results, testimonials and brand names are **demo content**.
   Replace them with real work before treating the site as a portfolio.
+- The admin panel is locked with a browser-local passcode: it keeps the panel
+  out of casual reach, but it is not server-side authentication. Real access
+  control would need a backend.
 - The booking widget is client-side only: no confirmation email is sent. The
   requested slot is deliberately routed to WhatsApp so Abood can confirm it.
 - Ambient sound is generated in the browser on first click; it respects the

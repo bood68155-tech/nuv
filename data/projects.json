@@ -1,0 +1,68 @@
+[
+  {
+    "id": "meridian-arquitectos",
+    "title": "Meridian Arquitectos",
+    "meta": "Brand & website — 2026",
+    "image": "assets/works/meridian.svg",
+    "alt": "Meridian Arquitectos website design",
+    "desc": "Brand refresh and website for a practice with a decade of crafting high-end homes for Australian families.",
+    "longDesc": "A digital home for a Lisbon architecture practice: restrained typography, immersive project galleries and a CMS the studio actually enjoys using.",
+    "result": "+21%",
+    "resultNote": "Increase in conversions with projects starting from $2M+"
+  },
+  {
+    "id": "northwind-supply",
+    "title": "Northwind Supply",
+    "meta": "E-commerce — 2025",
+    "image": "assets/works/northwind.svg",
+    "alt": "Northwind Supply store website design",
+    "desc": "A storefront and identity system for an outdoor brand that needed its site to feel like the field it was made for.",
+    "longDesc": "An outdoor goods storefront built for speed and storytelling, with a mobile checkout that converts and a field-notes journal that keeps people coming back.",
+    "result": "3.1×",
+    "resultNote": "Return on ad spend in the first quarter after launch"
+  },
+  {
+    "id": "forme-studio",
+    "title": "Forme Studio",
+    "meta": "Visual identity — 2024",
+    "image": "assets/works/forma.svg",
+    "alt": "Forme Studio brand identity design",
+    "desc": "Visual identity and art direction for a furniture studio that makes quiet, considered objects.",
+    "longDesc": "A complete identity for a furniture studio: wordmark, art direction, print system and a brand manual that holds the whole language together.",
+    "result": "$180K",
+    "resultNote": "In new work within 30 days of launch"
+  },
+  {
+    "id": "atlas-pay",
+    "title": "Atlas Pay",
+    "meta": "Product & web — 2026",
+    "image": "assets/works/atlas.svg",
+    "alt": "Atlas Pay dashboard design",
+    "desc": "A payments platform rebuilt around clarity, from the marketing site to the dashboard finance teams live in.",
+    "longDesc": "Product design and front-end for a payments dashboard that turns complex transactions into a calm, legible experience for finance teams.",
+    "result": "−42%",
+    "resultNote": "Time spent reconciling transactions each month"
+  },
+  {
+    "id": "vera-skin",
+    "title": "Véra Skin",
+    "meta": "E-commerce & identity — 2024",
+    "image": "assets/works/vera.svg",
+    "alt": "Véra Skin e-commerce website design",
+    "desc": "A first online store for a botanical skincare label, built to make repeat buying feel effortless.",
+    "longDesc": "A botanical skincare brand's first online store: editorial product pages, subscriptions and a warm, tactile identity that feels as considered as the formulas.",
+    "result": "+64%",
+    "resultNote": "Repeat purchase rate after the redesign"
+  },
+  {
+    "id": "alma-journal",
+    "title": "Alma Journal",
+    "meta": "Editorial identity — 2026",
+    "image": "assets/works/alma.svg",
+    "alt": "Alma Journal editorial design",
+    "desc": "A printed and digital identity for a journal about the quiet architecture of belonging.",
+    "longDesc": "Editorial identity and art direction for an independent design journal, printed quarterly — a quiet system built to let photography and long-form writing breathe.",
+    "result": "12K",
+    "resultNote": "Paying subscribers in the first six months"
+  }
+]
