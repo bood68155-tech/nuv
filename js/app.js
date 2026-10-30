@@ -500,6 +500,45 @@
     }
   }
 
+  /* ---------- Process previews ---------- */
+
+  // The step previews are looping clips, so they only decode while they are
+  // actually on screen — three simultaneous 720p decodes would cost phones
+  // real battery for nothing. Posters carry the frame until playback starts.
+  function initStepVideos() {
+    var videos = $$(".step-media-video");
+    if (!videos.length) return;
+
+    if (reducedMotion) return;
+
+    function play(video) {
+      var promise = video.play();
+      if (promise && promise.catch) promise.catch(function () {});
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      videos.forEach(play);
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !document.hidden) play(entry.target);
+        else entry.target.pause();
+      });
+    }, { threshold: 0.25 });
+
+    videos.forEach(function (video) {
+      observer.observe(video);
+    });
+
+    document.addEventListener("visibilitychange", function () {
+      videos.forEach(function (video) {
+        if (document.hidden) video.pause();
+      });
+    });
+  }
+
   /* ---------- Sound ---------- */
 
   function initSound() {
@@ -696,6 +735,7 @@
     initServices();
     initFaqs();
     initDialogs();
+    initStepVideos();
     initSound();
     initClocks();
     initCursor();

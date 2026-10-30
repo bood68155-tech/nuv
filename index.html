@@ -64,7 +64,17 @@
 
       <div class="nav-actions">
         <button class="sound" id="soundToggle" type="button" aria-pressed="false" aria-label="Enable sound" title="Sound — enable ambient bed">
-          <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <svg class="sound-icon" viewBox="0 0 26 26" fill="none" aria-hidden="true" focusable="false">
+              <g class="sound-waves">
+                <path d="M17 10.002C17.6491 10.8674 18 11.9201 18 13.002C18 14.0838 17.6491 15.1365 17 16.002" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20.364 6.63794C21.1998 7.47367 21.8627 8.46583 22.315 9.55776C22.7673 10.6497 23.0001 11.82 23.0001 13.0019C23.0001 14.1838 22.7673 15.3542 22.315 16.4461C21.8627 17.5381 21.1998 18.5302 20.364 19.3659" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <g class="sound-cross">
+                <path d="M23 10.002L17 16.002" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M17 10.002L23 16.002" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <path d="M12 5.70398C11.9998 5.56469 11.9583 5.42859 11.8809 5.31284C11.8034 5.19709 11.6934 5.10688 11.5647 5.05361C11.436 5.00033 11.2944 4.98637 11.1577 5.01349C11.0211 5.04061 10.8956 5.10759 10.797 5.20598L7.413 8.58898C7.2824 8.72036 7.12703 8.82451 6.95589 8.89541C6.78475 8.9663 6.60124 9.00252 6.416 9.00198H4C3.73478 9.00198 3.48043 9.10734 3.29289 9.29487C3.10536 9.48241 3 9.73676 3 10.002V16.002C3 16.2672 3.10536 16.5216 3.29289 16.7091C3.48043 16.8966 3.73478 17.002 4 17.002H6.416C6.60124 17.0014 6.78475 17.0377 6.95589 17.1086C7.12703 17.1795 7.2824 17.2836 7.413 17.415L10.796 20.799C10.8946 20.8978 11.0203 20.9651 11.1572 20.9924C11.2941 21.0196 11.436 21.0057 11.5649 20.9522C11.6939 20.8988 11.804 20.8083 11.8815 20.6922C11.959 20.5761 12.0002 20.4396 12 20.3V5.70398Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </button>
         <button class="btn btn-dark nav-cta" type="button" data-open-booking>
           <span class="btn-label"><span>Start a project</span><span aria-hidden="true">Start a project</span></span><span class="btn-arrow" aria-hidden="true">↗</span>
@@ -510,8 +520,10 @@
             </div>
           </div>
           <figure class="step-media" data-reveal data-reveal-delay="2">
-            <button class="step-media-frame" type="button" data-open-step="0" data-cursor="View" aria-label="See step 01 in action">
-              <img src="assets/works/northwind.svg" alt="Website strategy and discovery work for Northwind Supply" loading="lazy">
+            <button class="step-media-frame" type="button" data-open-step="0" data-cursor="View" aria-label="Watch the step 01 preview — see it in action">
+              <video class="step-media-video" poster="assets/process/step-01.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1">
+                <source src="assets/process/step-01.mp4" type="video/mp4">
+              </video>
               <span class="step-media-cta mono" aria-hidden="true">See step 01 in action ↗</span>
             </button>
             <figcaption class="mono"><span>Discovery</span><span>01 / 03</span></figcaption>
@@ -536,8 +548,10 @@
             </div>
           </div>
           <figure class="step-media" data-reveal data-reveal-delay="2">
-            <button class="step-media-frame" type="button" data-open-step="1" data-cursor="View" aria-label="See step 02 in action">
-              <img src="assets/works/forma.svg" alt="Visual identity system designed for Forme Studio" loading="lazy">
+            <button class="step-media-frame" type="button" data-open-step="1" data-cursor="View" aria-label="Watch the step 02 preview — see it in action">
+              <video class="step-media-video" poster="assets/process/step-02.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1">
+                <source src="assets/process/step-02.mp4" type="video/mp4">
+              </video>
               <span class="step-media-cta mono" aria-hidden="true">See step 02 in action ↗</span>
             </button>
             <figcaption class="mono"><span>Design &amp; build</span><span>02 / 03</span></figcaption>
@@ -562,8 +576,10 @@
             </div>
           </div>
           <figure class="step-media" data-reveal data-reveal-delay="2">
-            <button class="step-media-frame" type="button" data-open-step="2" data-cursor="View" aria-label="See step 03 in action">
-              <img src="assets/works/meridian.svg" alt="Launched website for Meridian Arquitectos" loading="lazy">
+            <button class="step-media-frame" type="button" data-open-step="2" data-cursor="View" aria-label="Watch the step 03 preview — see it in action">
+              <video class="step-media-video" poster="assets/process/step-03.jpg" muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1">
+                <source src="assets/process/step-03.mp4" type="video/mp4">
+              </video>
               <span class="step-media-cta mono" aria-hidden="true">See step 03 in action ↗</span>
             </button>
             <figcaption class="mono"><span>Launch</span><span>03 / 03</span></figcaption>

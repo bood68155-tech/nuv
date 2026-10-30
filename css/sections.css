@@ -749,24 +749,27 @@ img.avatar {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   overflow: clip;
   border-radius: 2px;
   background: var(--navy-2);
   cursor: pointer;
 }
 
-.step-media-frame img {
+.step-media-frame img,
+.step-media-video {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transform: scale(1.01);
+  transform: scale(1.001);
   transition: transform 1.6s var(--ease);
 }
 
-.step:hover .step-media-frame img {
-  transform: scale(1.05);
+.step:hover .step-media-frame img,
+.step:hover .step-media-video {
+  transform: scale(1.03);
 }
 
 /* The label sits over the preview, inverting against whatever it covers. */
@@ -863,7 +866,8 @@ img.avatar {
   .step-copy.is-in > *:nth-child(3) { animation-delay: 0.16s; }
   .step-copy.is-in > *:nth-child(4) { animation-delay: 0.24s; }
 
-  .step-media.is-in img {
+  .step-media.is-in img,
+  .step-media.is-in .step-media-video {
     animation: imgSettle 1.5s var(--ease) backwards;
   }
   .step-media.is-in figcaption {
@@ -2474,7 +2478,8 @@ dialog.modal[open] .project-shell {
   .work-media:active img { transform: scale(1.045); }
   .work-item:active .work-body h3 { transform: translateX(6px); }
   .work-item:active .work-media-tag { transform: translate(0, -4px); }
-  .step:active .step-media img { transform: scale(1.05); }
+  .step:active .step-media img,
+  .step:active .step-media-video { transform: scale(1.03); }
   .step:active .step-media figcaption { letter-spacing: 0.04em; }
   .step-media-cta { opacity: 1; }
   .founder-card:active .founder-portrait img { transform: scale(1.05) rotate(-4deg); }

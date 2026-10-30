@@ -611,7 +611,7 @@ ul, ol {
   .link-arrow:active span { transform: translateX(3px); }
   .icon-btn:active { background: var(--ink); color: var(--cream); }
   .brand:active .brand-mark { transform: rotate(-8deg) scale(1.04); }
-  .sound:active { border-color: var(--ink); }
+  .sound:active { transform: scale(0.94); }
   .menu-btn:active .menu-lines i:last-child { width: 100%; }
   .hero-media:active img { transform: scale(1.055); }
   .footer-col a:active,
@@ -761,53 +761,67 @@ ul, ol {
   gap: 10px;
 }
 
+/* Sound toggle: a single square chip, icon only, no border — the same
+   restraint as the reference nav, sitting directly before the CTA. */
 .sound {
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
+  width: 2.125rem;
+  height: 2.125rem;
   display: grid;
   place-items: center;
-  transition: background 0.3s ease, border-color 0.3s ease;
+  border-radius: 2px;
+  background: var(--paper-3);
+  transition: background 0.25s var(--ease-soft), transform 0.25s var(--ease-soft);
 }
 
 .sound:hover {
-  border-color: var(--ink);
+  background: rgba(11, 27, 49, 0.15);
 }
 
-.sound-bars {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  height: 13px;
+.sound:active {
+  transform: scale(0.94);
 }
 
-.sound-bars i {
-  display: block;
-  width: 1.5px;
-  height: 100%;
-  background: var(--ink);
-  transform-origin: center;
-  transition: transform 0.3s ease, background 0.3s ease;
+.sound:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }
 
-.sound-bars i:nth-child(1) { transform: scaleY(0.35); }
-.sound-bars i:nth-child(2) { transform: scaleY(0.7); }
-.sound-bars i:nth-child(3) { transform: scaleY(0.5); }
-.sound-bars i:nth-child(4) { transform: scaleY(0.85); }
-
-.sound.is-playing .sound-bars i {
-  background: var(--ink);
-  animation: soundBars 0.9s ease-in-out infinite alternate;
+.sound-icon {
+  width: 1.0625rem;
+  height: 1.0625rem;
+  color: var(--ink);
+  overflow: visible;
 }
 
-.sound.is-playing .sound-bars i:nth-child(2) { animation-delay: 0.15s; }
-.sound.is-playing .sound-bars i:nth-child(3) { animation-delay: 0.3s; }
-.sound.is-playing .sound-bars i:nth-child(4) { animation-delay: 0.45s; }
+/* Muted: the arcs retract into the cone and the two cut lines draw on.
+   Playing: the reverse, so the icon reads as live audio at a glance. */
+.sound-waves,
+.sound-cross {
+  transform-box: view-box;
+  transform-origin: 12px 13px;
+  transition: opacity 0.28s var(--ease-soft), transform 0.4s var(--ease);
+}
 
-@keyframes soundBars {
-  from { transform: scaleY(0.3); }
-  to { transform: scaleY(1); }
+.sound-waves {
+  opacity: 0;
+  transform: scale(0.55);
+}
+
+.sound-cross {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sound.is-playing .sound-waves,
+.sound[aria-pressed="true"] .sound-waves {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sound.is-playing .sound-cross,
+.sound[aria-pressed="true"] .sound-cross {
+  opacity: 0;
+  transform: scale(0.55);
 }
 
 .menu-btn {
@@ -1542,8 +1556,12 @@ body.is-ready .hero-title .line:nth-child(4) > span { transition-delay: 0.27s; }
     gap: 7px;
   }
   .sound {
-    width: 32px;
-    height: 32px;
+    width: 1.9375rem;
+    height: 1.9375rem;
+  }
+  .sound-icon {
+    width: 0.9375rem;
+    height: 0.9375rem;
   }
   .brand-word {
     font-size: 17px;
