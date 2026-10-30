@@ -605,9 +605,18 @@ img.avatar {
 
 /* ---------- Process ---------- */
 
+/* A dark band between the services and the FAQs. Each step runs a rule across
+   the full width, puts the marker and copy on the left and a wide preview on
+   the right — the layout mirrors the reference process showcase, in NUV's own
+   navy rather than a neutral black. */
+
 .process {
+  position: relative;
   padding-top: var(--section-y);
-  background: var(--paper);
+  padding-bottom: var(--section-y);
+  background: var(--navy);
+  color: var(--cream);
+  overflow: clip;
 }
 
 .process-head {
@@ -615,7 +624,11 @@ img.avatar {
   justify-content: space-between;
   gap: 1rem;
   padding-bottom: 0.9rem;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgba(243, 245, 248, 0.18);
+}
+
+.process .mono {
+  color: rgba(243, 245, 248, 0.58);
 }
 
 .process-title-wrap {
@@ -633,51 +646,66 @@ img.avatar {
   max-width: var(--container);
   margin-inline: auto;
   white-space: nowrap;
+  color: var(--cream);
 }
 
 .process-steps {
   display: flex;
   flex-direction: column;
-  gap: clamp(2.5rem, 5vw, 5rem);
-  padding-bottom: var(--section-y);
 }
 
 .step {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  border-top: 1px solid var(--line);
-  padding-top: clamp(1rem, 2vw, 1.6rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 44%);
+  column-gap: clamp(1.4rem, 3vw, 3.4rem);
   align-items: start;
-  min-height: clamp(540px, 62vh, 700px);
+  border-top: 1px solid rgba(243, 245, 248, 0.18);
+  padding-top: clamp(1rem, 2vw, 1.6rem);
+  padding-bottom: clamp(1.9rem, 3.8vw, 3.6rem);
 }
 
-.step-meta {
-  grid-column: 1 / span 2;
+.step-left {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.2rem 0.6rem;
-  align-items: baseline;
-  position: sticky;
-  top: calc(var(--nav-h) + 30px);
+  grid-template-columns: minmax(86px, 0.3fr) minmax(0, 1fr);
+  column-gap: var(--gutter);
+  align-items: start;
 }
 
-.step-num {
-  font-family: var(--display);
-  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
-  letter-spacing: -0.03em;
-  line-height: 1;
+.step-marker {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 0.2rem;
+  color: var(--cream);
 }
 
-.step-mark {
-  color: var(--muted-2);
-  font-size: 12px;
-  justify-self: start;
+.step-word {
+  color: rgba(243, 245, 248, 0.58);
 }
 
-.step-copy {
-  grid-column: 3 / span 4;
-  padding-top: 0.2rem;
+.step-graph {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.step-line {
+  display: block;
+  width: 14px;
+  height: 1px;
+  background: rgba(243, 245, 248, 0.45);
+}
+
+.step-dot {
+  display: block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--cream);
+}
+
+.step-count {
+  color: var(--cream);
 }
 
 .step-copy h3 {
@@ -687,35 +715,48 @@ img.avatar {
   line-height: 1.05;
   letter-spacing: -0.035em;
   margin-bottom: 0.9rem;
-  max-width: 16ch;
+  max-width: 20ch;
+  color: var(--cream);
 }
 
 .step-copy p:not(.mono) {
   font-size: 0.95rem;
   line-height: 1.55;
-  color: var(--ink-2);
-  max-width: 38ch;
+  color: rgba(243, 245, 248, 0.64);
+  max-width: 42ch;
 }
 
 .step-tags {
   margin-top: 1.1rem;
-  color: var(--muted);
 }
 
 .step-copy .link-arrow {
   margin-top: 1.7rem;
+  color: var(--cream);
+  border-color: rgba(243, 245, 248, 0.26);
+}
+
+.step-copy .link-arrow:hover {
+  border-color: var(--cream);
 }
 
 .step-media {
-  grid-column: 7 / -1;
-  position: sticky;
-  top: calc(var(--nav-h) + 22px);
-  aspect-ratio: 16 / 10.5;
-  overflow: hidden;
-  background: var(--paper-3);
+  position: relative;
+  margin: 0;
 }
 
-.step-media img {
+.step-media-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: clip;
+  border-radius: 2px;
+  background: var(--navy-2);
+  cursor: pointer;
+}
+
+.step-media-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -724,8 +765,28 @@ img.avatar {
   transition: transform 1.6s var(--ease);
 }
 
-.step:hover .step-media img {
+.step:hover .step-media-frame img {
   transform: scale(1.05);
+}
+
+/* The label sits over the preview, inverting against whatever it covers. */
+.step-media-cta {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 8px 12px;
+  color: #ffffff !important;
+  mix-blend-mode: difference;
+  white-space: nowrap;
+  letter-spacing: 0.06em;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+
+.step:hover .step-media-cta,
+.step-media-frame:focus-visible .step-media-cta {
+  opacity: 1;
 }
 
 .step-media figcaption {
@@ -733,11 +794,13 @@ img.avatar {
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 1;
   display: flex;
   justify-content: space-between;
   padding: 8px 12px;
-  color: var(--ink);
-  background: linear-gradient(to top, rgba(233, 235, 240, 0.94), rgba(233, 235, 240, 0));
+  color: var(--cream);
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(9, 33, 69, 0.92), rgba(9, 33, 69, 0));
 }
 
 /* ---------- Process: motion ---------- */
@@ -750,15 +813,6 @@ img.avatar {
   from { transform: scale(1.12); }
 }
 
-.step-num {
-  display: flex;
-  align-items: baseline;
-  gap: 0.45rem;
-}
-
-.step-word {
-  transform: translateY(-0.1em);
-}
 
 /* Rolling hover for "See step in action" — the label loops upward. */
 .link-roll .roll {
@@ -1867,12 +1921,11 @@ dialog.modal[open] .project-shell {
     opacity: 0.5;
     transform: none;
   }
-  .step-copy {
-    grid-column: 3 / span 4;
+  .step {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 46%);
   }
-  .step-media {
-    grid-column: 7 / -1;
-    top: calc(var(--nav-h) + 18px);
+  .step-left {
+    grid-template-columns: minmax(74px, 0.26fr) minmax(0, 1fr);
   }
   .faqs-aside {
     grid-column: 1 / -1;
@@ -1962,22 +2015,15 @@ dialog.modal[open] .project-shell {
     white-space: normal;
   }
   .step {
-    row-gap: 1.4rem;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 1.5rem;
   }
-  .step-meta {
-    grid-column: 1 / -1;
-    position: static;
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-  }
-  .step-copy {
-    grid-column: 1 / span 8;
+  .step-left {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.9rem;
   }
   .step-media {
-    grid-column: 1 / -1;
-    position: relative;
-    top: 0;
+    width: 100%;
   }
   .cta-foot {
     flex-direction: column;
@@ -2116,11 +2162,11 @@ dialog.modal[open] .project-shell {
     flex-direction: column;
     align-items: flex-start;
   }
-  .step-copy {
-    grid-column: 1 / -1;
-  }
   .step-copy h3 {
     max-width: 20ch;
+  }
+  .step-marker {
+    margin-top: 0;
   }
   .founder-card {
     display: flex;
@@ -2430,6 +2476,7 @@ dialog.modal[open] .project-shell {
   .work-item:active .work-media-tag { transform: translate(0, -4px); }
   .step:active .step-media img { transform: scale(1.05); }
   .step:active .step-media figcaption { letter-spacing: 0.04em; }
+  .step-media-cta { opacity: 1; }
   .founder-card:active .founder-portrait img { transform: scale(1.05) rotate(-4deg); }
   .quote-card:active { transform: translateY(-5px); border-color: var(--line); }
   .faq-q:active { color: var(--ink-2); padding-left: 4px; }

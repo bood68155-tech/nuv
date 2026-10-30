@@ -15,7 +15,7 @@ and a Cal.com-style intro-call scheduler that hands the booking to WhatsApp.
 | WhatsApp | [+970 599 608 181](https://wa.me/970599608181) |
 | TikTok | [@nuv059](https://tiktok.com/@nuv059) |
 | Instagram | [@nuv.562](https://www.instagram.com/nuv.562/) |
-| Email | hello@nuv.agency |
+| Email | bood68155@gmail.com |
 | Time zone | Asia/Hebron |
 
 All "Start a project" calls to action open WhatsApp directly. The booking modal

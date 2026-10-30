@@ -27,8 +27,11 @@
   function initLoader() {
     var loader = $("#loader");
     var counter = $("#loaderCount");
+    var bar = $("#loaderBar");
     var start = null;
-    var duration = reducedMotion ? 0 : 850;
+    // Long enough for the badge and wordmark to arrive, short enough that the
+    // page never feels held hostage by its own intro.
+    var duration = reducedMotion ? 0 : 1500;
 
     function finish() {
       document.body.classList.add("is-ready");
@@ -36,7 +39,7 @@
         loader.classList.add("is-done");
         window.setTimeout(function () {
           loader.hidden = true;
-        }, 950);
+        }, 1150);
       }
     }
 
@@ -45,19 +48,26 @@
       return;
     }
 
+    function paint(progress) {
+      counter.textContent = String(Math.round(progress * 100)).padStart(2, "0");
+      if (bar) bar.style.width = (progress * 100).toFixed(1) + "%";
+    }
+
     function tick(now) {
       if (start === null) start = now;
-      var progress = Math.min((now - start) / Math.max(duration, 1), 1);
-      counter.textContent = String(Math.round(progress * 100)).padStart(2, "0");
-      if (progress < 1) {
+      var elapsed = Math.min((now - start) / Math.max(duration, 1), 1);
+      // Decelerate towards 100 the way the counter does on a hardware boot.
+      paint(1 - Math.pow(1 - elapsed, 3));
+      if (elapsed < 1) {
         window.requestAnimationFrame(tick);
       } else {
+        paint(1);
         finish();
       }
     }
 
     if (duration === 0) {
-      counter.textContent = "100";
+      paint(1);
       finish();
       return;
     }
@@ -66,10 +76,10 @@
     // Never let a stalled frame keep the page behind the loader.
     window.setTimeout(function () {
       if (!loader.classList.contains("is-done")) {
-        counter.textContent = "100";
+        paint(1);
         finish();
       }
-    }, 2600);
+    }, 3200);
   }
 
   /* ---------- Scroll bar + nav state ---------- */
@@ -497,16 +507,29 @@
     if (!button) return;
 
     var ambient = window.NUVAmbient;
-    if (!ambient || !ambient.supported()) {
+    var ambientReady = Boolean(ambient && ambient.supported());
+    var ui = window.NUVSound;
+    var uiReady = Boolean(ui && ui.supported());
+
+    if (!ambientReady && !uiReady) {
       button.hidden = true;
       return;
     }
 
+    // Interface clicks are on from the start — the first real gesture is enough
+    // for the browser to allow audio. The ambient bed stays opt-in, so the
+    // button starts unpressed and reads as "enable sound".
+
     button.addEventListener("click", function () {
-      var on = ambient.toggle();
+      var on = ambientReady
+        ? ambient.toggle()
+        : button.getAttribute("aria-pressed") !== "true";
+
+      if (uiReady) ui.setEnabled(on, true);
+
       button.setAttribute("aria-pressed", String(on));
-      button.setAttribute("aria-label", on ? "Pause ambient sound" : "Play ambient sound");
-      button.title = on ? "Ambient sound — pause" : "Ambient sound — play";
+      button.setAttribute("aria-label", on ? "Mute sound" : "Enable sound");
+      button.title = on ? "Sound — on, tap to mute" : "Sound — muted, tap to enable";
       button.classList.toggle("is-playing", on);
     });
   }
