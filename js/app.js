@@ -9,6 +9,7 @@
   var WHATSAPP = "https://wa.me/970599608181";
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 700;
 
   function $(selector, scope) {
     return (scope || document).querySelector(selector);
@@ -31,7 +32,8 @@
     var start = null;
     // Long enough for the badge and wordmark to arrive, short enough that the
     // page never feels held hostage by its own intro.
-    var duration = reducedMotion ? 0 : 1500;
+    // Mobile devices get a shorter duration to reduce jank on slower hardware.
+    var duration = reducedMotion ? 0 : (isMobile ? 900 : 1500);
 
     function finish() {
       document.body.classList.add("is-ready");
@@ -39,7 +41,7 @@
         loader.classList.add("is-done");
         window.setTimeout(function () {
           loader.hidden = true;
-        }, 1150);
+        }, isMobile ? 650 : 1150);
       }
     }
 

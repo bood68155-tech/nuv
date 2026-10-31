@@ -1755,6 +1755,90 @@ dialog.modal[open] .project-shell {
   letter-spacing: -0.01em;
 }
 
+/* Team */
+
+.about-team {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.about-team > .mono {
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+}
+
+.team-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.team-member {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 8px 10px;
+  background: var(--paper-2);
+  border: 1px solid var(--line-soft);
+  transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.team-member:hover {
+  border-color: var(--line);
+  transform: translateY(-2px);
+}
+
+.team-photo {
+  display: block;
+  width: 56px;
+  height: 56px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  background: var(--navy-2);
+}
+
+.team-id {
+  min-width: 0;
+}
+
+.team-id b {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.team-id em {
+  display: block;
+  font-style: normal;
+  margin-top: 3px;
+  color: var(--muted);
+}
+
+.team-phone {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  color: var(--navy);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: border-color 0.35s var(--ease);
+}
+
+.team-phone:hover {
+  border-color: var(--navy);
+}
+
 .about-actions {
   display: flex;
   align-items: center;
@@ -2210,6 +2294,15 @@ dialog.modal[open] .project-shell {
   .about-facts {
     grid-template-columns: 1fr;
     gap: 0.6rem;
+  }
+  .team-member {
+    grid-template-columns: auto minmax(0, 1fr);
+    row-gap: 0.5rem;
+    padding: 9px 10px;
+  }
+  .team-phone {
+    grid-column: 2;
+    justify-self: start;
   }
   .about-actions {
     gap: 0.9rem;
