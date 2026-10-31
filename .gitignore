@@ -8,3 +8,5 @@ node_modules/
 
 # local research scratch
 .research/
+.vercel
+.env*
