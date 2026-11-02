@@ -261,9 +261,9 @@ img.avatar {
 .featured-media {
   grid-column: 1 / span 7;
   position: relative;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 2.2 / 1;
   overflow: hidden;
-  background: var(--navy);
+  background: #050505;
   border: 1px solid var(--line-soft);
 }
 
@@ -277,15 +277,6 @@ img.avatar {
 
 .featured-card:hover .featured-media img {
   transform: scale(1.035);
-}
-
-.featured-tag {
-  position: absolute;
-  left: 14px;
-  bottom: 14px;
-  background: var(--navy);
-  color: var(--cream);
-  padding: 6px 10px;
 }
 
 .featured-body {
