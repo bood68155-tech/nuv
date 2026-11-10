@@ -1,12 +1,12 @@
 /*
- * NUV® — site behaviour.
- * Loader, navigation, scroll reveals, marquees, service previews, dialogs,
- * sound toggle, custom cursor and the live Gaza clock. No dependencies.
+ * NUV Dental — site behaviour.
+ * Loader, navigation, scroll reveals, marquees, dialogs, sound toggle,
+ * custom cursor and the live Edmonton clock. No dependencies.
  */
 (function () {
   "use strict";
 
-  var WHATSAPP = "https://wa.me/970599608181";
+  var CLINIC_PHONE = "tel:+17802139618";
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   var isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 700;
@@ -20,7 +20,7 @@
   }
 
   function waLink(message) {
-    return WHATSAPP + (message ? "?text=" + encodeURIComponent(message) : "");
+    return CLINIC_PHONE;
   }
 
   /* ---------- Intro loader ---------- */
@@ -246,52 +246,52 @@
 
   var SERVICES = [
     {
-      name: "Brand Strategy",
-      image: "assets/works/meridian.svg",
-      quote: "“A passionate team who listens deeply, collaborates openly, and always delivers with care. They treated our practice like it was their own.”",
-      person: "Hana Radwan",
-      role: "Director, Meridian Arquitectos",
-      initials: "HR"
+      name: "Cleanings",
+      image: "assets/dental-clean.jpg",
+      quote: "“I had put off the dentist for six years. Nobody made me feel silly about it — they just explained what needed doing and what it would cost.”",
+      person: "Sarah M.",
+      role: "Patient since 2023",
+      initials: "SM"
     },
     {
-      name: "Visual Identity",
-      image: "assets/works/forma.svg",
-      quote: "“They found the sharpest version of our story and built a system that finally matches it. Everything feels considered now, down to the business card.”",
-      person: "Layla Farouk",
-      role: "Creative Director, Forme Studio",
-      initials: "LF"
+      name: "Whitening",
+      image: "assets/dental-smile.jpg",
+      quote: "“Two weeks of trays and my teeth look like they did before coffee, red wine and fifteen years of life.”",
+      person: "Daniel K.",
+      role: "Patient since 2021",
+      initials: "DK"
     },
     {
-      name: "Website Strategy",
-      image: "assets/works/northwind.svg",
-      quote: "“They found the sharpest version of our story and built a site that finally matches it. The quality of enquiries changed within weeks, not months.”",
-      person: "Tomas Meyer",
-      role: "Founder, Northwind Supply",
-      initials: "TM"
+      name: "Invisalign®",
+      image: "assets/dental-interior.jpg",
+      quote: "“I saw the finished smile on a screen before I paid anything. Fourteen months later it looks exactly like that.”",
+      person: "Priya R.",
+      role: "Invisalign patient",
+      initials: "PR"
     },
     {
-      name: "Website Design",
-      image: "assets/works/vera.svg",
-      quote: "“Genuinely the calmest project we have run. Decisions were quick because the thinking had already been done properly.”",
-      person: "Layla Farouk",
-      role: "Creative Director, Forme Studio",
-      initials: "LF"
+      name: "Crowns",
+      image: "assets/dental-chair.jpg",
+      quote: "“Cracked a molar on a Saturday, in the chair Monday morning, out by lunch with a new crown. The estimate on the phone was the invoice.”",
+      person: "Tom B.",
+      role: "Patient since 2022",
+      initials: "TB"
     },
     {
-      name: "Website Development",
-      image: "assets/works/atlas.svg",
-      quote: "“The build is fast, quiet and easy for our team to update. Six months in, we still have not found anything to complain about.”",
-      person: "Tomas Meyer",
-      role: "Founder, Northwind Supply",
-      initials: "TM"
+      name: "Implants",
+      image: "assets/dental-team.jpg",
+      quote: "“They took the time to explain why an implant was the better option for me, then showed me the plan on a 3D scan. No pressure at all.”",
+      person: "Amara O.",
+      role: "Implant patient",
+      initials: "AO"
     },
     {
-      name: "3D Development",
-      image: "assets/works/helios.svg",
-      quote: "“The motion and 3D work gave the brand a dimension we could not explain in a deck. It simply feels alive.”",
-      person: "Hana Radwan",
-      role: "Director, Meridian Arquitectos",
-      initials: "HR"
+      name: "Emergency care",
+      image: "assets/dental-hero.jpg",
+      quote: "“Called at nine with a swollen face and was seen before eleven. That is the whole review.”",
+      person: "James L.",
+      role: "Emergency patient",
+      initials: "JL"
     }
   ];
 
@@ -345,7 +345,7 @@
       }, reducedMotion ? 0 : 220);
 
       if (cta) {
-        cta.href = waLink("Hi Abood, I would like to talk about " + service.name + " for my project.");
+        cta.href = waLink();
         cta.innerHTML = "Start with " + service.name + ' <span aria-hidden="true">↗</span>';
       }
     }
@@ -363,7 +363,7 @@
     });
 
     if (cta) {
-      cta.href = waLink("Hi Abood, I would like to talk about Brand Strategy for my project.");
+      cta.href = waLink();
     }
   }
 
@@ -417,6 +417,9 @@
       trigger.addEventListener("click", function () {
         var menu = $("#mobileMenu");
         if (menu && !menu.hidden) $("#menuClose").click();
+        // Booking from inside the about or treatment dialog should replace it.
+        closeDialog($("#aboutDialog"));
+        closeDialog($("#projectDialog"));
         openDialog(booking);
       });
     });
@@ -494,7 +497,6 @@
           media.alt = projectTitle + " — project design by NUV";
         }
         if (cta) {
-          cta.href = waLink("Hi Abood, I saw the " + projectTitle + " project and would like something similar.");
         }
 
         openDialog(project);
@@ -586,14 +588,14 @@
 
     try {
       formatter = new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Asia/Hebron",
+        timeZone: "America/Edmonton",
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
         hour12: false
       });
       heroFormatter = new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Asia/Hebron",
+        timeZone: "America/Edmonton",
         hour: "2-digit",
         minute: "2-digit",
         hour12: false

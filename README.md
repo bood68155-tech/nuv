@@ -1,43 +1,50 @@
-# NUV® — Brand, Web & 3D Studio
+# NUV Dental — General & Cosmetic Dentistry, Edmonton
 
-A single-page studio site for **NUV**, built as a light-theme, section-for-section
-interpretation of the Monolog studio layout: oversized grotesk typography, mono
-metadata, warm paper surfaces, a floating client-wins hero, a service list with
-live testimonial and image previews, a sticky project journey, an FAQ accordion,
-and a Cal.com-style intro-call scheduler that hands the booking to WhatsApp.
+A single-page clinic site for **NUV Dental**, built as a light-theme,
+section-for-section interpretation of the General Dental layout: oversized
+grotesk typography, mono metadata, warm paper surfaces, a floating hero with
+patient proof, a treatment grid with detail dialogs, a patient-voice carousel,
+a visit walkthrough, an FAQ accordion, a full contact section with a working
+inline form, and a Cal.com-style appointment scheduler.
 
 ## Brand details
 
 | | |
 | --- | --- |
-| Studio | NUV Agency |
-| Founder | Abood, 20, Gaza, Al-Azhar University |
-| WhatsApp | [+970 599 608 181](https://wa.me/970599608181) |
-| TikTok | [@nuv059](https://tiktok.com/@nuv059) |
-| Instagram | [@nuv.562](https://www.instagram.com/nuv.562/) |
-| Email | bood68155@gmail.com |
-| Time zone | Asia/Hebron |
+| Clinic | NUV Dental |
+| Address | 8137 97th Street NW, Edmonton, AB T6C 0Z9 |
+| Phone | [(780) 213-9618](tel:+17802139618) |
+| Email | info@nuvdental.ca |
+| Instagram | [@nuvdental](https://www.instagram.com/nuvdental) |
+| Hours | Mon 10am–6pm · Tue–Thu 8am–4pm · Fri–Sun closed |
+| Time zone | America/Edmonton |
 
-All "Start a project" calls to action open WhatsApp directly. The booking modal
-uses the same handoff: pick a date and time, add your details, and the confirmed
-slot opens in WhatsApp pre-filled for Abood to hold.
+Every "Book online" button — nav, hero, contact strip, FAQ card, about dialog
+and treatment dialog — opens the appointment scheduler. The scheduler shows a
+month calendar limited to clinic days and 60-minute new-patient slots, then a
+details step and a confirmation screen.
+
+The contact form validates client-side and shows the reference site's
+"Thank you! Your submission has been received!" state. This is a static
+deployment with no form endpoint, so submissions are confirmed in the browser
+only; wire `js/contact.js` to an endpoint to deliver them.
 
 ## Page sections
 
 | # | Section | Anchor | Notes |
 | --- | --- | --- | --- |
-| 1 | Hero | `#top` | Display headline, intro, booking CTA, floating result cards |
-| 2 | Brands | — | Infinite name marquee |
-| 3 | The gap | `#gap` | Sticky testimonial, statement, oversized "WE CLOSE THAT GAP" |
-| 4 | Success stories | `#work` | Six project rows with cover, result and case-study dialog |
-| 5 | Services | `#services` | Six services cascade in; hover swaps testimonial and preview image |
-| 6 | Project journey | `#process` | STEP 01—03 with staggered copy reveals, rolling "see step" links and looping 16:9 work previews |
-| 7 | FAQs | `#faqs` | One-at-a-time accordion + founder card |
-| 8 | Closing CTA | `#contact` | "Tell us your story" + WhatsApp button |
-| 9 | Footer | — | Navigation, socials, live Hebron clock, oversized wordmark |
+| 1 | Hero | `#top` | Display headline, intro, book-online CTA, floating proof cards |
+| 2 | Treatments | — | Infinite treatment marquee |
+| 3 | Why NUV | `#why` | Sticky patient quote, statement, oversized "WE TAKE OUR TIME" |
+| 4 | Treatments | `#treatments` | Featured new-patient exam, six treatment rows with cover, duration and detail dialog |
+| 5 | Patient voices | `#voices` | Three patient testimonials with prev/next controls |
+| 6 | Your visit | `#process` | STEP 01—03 with staggered copy reveals, rolling "see what to expect" links and 16:9 stills |
+| 7 | FAQs | `#faqs` | One-at-a-time accordion + clinic card |
+| 8 | Contact | `#contact` | Inline form with success state, clinic details card, hours, parking, book-online strip |
+| 9 | Footer | — | Navigation, phone, email, live Edmonton clock, oversized wordmark |
 
-The About modal (nav → About, footer, or founder card) carries the founder bio.
-Work rows open a case-study dialog with a "Start a similar project" link.
+The About modal (nav → About, footer, or clinic card) carries the clinic story.
+Treatment rows open a detail dialog with a "Book this visit" button.
 
 ## Technology
 
@@ -50,13 +57,14 @@ nuv/
 ├── index.html              Page markup and all section content
 ├── admin.html              Passcode-locked portfolio manager
 ├── data/
-│   └── projects.json       Published project list, served to the site
+│   └── projects.json       Treatment list used by the admin panel
 ├── css/
 │   ├── styles.css          Design tokens, nav, hero, footer, dialogs, reveals
 │   ├── sections.css        Section layouts, booking widget, responsive rules
 │   └── admin.css           Admin panel styling (responsive)
 ├── js/
-│   ├── app.js              Nav, reveals, marquees, services, dialogs, cursor, clock
+│   ├── app.js              Nav, reveals, marquees, dialogs, cursor, clock
+│   ├── contact.js          Contact form validation and success state
 │   ├── firebase-config.js  Firebase web app config (empty = local-only mode)
 │   ├── projects.js         Shared data layer: Firestore, localStorage, JSON
 │   ├── admin.js            Passcode gate, project CRUD, Firestore writes
