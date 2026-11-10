@@ -1,21 +1,21 @@
 /*
- * NUV Dental — appointment requests.
- * A self-contained Cal.com-style scheduler: Edmonton month calendar,
- * 60-minute new-patient slots inside clinic hours, a details step, and a
- * confirmation screen. Opening days and hours mirror the contact section.
+ * NUV® — intro-call booking.
+ * A self-contained Cal.com-style scheduler: Gaza/Hebron month calendar,
+ * 30-minute slots inside working hours, a details step, and a WhatsApp
+ * handoff so the requested slot lands in Abood's messages.
  */
 (function () {
   "use strict";
 
-  var TZ = "America/Edmonton";
-  var CLINIC = "tel:+17802139618";
-  
-  var DAY_START = 8 * 60;
-  var DAY_END = 16 * 60;
-  var STEP = 60;
+  var TZ = "Asia/Hebron";
+  var WHATSAPP = "https://wa.me/970599608181";
+  var NOTIFY = "https://formsubmit.co/ajax/bood68155@gmail.com";
+  var SLOT_START = 9 * 60;
+  var SLOT_END = 17 * 60;
+  var STEP = 30;
   var LEAD_MINUTES = 60;
   var WINDOW_DAYS = 75;
-  var WEEKEND = [0, 5, 6]; // Sunday, Friday and Saturday
+  var WEEKEND = [5, 6]; // Friday and Saturday
   var MONTHS = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -137,13 +137,9 @@
   }
 
   function openSlots(y, m, d) {
-    var weekday = weekdayOf(y, m, d);
-    if (WEEKEND.indexOf(weekday) !== -1) return [];
-    // Monday runs 10–6; Tuesday to Thursday 8–4.
-    var start = weekday === 1 ? 10 * 60 : DAY_START;
-    var end = weekday === 1 ? 18 * 60 : DAY_END;
+    if (WEEKEND.indexOf(weekdayOf(y, m, d)) !== -1) return [];
     var slots = [];
-    for (var minutes = start; minutes + STEP <= end; minutes += STEP) {
+    for (var minutes = SLOT_START; minutes + STEP <= SLOT_END; minutes += STEP) {
       if (!slotIsOpen(y, m, d, minutes)) continue;
       if (instantFor(y, m, d, minutes).getTime() < Date.now() + LEAD_MINUTES * 60000) continue;
       slots.push(minutes);
@@ -273,7 +269,7 @@
       weekday: "long", hour: "2-digit", minute: "2-digit", hour12: false
     });
 
-    if (gazaOffset === localOffset) return "Your clock matches Edmonton — same time for you.";
+    if (gazaOffset === localOffset) return "Your clock matches Hebron — same time for you.";
     return "That is " + localTime + " where you are (" + offsetLabel(localOffset) + ").";
   }
 
@@ -284,7 +280,7 @@
     var instant = instantFor(state.selected.y, state.selected.m, state.selected.d, minutes);
 
     els.summaryTime.textContent = longDate(state.selected.y, state.selected.m, state.selected.d) + " · " + timeLabel(minutes);
-    els.summaryMeta.textContent = "60 min · In clinic · " + TZ + " (" + offsetLabel(offsetMinutes(instant)) + ")";
+    els.summaryMeta.textContent = "30m · Google Meet · " + TZ + " (" + offsetLabel(offsetMinutes(instant)) + ")";
     els.summaryLocal.textContent = localComparison(instant);
 
     els.error.hidden = true;
@@ -305,24 +301,52 @@
 
   function calendarUrl(name, email, notes) {
     var instant = instantFor(state.selected.y, state.selected.m, state.selected.d, state.selected.minutes);
-    var end = new Date(instant.getTime() + 60 * 60000);
+    var end = new Date(instant.getTime() + 30 * 60000);
     var stamp = function (date) {
       return date.toISOString().replace(/[-:]|\.\d{3}/g, "");
     };
-    var details = "Dental appointment request for " + name + " (" + email + ")." +
+    var details = "Intro call with " + name + " (" + email + ")." +
       (notes ? "\n\nNotes: " + notes : "") +
-      "\n\nCall the clinic on (780) 213-9618 to confirm.";
+      "\n\nArrange the Google Meet link with Abood on WhatsApp.";
     var params = [
       ["action", "TEMPLATE"],
-      ["text", "NUV Dental appointment — " + name],
+      ["text", "Intro call w/ Abood @ NUV"],
       ["dates", stamp(instant) + "/" + stamp(end)],
       ["details", details],
-      ["location", "NUV Dental, 8137 97th Street NW, Edmonton"],
+      ["location", "Google Meet"],
       ["ctz", TZ]
     ];
     return "https://calendar.google.com/calendar/render?" + params.map(function (pair) {
       return encodeURIComponent(pair[0]) + "=" + encodeURIComponent(pair[1]);
     }).join("&");
+  }
+
+  /* ---------- Notification ---------- */
+
+  // Fires the booking details at Abood's inbox (FormSubmit relay) without
+  // holding up the WhatsApp handoff. Failures are swallowed on purpose:
+  // the visitor still gets their confirmation either way.
+  function notifyAbood(name, email, notes, when) {
+    if (!window.fetch || !window.Promise) return;
+
+    var payload = {
+      _subject: "New NUV intro-call request — " + name,
+      _template: "table",
+      _captcha: "false",
+      name: name,
+      email: email,
+      message: "Intro call requested through the NUV booking calendar.",
+      When: when + " (" + TZ + ")",
+      Duration: "30 minutes · Google Meet",
+      Project: notes || "—",
+      Source: "nuv.agency — booking modal"
+    };
+
+    window.fetch(NOTIFY, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload)
+    }).catch(function () { /* notification is best-effort */ });
   }
 
   function submitBooking(event) {
@@ -352,12 +376,24 @@
     var stamped = dateLabel + " · " + timeLabel(state.selected.minutes) + " " + TZ;
 
     els.doneTitle.textContent = stamped;
-    els.doneMeta.textContent = "60 min · In clinic · " + TZ + " · for " + name;
+    els.doneMeta.textContent = "30m · Google Meet · " + TZ + " · for " + name;
     els.calendarLink.href = calendarUrl(name, email, notes);
 
-    els.whatsapp.href = CLINIC;
+    var message = "Hi Abood, I'd like to book the intro call.\n\n" +
+      "When: " + dateLabel + " at " + timeLabel(state.selected.minutes) + " (" + TZ + ")\n" +
+      "Name: " + name + "\n" +
+      "Email: " + email +
+      (notes ? "\nProject: " + notes : "") +
+      "\n\nBooked through nuv.agency";
+
+    var link = WHATSAPP + "?text=" + encodeURIComponent(message);
+    els.whatsapp.href = link;
+
     els.error.hidden = true;
     showView("done");
+
+    window.open(link, "_blank", "noopener");
+    notifyAbood(name, email, notes, stamped);
     if (els.doneBadge) els.doneBadge.focus();
   }
 
