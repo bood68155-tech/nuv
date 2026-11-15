@@ -29,8 +29,8 @@ slot opens in WhatsApp pre-filled for Abood to hold.
 | 1 | Hero | `#top` | Display headline, intro, booking CTA, floating result cards |
 | 2 | Brands | — | Infinite name marquee |
 | 3 | The gap | `#gap` | Sticky testimonial, statement, oversized "WE CLOSE THAT GAP" |
-| 4 | Success stories | `#work` | Six project rows with cover, result and case-study dialog |
-| 5 | Services | `#services` | Six services cascade in; hover swaps testimonial and preview image |
+| 4 | Success stories | `#work` | Two featured live builds, then six project rows with cover, result and case-study dialog |
+| 5 | Services | `#services` | Six services cascade in; hover swaps testimonial and preview image, followed by the featured live client platform |
 | 6 | Project journey | `#process` | STEP 01—03 with staggered copy reveals, rolling "see step" links and looping 16:9 work previews |
 | 7 | FAQs | `#faqs` | One-at-a-time accordion + founder card |
 | 8 | Closing CTA | `#contact` | "Tell us your story" + WhatsApp button |
@@ -132,10 +132,24 @@ Copy, services, testimonials and FAQ answers live directly in `index.html`.
 Service testimonials and preview images live in the `SERVICES` array at the top
 of `js/app.js`.
 
+## Live client platforms
+
+Two builds are shipped and linked from the page rather than illustrated:
+
+| Platform | Live URL | Where it appears |
+| --- | --- | --- |
+| NUV Accounting | <https://accounting-nu-teal.vercel.app> | Featured card in `#work` |
+| NUV Dental Clinic | <https://dentai-clinic-platform.vercel.app> | Featured card in `#work` and the live client block in `#services` |
+
+Both cards use real product and practice photography committed under `assets/works/`,
+and every card surface links straight to the production URL.
+
 ## Notes
 
-- The projects, results, testimonials and brand names are **demo content**.
-  Replace them with real work before treating the site as a portfolio.
+- The dental clinic platform is a **live client build**: its photography in
+  `assets/works/nuv-dental-*.webp` comes from the clinic's own asset set. The
+  remaining projects, results, testimonials and brand names are **demo content** —
+  replace them with real work before treating the site as a portfolio.
 - The admin panel is locked with a browser-local passcode: it keeps the panel
   out of casual reach, but it is not server-side authentication. Real access
   control would need a backend — and the open Firestore `write` rule above is
